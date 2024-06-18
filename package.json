@@ -16,6 +16,7 @@
     "check-format": "prettier --check ."
   },
   "dependencies": {
+    "@fontsource/inter": "^5.0.18",
     "dotenv": "^16.4.5",
     "gatsby": "^5.13.5",
     "gatsby-plugin-image": "^3.13.1",

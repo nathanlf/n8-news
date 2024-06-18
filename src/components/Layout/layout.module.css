@@ -1,11 +1,11 @@
 .container {
   margin: 0 auto;
   max-width: 1200px;
-  font-family: sans-serif;
+  font-family: "Inter";
 }
 .heading {
   color: rgb(22, 136, 171);
-  font-family: sans-serif, "Inter";
+  font-family: "Inter";
 }
 .nav-bar {
   display: grid;
