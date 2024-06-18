@@ -6,6 +6,7 @@ import { createSlug } from "../../util/createSlug";
 const TableOfContents = ({ headers }) => {
   return (
     <div className={toc}>
+      <h2>Table of Contents</h2>
       {headers.map((header) => {
         return (
           <div>
@@ -15,6 +16,13 @@ const TableOfContents = ({ headers }) => {
               underline="hover"
               color="neutral"
               level="h4"
+              sx={{
+                mx: "auto",
+                my: 0.7,
+                gap: 2,
+                borderRadius: "sm",
+                boxShadow: "md",
+              }}
             >
               {header}
             </Link>
