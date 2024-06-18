@@ -6,9 +6,10 @@
   font-family: "Courier New", Courier, monospace;
   font-size: x-large;
   color: #ffffff;
-  font-weight: 40;
 }
 .toc {
   font-family: "Courier New", Courier, monospace;
   font-weight: 200;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

@@ -16,6 +16,9 @@ const Layout = ({ pageTitle, children }) => {
 
   return (
     <div className={container}>
+      <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </head>
       <Navbar title={data.site.siteMetadata.title} />
       <main>
         <h1 className={heading}>{pageTitle}</h1>

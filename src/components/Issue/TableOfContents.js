@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "@mui/joy/Link";
 import { toc } from "./newsletters.module.css";
 import { createSlug } from "../../util/createSlug";
 
@@ -8,7 +9,15 @@ const TableOfContents = ({ headers }) => {
       {headers.map((header) => {
         return (
           <div>
-            <a href={`#${createSlug(header)}`}>{header}</a>
+            <Link
+              href={`#${createSlug(header)}`}
+              variant="soft"
+              underline="hover"
+              color="neutral"
+              level="h4"
+            >
+              {header}
+            </Link>
           </div>
         );
       })}
