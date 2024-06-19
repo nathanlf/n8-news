@@ -1,24 +1,22 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import Layout from "../components/Layout/Layout";
+import { PageTitle } from "../components/Layout/PageTitle";
 import Seo from "../components/Layout/Seo";
 
 const ArchivePage = ({ data }) => {
   return (
-    <Layout pageTitle="Archive">
+    <>
+      <PageTitle title="Archive" />
       {data.allMarkdownRemark.nodes.map((node) => (
-        <div>
-          <Link
-            to={node.frontmatter.date + "/" + node.frontmatter.edition}
-            key={node.id}
-          >
+        <div key={node.id}>
+          <Link to={node.frontmatter.date + "/" + node.frontmatter.edition}>
             <h2>{node.frontmatter.title}</h2>
           </Link>
           <h3>Posted: {node.frontmatter.date}</h3>
           <p>{node.frontmatter.blurb}</p>
         </div>
       ))}
-    </Layout>
+    </>
   );
 };
 

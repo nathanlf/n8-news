@@ -1,9 +1,10 @@
 import * as React from "react";
-import Layout from "../components/Layout/Layout";
+import { PageTitle } from "../components/Layout/PageTitle";
 
 const AboutPage = () => {
   return (
-    <Layout pageTitle="About">
+    <>
+      <PageTitle title="About" />
       <p>
         This web application was built to serve as a new home for RENCI's
         internal newsletter.
@@ -12,7 +13,7 @@ const AboutPage = () => {
         Feel free to view newsletters from the past, search for keywords, or
         check out this month's edition!
       </p>
-    </Layout>
+    </>
   );
 };
 
