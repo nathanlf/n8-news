@@ -1,12 +1,10 @@
 import * as React from "react";
-import Typography from "@mui/joy/Typography";
+import { PageTitle } from "../components/Layout/PageTitle";
 
 const SettingsPage = () => {
   return (
     <>
-      <Typography color="neutral" level="h2" variant="plain">
-        Settings
-      </Typography>
+      <PageTitle title="Settings" />
       <p>Settings navigation sidebar/tabs</p>
       <p>Account Settings</p>
       <p>...</p>

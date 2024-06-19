@@ -4,6 +4,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
 import TableOfContents from "../components/Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
+import { PageTitle } from "../components/Layout/PageTitle";
 
 export default function NewsletterIssue({ data }) {
   const { title, date, blurb } = data.markdownRemark.frontmatter;
@@ -26,9 +27,7 @@ export default function NewsletterIssue({ data }) {
 
   return (
     <>
-      <Typography color="neutral" level="h2" variant="plain">
-        {title}
-      </Typography>
+      <PageTitle title={title} />
       <Typography color="neutral" level="h3" variant="plain">
         {date}
       </Typography>
