@@ -1,11 +1,10 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
-import Layout from "../components/Layout/Layout";
 import Seo from "../components/Layout/Seo";
 
 const ArchivePage = ({ data }) => {
   return (
-    <Layout pageTitle="Archive">
+    <>
       {data.allMarkdownRemark.nodes.map((node) => (
         <div>
           <Link
@@ -18,7 +17,7 @@ const ArchivePage = ({ data }) => {
           <p>{node.frontmatter.blurb}</p>
         </div>
       ))}
-    </Layout>
+    </>
   );
 };
 
