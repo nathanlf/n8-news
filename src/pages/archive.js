@@ -8,11 +8,8 @@ const ArchivePage = ({ data }) => {
     <>
       <PageTitle title="Archive" />
       {data.allMarkdownRemark.nodes.map((node) => (
-        <div>
-          <Link
-            to={node.frontmatter.date + "/" + node.frontmatter.edition}
-            key={node.id}
-          >
+        <div key={node.id}>
+          <Link to={node.frontmatter.date + "/" + node.frontmatter.edition}>
             <h2>{node.frontmatter.title}</h2>
           </Link>
           <h3>Posted: {node.frontmatter.date}</h3>
