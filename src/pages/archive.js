@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
+import Typography from "@mui/joy/Typography";
 import Seo from "../components/Layout/Seo";
 
 const ArchivePage = ({ data }) => {
   return (
     <>
+      <Typography color="neutral" level="h2" variant="plain">
+        Archive
+      </Typography>
       {data.allMarkdownRemark.nodes.map((node) => (
         <div>
           <Link

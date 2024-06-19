@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Layout from "../components/Layout/Layout";
+import Typography from "@mui/joy/Typography";
 import TableOfContents from "../components/Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
 
@@ -10,7 +10,7 @@ export default function NewsletterIssue({ data }) {
   const { rawMarkdownBody, htmlAst } = data.markdownRemark;
   let coverImg = getImage(
     data.markdownRemark.frontmatter.coverImage?.path.childImageSharp
-      ?.gatsbyImageData,
+      ?.gatsbyImageData
   );
   let caption = data.markdownRemark.frontmatter.coverImage.caption;
   const headers = [];
@@ -25,8 +25,13 @@ export default function NewsletterIssue({ data }) {
   });
 
   return (
-    <Layout pageTitle={title}>
-      <h3>{date}</h3>
+    <>
+      <Typography color="neutral" level="h2" variant="plain">
+        {title}
+      </Typography>
+      <Typography color="neutral" level="h3" variant="plain">
+        {date}
+      </Typography>
       <p>
         <em>{blurb}</em>
       </p>
@@ -40,7 +45,7 @@ export default function NewsletterIssue({ data }) {
         <em>{caption}</em>
       </p>
       <Markdown src={rawMarkdownBody} />
-    </Layout>
+    </>
   );
 }
 

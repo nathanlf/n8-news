@@ -1,8 +1,12 @@
 import * as React from "react";
+import Typography from "@mui/joy/Typography";
 
 const AboutPage = () => {
   return (
     <>
+      <Typography color="neutral" level="h2" variant="plain">
+        About
+      </Typography>
       <p>
         This web application was built to serve as a new home for RENCI's
         internal newsletter.
