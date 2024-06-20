@@ -1,13 +1,14 @@
 import * as React from "react";
-import Layout from "../components/Layout/Layout";
+import { PageTitle } from "../components/Layout/PageTitle";
 
 const SettingsPage = () => {
   return (
-    <Layout pageTitle="Settings">
+    <>
+      <PageTitle title="Settings" />
       <p>Settings navigation sidebar/tabs</p>
       <p>Account Settings</p>
       <p>...</p>
-    </Layout>
+    </>
   );
 };
 
