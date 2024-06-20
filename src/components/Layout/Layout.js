@@ -1,7 +1,9 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Navbar from "./Navbar";
-import { container, footer } from "./layout.module.css";
+import { container } from "./layout.module.css";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -19,11 +21,10 @@ const Layout = ({ children }) => {
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
-      <Navbar title={data.site.siteMetadata.title} />
+      <Header title={data.site.siteMetadata.title} />
+      <Navbar />
       <main>{children}</main>
-      <footer className={footer}>
-        <p>Copyright 2024 RENCI</p>
-      </footer>
+      <Footer />
     </div>
   );
 };

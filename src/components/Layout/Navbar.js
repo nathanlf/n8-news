@@ -1,16 +1,10 @@
 import React from "react";
 import { Link } from "gatsby";
-import { navBar, navLinks, navLinkText, siteTitle } from "./layout.module.css";
+import { navBar, navLinks, navLinkText } from "./layout.module.css";
 
-const Navbar = ({ title }) => {
+const Navbar = () => {
   return (
     <nav className={navBar}>
-      <img
-        src="/renci-logo.png"
-        alt="RENCI Logo"
-        style={{ maxWidth: "100%" }}
-      />
-      <header className={siteTitle}>{title}</header>
       <div className={navLinks}>
         <Link to="/" className={navLinkText}>
           Home
