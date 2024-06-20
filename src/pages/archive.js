@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 import { PageTitle } from "../components/Layout/PageTitle";
-import Seo from "../components/Layout/Seo";
 
 const ArchivePage = ({ data }) => {
   return (
@@ -35,7 +34,5 @@ export const query = graphql`
     }
   }
 `;
-
-export const Head = () => <Seo title="Newsletter Archive" />;
 
 export default ArchivePage;
