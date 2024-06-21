@@ -14,7 +14,7 @@ const SectionHeader = ({ title }) => {
         my: 5,
         px: 1.5,
         py: 1,
-        backgroundColor: "rgb(29, 167, 205)",
+        backgroundColor: "#02aac6",
         fontSize: "large",
         color: "#ffffff",
         borderRadius: 8,
