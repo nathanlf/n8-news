@@ -15,6 +15,9 @@
 .nav-links {
   display: inline-block;
   text-align: left;
+  margin-left: "0.5rem";
+  padding: "0.25.rem";
+  color: rgb(50, 50, 50);
 }
 nav a {
   display: inline-block;
@@ -23,7 +26,7 @@ nav a {
   padding-bottom: 8px;
   border-bottom: 3px solid transparent;
 }
-nav a:hover {
+.nav-links:hover {
   border-color: #bbb;
 }
 .nav-link-text {
