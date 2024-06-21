@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "gatsby";
 import Stack from "@mui/joy/Stack";
 import Divider from "@mui/material/Divider";
-import { navLinks } from "./layout.module.css";
 
 const Navbar = () => {
   return (
@@ -20,21 +19,31 @@ const Navbar = () => {
         boxShadow: "md",
         backgroundColor: "#fafafa",
         py: 2,
+        ".nav-link": {
+          px: 2,
+          py: 1,
+          textDecoration: "none",
+          "&:hover": {
+            textDecoration: "underline",
+            backgroundColor: "#ececec",
+            borderRadius: 4,
+          },
+        },
       }}
     >
-      <Link to="/" className={navLinks}>
+      <Link to="/" className="nav-link">
         Home
       </Link>
-      <Link to="/archive/2024-05/4.5" className={navLinks}>
+      <Link to="/archive/2024-05/4.5" className="nav-link">
         Newest Edition
       </Link>
-      <Link to="/archive" className={navLinks}>
+      <Link to="/archive" className="nav-link">
         Archive
       </Link>
-      <Link to="/about" className={navLinks}>
+      <Link to="/about" className="nav-link">
         About
       </Link>
-      <Link to="/settings" className={navLinks}>
+      <Link to="/settings" className="nav-link">
         Settings
       </Link>
     </Stack>

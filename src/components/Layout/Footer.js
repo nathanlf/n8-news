@@ -5,22 +5,14 @@ export const Footer = () => {
   return (
     <Box
       component="footer"
-      square
       sx={{
         backgroundColor: "#ffffff",
-        bottom: 0,
+        flexBasis: "5rem",
+        alignContent: "center",
+        backgroundColor: "#fafafa",
       }}
     >
-      <Typography
-        level="body-lg"
-        align="center"
-        variant="subtitle1"
-        sx={{
-          backgroundColor: "#fafafa",
-          py: 8,
-          my: 12,
-        }}
-      >
+      <Typography level="body-lg" align="center" variant="subtitle1">
         Copyright 2024 RENCI
       </Typography>
     </Box>

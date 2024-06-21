@@ -10,6 +10,7 @@ export const Header = ({ title }) => {
       display="flex"
       sx={{
         py: 2,
+        flexBasis: "5rem",
       }}
     >
       <StaticImage src="../../images/renci-logo.png" alt="RENCI Logo" />
