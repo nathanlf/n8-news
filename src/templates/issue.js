@@ -28,7 +28,7 @@ export default function NewsletterIssue({ data }) {
   return (
     <>
       <PageTitle title={title} />
-      <Typography color="neutral" level="h3" variant="plain">
+      <Typography color="neutral" level="h4" variant="plain">
         {date}
       </Typography>
       <p>

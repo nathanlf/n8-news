@@ -1,12 +1,17 @@
 .container {
   margin: 0 auto;
-  max-width: 1200px;
-  font-family: sans-serif;
+  max-width: 800px;
+  font-family: "Inter";
+  min-height: 100vh;
+  border: 1px dashed navy;
+  display: flex;
+  flex-direction: column;
 }
 .heading {
   color: rgb(22, 136, 171);
-  font-family: sans-serif, "Inter";
+  font-family: "Inter";
 }
+
 .nav-bar {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -15,6 +20,12 @@
 .nav-links {
   display: inline-block;
   text-align: left;
+  margin-left: "0.5rem";
+  padding: "0.25.rem";
+  color: rgb(50, 50, 50);
+}
+main {
+  flex: 1;
 }
 nav a {
   display: inline-block;
@@ -23,7 +34,7 @@ nav a {
   padding-bottom: 8px;
   border-bottom: 3px solid transparent;
 }
-nav a:hover {
+.nav-links:hover {
   border-color: #bbb;
 }
 .nav-link-text {

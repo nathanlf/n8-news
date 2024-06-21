@@ -1,7 +1,11 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Navbar from "./Navbar";
-import { container, footer } from "./layout.module.css";
+import { container } from "./layout.module.css";
+import "/src/styles/global.css";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import { Box } from "@mui/joy";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -14,14 +18,20 @@ const Layout = ({ children }) => {
     }
   `);
 
+  // todo: use mui components in here
+
   return (
-    <div className={container}>
-      <Navbar title={data.site.siteMetadata.title} />
-      <main>{children}</main>
-      <footer className={footer}>
-        <p>Copyright 2024 RENCI</p>
-      </footer>
-    </div>
+    <>
+      <head>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </head>
+      <Header title={data.site.siteMetadata.title} />
+      <Navbar />
+      <Box component="main" sx={{ flexGrow: 1 }}>
+        {children}
+      </Box>
+      <Footer />
+    </>
   );
 };
 

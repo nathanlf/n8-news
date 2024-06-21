@@ -1,1 +1,18 @@
 /* better suited home for some styles used in layout.module.css, but styling is not top priority atm */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Inter";
+}
+
+/* same as #root for this project */
+#gatsby-focus-wrapper {
+  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 800px;
+  font-family: "Inter";
+  display: flex;
+  flex-direction: column;
+}
