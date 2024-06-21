@@ -15,9 +15,11 @@ export const Markdown = ({ src }) => {
         strong: ({ children }) => (
           <Typography level="title-lg">{children}</Typography>
         ),
-        // li: ({ children }) => (
-        //   <Typography level="body-lg">{children}</Typography>
-        // ),
+        li: ({ children }) => (
+          <li>
+            <Typography level="body-md">{children}</Typography>
+          </li>
+        ),
       }}
     />
   );
