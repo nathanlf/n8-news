@@ -13,7 +13,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "predevelop": "node scripts/optimize.js && gatsby develop"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
