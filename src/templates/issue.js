@@ -7,13 +7,14 @@ import { Markdown } from "../components/Issue/Markdown";
 import { PageTitle } from "../components/Layout/PageTitle";
 
 export default function NewsletterIssue({ data }) {
-  const { title, date, blurb } = data.markdownRemark.frontmatter;
+  const { volume, issue, blurb } = data.markdownRemark.frontmatter;
   const { rawMarkdownBody, htmlAst } = data.markdownRemark;
   let coverImg = getImage(
     data.markdownRemark.frontmatter.coverImage?.path.childImageSharp
       ?.gatsbyImageData
   );
   let caption = data.markdownRemark.frontmatter.coverImage.caption;
+  const date = new Date(`202${volume}, ${issue}`);
   const headers = [];
 
   // Traverse htmlAst to find h1 elements
@@ -27,9 +28,9 @@ export default function NewsletterIssue({ data }) {
 
   return (
     <>
-      <PageTitle title={title} />
+      <PageTitle title={`Volume ${volume}, Issue ${issue}`} />
       <Typography color="neutral" level="h4" variant="plain">
-        {date}
+        {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
       </Typography>
       <p>
         <em>{blurb}</em>
@@ -52,8 +53,8 @@ export const query = graphql`
   query NewsletterIssue($id: String) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {
-        title
-        date(formatString: "MMMM, YYYY")
+        volume
+        issue
         blurb
         coverImage {
           path {

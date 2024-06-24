@@ -10,8 +10,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         nodes {
           id
           frontmatter {
-            date
-            edition
+            volume
+            issue
           }
         }
       }
@@ -22,16 +22,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild("Error loading MD result", result.errors);
   }
 
-  // Create blog post pages.
   const posts = result.data.allMarkdownRemark.nodes;
 
-  // you'll call `createPage` for each result
+  // call `createPage` for each result
   posts.forEach((node) => {
+    const { volume, issue } = node.frontmatter;
+    const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
     createPage({
-      // As mentioned above you could also query something else like frontmatter.title above and use a helper function
-      // like slugify to create a slug
-      path: "archive/" + node.frontmatter.date + "/" + node.frontmatter.edition,
-      // changed from `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}` to postTemplate
+      path: `archive/` + `202${volume}` + `/` + formattedIssue,
       component: postTemplate,
       context: { id: node.id },
     });
