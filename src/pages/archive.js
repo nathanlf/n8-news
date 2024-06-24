@@ -8,10 +8,15 @@ const ArchivePage = ({ data }) => {
       <PageTitle title="Archive" />
       {data.allMarkdownRemark.nodes.map((node) => (
         <div key={node.id}>
-          <Link to={node.frontmatter.date + "/" + node.frontmatter.edition}>
-            <h2>{node.frontmatter.title}</h2>
+          <Link
+            to={
+              `202${node.frontmatter.volume}` +
+              "/" +
+              `${node.frontmatter.issue}`
+            }
+          >
+            <h2>{`Volume ${node.frontmatter.volume}, Issue ${node.frontmatter.issue}`}</h2>
           </Link>
-          <h3>Posted: {node.frontmatter.date}</h3>
           <p>{node.frontmatter.blurb}</p>
         </div>
       ))}
@@ -21,12 +26,11 @@ const ArchivePage = ({ data }) => {
 
 export const query = graphql`
   query {
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    allMarkdownRemark(sort: { frontmatter: { issue: DESC } }) {
       nodes {
         frontmatter {
-          date
-          title
-          edition
+          volume
+          issue
           blurb
         }
         id
