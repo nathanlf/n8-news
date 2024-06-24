@@ -9,7 +9,7 @@ const ArchivePage = ({ data }) => {
       {data.allMarkdownRemark.nodes.map((node) => {
         const { volume, issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
-        const path = `202${volume}` + "/" + `${formattedIssue}`;
+        const path = `202${volume}/${formattedIssue}`;
 
         return (
           <div key={node.id}>
