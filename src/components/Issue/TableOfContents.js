@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "@mui/joy/Link";
+import PropTypes from "prop-types";
 import { toc } from "./newsletters.module.css";
 import { createSlug } from "../../util/createSlug";
 import { Typography } from "@mui/joy";
@@ -42,6 +43,10 @@ const TableOfContents = ({ headers }) => {
       })}
     </div>
   );
+};
+
+TableOfContents.propTypes = {
+  headers: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default TableOfContents;

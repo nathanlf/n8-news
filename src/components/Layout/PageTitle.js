@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "@mui/joy/Typography";
+import PropTypes from "prop-types";
 
 export const PageTitle = ({ title }) => {
   return (
@@ -7,4 +8,8 @@ export const PageTitle = ({ title }) => {
       {title}
     </Typography>
   );
+};
+
+PageTitle.propTypes = {
+  title: PropTypes.string.isRequired,
 };

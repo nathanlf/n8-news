@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Navbar from "./Navbar";
+import PropTypes from "prop-types";
 import { container } from "./layout.module.css";
 import "/src/styles/global.css";
 import { Header } from "./Header";
@@ -33,6 +34,10 @@ const Layout = ({ children }) => {
       <Footer />
     </>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node,
 };
 
 export default Layout;

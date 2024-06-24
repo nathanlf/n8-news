@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import PropTypes from "prop-types";
 import SectionHeader from "./SectionHeader";
 import { Typography } from "@mui/joy";
 
@@ -23,4 +24,8 @@ export const Markdown = ({ src }) => {
       }}
     />
   );
+};
+
+Markdown.propTypes = {
+  src: PropTypes.node.isRequired,
 };
