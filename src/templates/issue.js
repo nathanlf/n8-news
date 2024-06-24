@@ -59,7 +59,7 @@ export const query = graphql`
         coverImage {
           path {
             childImageSharp {
-              gatsbyImageData(width: 1024, placeholder: BLURRED)
+              gatsbyImageData(width: 800, placeholder: BLURRED)
             }
           }
           caption
