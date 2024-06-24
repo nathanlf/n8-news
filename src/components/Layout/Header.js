@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { StaticImage } from "gatsby-plugin-image";
 import { Box, Typography } from "@mui/joy";
 
@@ -24,4 +25,8 @@ export const Header = ({ title }) => {
       </Typography>
     </Box>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
 };

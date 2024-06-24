@@ -1,5 +1,6 @@
 import React from "react";
 import Typography from "@mui/joy/Typography";
+import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import { BackToTopButton } from "../BackToTopButton";
 
@@ -23,6 +24,10 @@ const SectionHeader = ({ title }) => {
       {title}
     </Typography>
   );
+};
+
+SectionHeader.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default SectionHeader;
