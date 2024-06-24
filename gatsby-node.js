@@ -27,8 +27,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // call `createPage` for each result
   posts.forEach((node) => {
     const { volume, issue } = node.frontmatter;
+    const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
     createPage({
-      path: `archive/` + `202${volume}` + `/` + issue,
+      path: `archive/` + `202${volume}` + `/` + formattedIssue,
       component: postTemplate,
       context: { id: node.id },
     });

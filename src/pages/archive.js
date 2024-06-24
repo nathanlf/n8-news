@@ -6,20 +6,20 @@ const ArchivePage = ({ data }) => {
   return (
     <>
       <PageTitle title="Archive" />
-      {data.allMarkdownRemark.nodes.map((node) => (
-        <div key={node.id}>
-          <Link
-            to={
-              `202${node.frontmatter.volume}` +
-              "/" +
-              `${node.frontmatter.issue}`
-            }
-          >
-            <h2>{`Volume ${node.frontmatter.volume}, Issue ${node.frontmatter.issue}`}</h2>
-          </Link>
-          <p>{node.frontmatter.blurb}</p>
-        </div>
-      ))}
+      {data.allMarkdownRemark.nodes.map((node) => {
+        const { volume, issue, blurb } = node.frontmatter;
+        const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
+        const path = `202${volume}` + "/" + `${formattedIssue}`;
+
+        return (
+          <div key={node.id}>
+            <Link to={path}>
+              <h2>{`Volume ${volume}, Issue ${issue}`}</h2>
+            </Link>
+            <p>{blurb}</p>
+          </div>
+        );
+      })}
     </>
   );
 };
