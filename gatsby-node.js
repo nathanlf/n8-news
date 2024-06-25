@@ -29,7 +29,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const { volume, issue } = node.frontmatter;
     const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
     createPage({
-      path: `archive/` + `202${volume}` + `/` + formattedIssue,
+      path: `archive/` + `${2020 + volume}` + `/` + formattedIssue,
       component: postTemplate,
       context: { id: node.id },
     });

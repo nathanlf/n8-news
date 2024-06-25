@@ -14,7 +14,7 @@ export default function NewsletterIssue({ data }) {
       ?.gatsbyImageData
   );
   let caption = data.markdownRemark.frontmatter.coverImage.caption;
-  const date = new Date(`202${volume}, ${issue}`);
+  const date = new Date(`${2020 + volume}-${issue}-01`);
   const headers = [];
 
   // Traverse htmlAst to find h1 elements
