@@ -19,6 +19,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
+  // For more on distinct queries, https://danielabaron.me/blog/gatsby5-distinct-query/
   const volumeNums = await graphql(`
     query VolumeNums {
       allMarkdownRemark {
