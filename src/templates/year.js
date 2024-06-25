@@ -1,15 +1,12 @@
-import * as React from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import { Link } from "../components/Link";
-import { PageTitle } from "../components/Layout/PageTitle";
 import { Typography } from "@mui/joy";
 
-const ArchivePage = ({ data }) => {
+const ArchiveYear = ({ data }) => {
   return (
     <>
-      <PageTitle title="Archive" />
-      <p>tabs to reach each year page</p>
-      {/* {data.allMarkdownRemark.nodes.map((node) => {
+      {data.allMarkdownRemark.nodes.map((node) => {
         const { volume, issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
         const path = `${2020 + volume}/${formattedIssue}`;
@@ -27,14 +24,14 @@ const ArchivePage = ({ data }) => {
             </Typography>
           </div>
         );
-      })} */}
+      })}
     </>
   );
 };
 
 export const query = graphql`
-  query {
-    allMarkdownRemark(sort: { frontmatter: { issue: DESC } }) {
+  query IssuesByYear($vol: Int) {
+    allMarkdownRemark(filter: { frontmatter: { volume: { eq: $vol } } }) {
       nodes {
         frontmatter {
           volume
@@ -47,4 +44,4 @@ export const query = graphql`
   }
 `;
 
-export default ArchivePage;
+export default ArchiveYear;

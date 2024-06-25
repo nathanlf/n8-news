@@ -1,11 +1,12 @@
 const path = require("path");
-const postTemplate = path.resolve(`./src/templates/issue.js`); // replaced post.jsx with issue.js - plugin-mdx to transformer-remark
+const issueTemplate = path.resolve(`./src/templates/issue.js`);
+const archiveTemplate = path.resolve(`./src/templates/year.js`);
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  const result = await graphql(`
-    query {
+  const issues = await graphql(`
+    query Issues {
       allMarkdownRemark {
         nodes {
           id
@@ -18,20 +19,38 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (result.errors) {
-    reporter.panicOnBuild("Error loading MD result", result.errors);
+  const volumeNums = await graphql(`
+    query VolumeNums {
+      allMarkdownRemark {
+        volumes: distinct(field: { frontmatter: { volume: SELECT } })
+      }
+    }
+  `);
+
+  if (issues.errors) {
+    reporter.panicOnBuild("Error loading MD issues", issues.errors);
   }
 
-  const posts = result.data.allMarkdownRemark.nodes;
+  const posts = issues.data.allMarkdownRemark.nodes;
+  const volumes = volumeNums.data.allMarkdownRemark.volumes;
 
-  // call `createPage` for each result
+  // call `createPage` for each newsletter issue
   posts.forEach((node) => {
     const { volume, issue } = node.frontmatter;
     const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
     createPage({
       path: `archive/` + `${2020 + volume}` + `/` + formattedIssue,
-      component: postTemplate,
+      component: issueTemplate,
       context: { id: node.id },
+    });
+  });
+
+  // call `createPage` for each collection of years
+  volumes.forEach((volume) => {
+    createPage({
+      path: `archive/` + `${2020 + Number(volume)}`,
+      component: archiveTemplate,
+      context: { vol: Number(volume) },
     });
   });
 };
