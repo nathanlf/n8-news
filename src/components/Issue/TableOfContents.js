@@ -1,9 +1,8 @@
 import React from "react";
-import Link from "@mui/joy/Link";
 import PropTypes from "prop-types";
 import { toc } from "./newsletters.module.css";
 import { createSlug } from "../../util/createSlug";
-import { Typography } from "@mui/joy";
+import { Button, Typography } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 
 const TableOfContents = ({ headers }) => {
@@ -19,15 +18,13 @@ const TableOfContents = ({ headers }) => {
         Table of Contents
       </Typography>
       {headers.map((header) => {
+        const slug = createSlug(header);
         return (
-          <div>
-            <Link
-              href={`#${createSlug(header)}`}
+          <div key={slug}>
+            <Button
               variant="soft"
-              underline="hover"
               color="neutral"
-              level="h4"
-              startDecorator=""
+              size="md"
               sx={{
                 mx: "auto",
                 my: 0.5,
@@ -35,9 +32,15 @@ const TableOfContents = ({ headers }) => {
                 borderRadius: "sm",
                 boxShadow: "md",
               }}
+              onClick={() => {
+                const element = document.querySelector(`#${slug}`);
+                element?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
             >
               {header}
-            </Link>
+            </Button>
           </div>
         );
       })}
