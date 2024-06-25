@@ -6,7 +6,6 @@ export const Footer = () => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: "#ffffff",
         flexBasis: "5rem",
         alignContent: "center",
         backgroundColor: "#fafafa",
