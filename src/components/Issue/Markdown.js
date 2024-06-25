@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 import SectionHeader from "./SectionHeader";
 import { Typography } from "@mui/joy";
+import { Link } from "../Link";
 
 export const Markdown = ({ src }) => {
   return (
@@ -21,6 +22,7 @@ export const Markdown = ({ src }) => {
             <Typography level="body-md">{children}</Typography>
           </li>
         ),
+        a: ({ href, children }) => <Link to={href}>{children}</Link>,
       }}
     />
   );
