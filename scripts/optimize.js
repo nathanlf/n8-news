@@ -1,3 +1,11 @@
+/*
+ * Image pre-optimization to reduce build time, recommended by Gatsby documentation.
+ * https://www.gatsbyjs.com/docs/preoptimizing-images/
+ *
+ * To run this script, run `node scripts/optimize.js`
+ *  OR `npm run predevelop` to run both script and `gatsby develop`.
+ */
+
 const sharp = require(`sharp`);
 const glob = require(`glob`);
 const fs = require(`fs-extra`);
