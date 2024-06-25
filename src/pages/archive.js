@@ -2,6 +2,7 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Link } from "../components/Link";
 import { PageTitle } from "../components/Layout/PageTitle";
+import { Typography } from "@mui/joy";
 
 const ArchivePage = ({ data }) => {
   return (
@@ -10,14 +11,19 @@ const ArchivePage = ({ data }) => {
       {data.allMarkdownRemark.nodes.map((node) => {
         const { volume, issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
-        const path = `202${volume}/${formattedIssue}`;
+        const path = `${2020 + volume}/${formattedIssue}`;
 
         return (
           <div key={node.id}>
             <Link to={path}>
-              <h2>{`Volume ${volume}, Issue ${issue}`}</h2>
+              <Typography
+                level="h4"
+                textColor="var(--joy-palette-primary-main)"
+              >{`Volume ${volume}, Issue ${issue}`}</Typography>
             </Link>
-            <p>{blurb}</p>
+            <Typography level="body-md" gutterBottom>
+              {blurb}
+            </Typography>
           </div>
         );
       })}
