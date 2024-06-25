@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link } from "../Link";
 import Stack from "@mui/joy/Stack";
 import Divider from "@mui/material/Divider";
 
