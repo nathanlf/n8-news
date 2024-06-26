@@ -10,7 +10,7 @@ const ArchiveYear = ({ data }) => {
     <>
       <PageTitle title={year} />
       {data.allMarkdownRemark.nodes.map((node) => {
-        const { volume, issue, blurb } = node.frontmatter;
+        const { issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
         const path = `${formattedIssue}`;
         const date = new Date(`${year}-${issue}-01`);
