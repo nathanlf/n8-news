@@ -20,6 +20,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   `);
 
   // For more on distinct queries, https://danielabaron.me/blog/gatsby5-distinct-query/
+  // * This query returns an array of volume numbers as strings
   const volumeNums = await graphql(`
     query VolumeNums {
       allMarkdownRemark {
@@ -33,7 +34,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const posts = issues.data.allMarkdownRemark.nodes;
-  const volumes = volumeNums.data.allMarkdownRemark.volumes;
+  const volumes = volumeNums.data.allMarkdownRemark.volumes.map((str) =>
+    parseInt(str)
+  );
 
   // call `createPage` for each newsletter issue
   posts.forEach((node) => {
@@ -49,9 +52,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // call `createPage` for each collection of years
   volumes.forEach((volume) => {
     createPage({
-      path: `archive/` + `${2020 + Number(volume)}`,
+      path: `archive/` + `${2020 + volume}`,
       component: archiveTemplate,
-      context: { vol: Number(volume) },
+      context: { vol: volume },
     });
   });
 };

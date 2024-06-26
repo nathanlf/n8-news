@@ -12,19 +12,22 @@ export const ArchiveFolders = () => {
     }
   `);
 
-  const volumes = data.allMarkdownRemark.volumes;
-  // map queried Strings to Numbers
-  volumes.forEach((volumeString) => {
-    volumeString = Number(volumeString);
-  });
-
-  // loop through these , create a year variable for each iteration and use them in Links -- to=`/${year}`
+  const volumes = data.allMarkdownRemark.volumes.map((str) => parseInt(str));
 
   return (
     <>
-      <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-        <Grid xs={8} md={8} border={1}>
-          {/* <Link to={`/${2020 + Number(volume)}`}></Link> */}
+      <Grid container spacing={4} textAlign="center">
+        {
+          // loop through volumes , create a year variable for each iteration (inside grid panels)
+          // and use each one in Links -- to=`/${year}`
+        }
+        <Grid xs={4} md={4} border={1}>
+          test
+        </Grid>
+        <Grid xs={4} md={4} border={1}>
+          test
+        </Grid>
+        <Grid xs={4} md={4} border={1}>
           test
         </Grid>
         <Grid xs={4} md={4} border={1}>
