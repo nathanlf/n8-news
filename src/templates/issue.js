@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
-import TableOfContents from "../components/Issue/TableOfContents";
+import { TableOfContents } from "../components/Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
 import { PageTitle } from "../components/Layout/PageTitle";
 

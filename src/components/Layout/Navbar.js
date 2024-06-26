@@ -3,7 +3,7 @@ import { Link } from "../Link";
 import Stack from "@mui/joy/Stack";
 import Divider from "@mui/material/Divider";
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <Stack
       role="navigation"
@@ -49,5 +49,3 @@ const Navbar = () => {
     </Stack>
   );
 };
-
-export default Navbar;

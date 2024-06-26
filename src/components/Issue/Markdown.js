@@ -1,7 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
-import SectionHeader from "./SectionHeader";
+import { SectionHeader } from "./SectionHeader";
 import { Typography } from "@mui/joy";
 import { Link } from "../Link";
 

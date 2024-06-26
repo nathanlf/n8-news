@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "./src/components/Layout/Layout.js";
+import { Layout } from "./src/components/Layout/Layout";
 import { theme } from "./src/styles/theme";
 import { CssVarsProvider } from "@mui/joy";
 
