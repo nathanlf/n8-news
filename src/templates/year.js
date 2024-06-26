@@ -4,12 +4,14 @@ import { Link } from "../components/Link";
 import { Typography } from "@mui/joy";
 
 const ArchiveYear = ({ data }) => {
+  const year = `${2020 + data.allMarkdownRemark.nodes[0].frontmatter.volume}`;
   return (
     <>
+      <Typography level="h2">{year}</Typography>
       {data.allMarkdownRemark.nodes.map((node) => {
         const { volume, issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
-        const path = `${2020 + volume}/${formattedIssue}`;
+        const path = `${year}/${formattedIssue}`;
 
         return (
           <div key={node.id}>
