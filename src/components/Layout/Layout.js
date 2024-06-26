@@ -9,7 +9,7 @@ import { Box } from "@mui/joy";
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query {
+    query Title {
       site {
         siteMetadata {
           title
