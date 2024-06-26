@@ -1,11 +1,24 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 // import { Link } from "../components/Link";
 import { Grid } from "@mui/joy";
 
-export const ArchiveFolders = ({ data }) => {
-  // const volumes = data.allMarkdownRemark.volumes;
-  // loop through these, create a year variable for each and to use them in Link's to=`/${year}`
+export const ArchiveFolders = () => {
+  const data = useStaticQuery(graphql`
+    query VolumeNums {
+      allMarkdownRemark {
+        volumes: distinct(field: { frontmatter: { volume: SELECT } })
+      }
+    }
+  `);
+
+  const volumes = data.allMarkdownRemark.volumes;
+  // map queried Strings to Numbers
+  volumes.forEach((volumeString) => {
+    volumeString = Number(volumeString);
+  });
+
+  // loop through these , create a year variable for each iteration and use them in Links -- to=`/${year}`
 
   return (
     <>
@@ -21,11 +34,3 @@ export const ArchiveFolders = ({ data }) => {
     </>
   );
 };
-
-export const query = graphql`
-  query VolumeNums {
-    allMarkdownRemark {
-      volumes: distinct(field: { frontmatter: { volume: SELECT } })
-    }
-  }
-`;
