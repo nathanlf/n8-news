@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
-import TableOfContents from "../components/Issue/TableOfContents";
+import { TableOfContents } from "../components/Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
 import { PageTitle } from "../components/Layout/PageTitle";
 
@@ -32,18 +32,29 @@ export default function NewsletterIssue({ data }) {
       <Typography color="neutral" level="h4" variant="plain">
         {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
       </Typography>
-      <p>
-        <em>{blurb}</em>
-      </p>
+      <Typography
+        level="body-lg"
+        sx={{
+          fontStyle: "italic",
+        }}
+      >
+        {blurb}
+      </Typography>
       <div>
         <TableOfContents headers={headers} />
       </div>
       <div>
         <GatsbyImage image={coverImg} />
       </div>
-      <p>
-        <em>{caption}</em>
-      </p>
+      <Typography
+        level="body-sm"
+        textAlign="center"
+        sx={{
+          fontStyle: "italic",
+        }}
+      >
+        {caption}
+      </Typography>
       <Markdown src={rawMarkdownBody} />
     </>
   );
