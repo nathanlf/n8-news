@@ -13,6 +13,7 @@ const ArchiveYear = ({ data }) => {
         const { volume, issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
         const path = `${formattedIssue}`;
+        const date = new Date(`${year}-${issue}-01`);
 
         return (
           <div key={node.id}>
@@ -20,7 +21,9 @@ const ArchiveYear = ({ data }) => {
               <Typography
                 level="h4"
                 textColor="var(--joy-palette-primary-main)"
-              >{`Volume ${volume}, Issue ${issue}`}</Typography>
+              >
+                {date.toLocaleString("en-US", { month: "long" })}
+              </Typography>
             </Link>
             <Typography level="body-md" gutterBottom>
               {blurb}
