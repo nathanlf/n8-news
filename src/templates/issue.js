@@ -1,64 +1,16 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Typography from "@mui/joy/Typography";
-import { TableOfContents } from "../components/Issue/TableOfContents";
-import { Markdown } from "../components/Issue/Markdown";
-import { PageTitle } from "../components/Layout/PageTitle";
+import { Newsletter } from "../components/Newsletter";
 
-export default function NewsletterIssue({ data }) {
-  const { volume, issue, blurb } = data.markdownRemark.frontmatter;
-  const { rawMarkdownBody, htmlAst } = data.markdownRemark;
-  let coverImg = getImage(
-    data.markdownRemark.frontmatter.coverImage?.path.childImageSharp
-      ?.gatsbyImageData
-  );
-  let caption = data.markdownRemark.frontmatter.coverImage.caption;
-  const date = new Date(`${2020 + volume}-${issue}-01`);
-  const headers = [];
-
-  // Traverse htmlAst to find h1 elements
-  htmlAst.children.forEach((child) => {
-    if (child.tagName === "h1") {
-      // Extract text value of header
-      const headerName = child.children.find((el) => el.type === "text").value;
-      headers.push(headerName);
-    }
-  });
+const NewsletterIssue = ({ data }) => {
+  const { volume, issue } = data.markdownRemark.frontmatter;
 
   return (
     <>
-      <PageTitle title={`Volume ${volume}, Issue ${issue}`} />
-      <Typography color="neutral" level="h4" variant="plain">
-        {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
-      </Typography>
-      <Typography
-        level="body-lg"
-        sx={{
-          fontStyle: "italic",
-        }}
-      >
-        {blurb}
-      </Typography>
-      <div>
-        <TableOfContents headers={headers} />
-      </div>
-      <div>
-        <GatsbyImage image={coverImg} />
-      </div>
-      <Typography
-        level="body-sm"
-        textAlign="center"
-        sx={{
-          fontStyle: "italic",
-        }}
-      >
-        {caption}
-      </Typography>
-      <Markdown src={rawMarkdownBody} />
+      <Newsletter vol={volume} iss={issue} />
     </>
   );
-}
+};
 
 export const query = graphql`
   query NewsletterIssue($id: String) {
@@ -66,18 +18,9 @@ export const query = graphql`
       frontmatter {
         volume
         issue
-        blurb
-        coverImage {
-          path {
-            childImageSharp {
-              gatsbyImageData(width: 800, placeholder: BLURRED)
-            }
-          }
-          caption
-        }
       }
-      rawMarkdownBody
-      htmlAst
     }
   }
 `;
+
+export default NewsletterIssue;

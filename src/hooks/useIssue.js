@@ -9,10 +9,6 @@ import { graphql, useStaticQuery } from "gatsby";
  * */
 
 export const useIssue = (vol, iss) => {
-  console.clear();
-  console.log("Volume before:", vol);
-  console.log("Issue before:", iss);
-
   const data = useStaticQuery(graphql`
     query AllNewsletterIssues {
       allMarkdownRemark(sort: { frontmatter: { volume: ASC } }) {
@@ -20,8 +16,18 @@ export const useIssue = (vol, iss) => {
           frontmatter {
             volume
             issue
+            blurb
+            coverImage {
+              path {
+                childImageSharp {
+                  gatsbyImageData(width: 800, placeholder: BLURRED)
+                }
+              }
+              caption
+            }
           }
-          id
+          rawMarkdownBody
+          htmlAst
         }
       }
     }
@@ -30,14 +36,8 @@ export const useIssue = (vol, iss) => {
   // retrieve array of all issue objects
   const allIssues = data.allMarkdownRemark.nodes;
 
-  // todo:
-  //    - request more than just frontmatter and id, since we need the content we would use when rendering an issue
-  //        - i.e. rawMarkdownBody, ..., reference things in issue.js
-  //    - create custom data structure / collection to represent what we need in an organized way
-
-  // new solution (wip)
+  // collect issues into an archive object structure
   const issuesByVolume = allIssues.reduce((acc, currIssue) => {
-    // modify acc
     const { volume, issue } = currIssue.frontmatter;
     if (!(volume in acc)) {
       acc[volume] = {};
@@ -46,12 +46,5 @@ export const useIssue = (vol, iss) => {
 
     return acc;
   }, {});
-
-  console.log(issuesByVolume);
-  console.log("Volume after:", vol);
-  console.log("Issue after:", iss);
-  console.log("Requested Volume object: ", issuesByVolume[vol]);
-  //   console.log("Requested Issue object: ", issuesByVolume[vol][iss]);
-
   return issuesByVolume[vol]?.[iss];
 };
