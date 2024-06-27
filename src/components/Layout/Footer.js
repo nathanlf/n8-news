@@ -6,9 +6,10 @@ export const Footer = () => {
     <Box
       component="footer"
       sx={{
-        flexBasis: "5rem",
         alignContent: "center",
         backgroundColor: "#fafafa",
+        width: "100vw",
+        py: 6,
       }}
     >
       <Typography level="body-lg" align="center" variant="subtitle1">
