@@ -6,10 +6,14 @@ import { PageTitle } from "../components/Layout/PageTitle";
 
 const ArchiveYear = ({ data }) => {
   const year = 2020 + data.allMarkdownRemark.nodes[0].frontmatter.volume;
+
+  // remove first node (nodes[0]) from nodes to prevent newest edition rendering on archive page
+  const nodesToRender = data.allMarkdownRemark.nodes.slice(1);
+
   return (
     <>
       <PageTitle title={year} />
-      {data.allMarkdownRemark.nodes.map((node) => {
+      {nodesToRender.map((node) => {
         const { issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
         const path = `${formattedIssue}`;
