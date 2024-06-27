@@ -26,7 +26,7 @@ export const ArchiveFolders = () => {
         }}
       >
         {volumes.map((volumeNum) => {
-          const year = `${2020 + volumeNum}`;
+          const year = 2020 + volumeNum;
           return (
             <Grid
               id={volumeNum}
