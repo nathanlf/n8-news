@@ -3,15 +3,19 @@ import { graphql, useStaticQuery } from "gatsby";
 /**
  * This uses a static query to pull in all newsletter issue content.
  *
- * @param     {number}    volume      The edition volume identifier, corresponds to the year {2020 + volume}
- * @param     {number}    issue       The edition issue identifier, corresponds to the month
+ * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
+ * @param     {number}    iss      The edition issue identifier, corresponds to the month
  * @return    {object}    The requested newsletter issue content, represented by edition {volume.issue}
  * */
 
-export const useIssue = ({ volume, issue }) => {
-  const allIssues = useStaticQuery(graphql`
+export const useIssue = (vol, iss) => {
+  console.clear();
+  console.log("Volume before:", vol);
+  console.log("Issue before:", iss);
+
+  const data = useStaticQuery(graphql`
     query AllNewsletterIssues {
-      allMarkdownRemark {
+      allMarkdownRemark(sort: { frontmatter: { volume: ASC } }) {
         nodes {
           frontmatter {
             volume
@@ -23,42 +27,31 @@ export const useIssue = ({ volume, issue }) => {
     }
   `);
 
+  // retrieve array of all issue objects
+  const allIssues = data.allMarkdownRemark.nodes;
+
   // todo:
   //    - request more than just frontmatter and id, since we need the content we would use when rendering an issue
   //        - i.e. rawMarkdownBody, ..., reference things in issue.js
   //    - create custom data structure / collection to represent what we need in an organized way
-  /*
-        {
-            1: {    // volume 1
-                1: {},  // issue 1
-                2: {},
-                3: {},
-                ...
-            },
-            2: {    // volume 2
-                1: {},  // issue 1
-                2: {},
-                3: {},
-                ...
-            },
-            3: {    // volume 3
-                1: {},
-                2: {},
-                3: {},
-                ...
-            },
-            ...
-        }
-  */
 
-  const issueToReturn = allIssues.find(
-    (_issue) =>
-      volume === _issue.frontmatter.volume && issue === _issue.frontmatter.issue
-  );
+  // new solution (wip)
+  const issuesByVolume = allIssues.reduce((acc, currIssue) => {
+    // modify acc
+    const { volume, issue } = currIssue.frontmatter;
+    if (!(volume in acc)) {
+      acc[volume] = {};
+    }
+    acc[volume][issue] = currIssue;
 
-  if (!issueToReturn) {
-    throw new Error("Error returning issue");
-  }
+    return acc;
+  }, {});
 
-  return issueToReturn;
+  console.log(issuesByVolume);
+  console.log("Volume after:", vol);
+  console.log("Issue after:", iss);
+  console.log("Requested Volume object: ", issuesByVolume[vol]);
+  //   console.log("Requested Issue object: ", issuesByVolume[vol][iss]);
+
+  return issuesByVolume[vol]?.[iss];
 };

@@ -1,8 +1,13 @@
 import React from "react";
-import { useIssue } from "../hooks";
+import { useIssue } from "../hooks/useIssue";
 
-// @param
-// edition: String, edition value ("4.1", "4.2", etc.)
-export const NewsletterIssue = ({ edition }) => {
+/**
+ * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
+ * @param     {number}    iss      The edition issue identifier, corresponds to the month
+ * @return    The requested edition's content to be rendered
+ * */
+export const NewsletterIssue = ({ vol, iss }) => {
+  const issueObj = useIssue(vol, iss);
+  //   return <>{issueObj content}</>;
   return <></>;
 };
