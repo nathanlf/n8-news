@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StaticImage } from "gatsby-plugin-image";
 import { Box, Typography } from "@mui/joy";
+import { Link } from "../Link";
 
 export const Header = ({ title }) => {
   return (
@@ -14,7 +15,9 @@ export const Header = ({ title }) => {
         flexBasis: "5rem",
       }}
     >
-      <StaticImage src="../../images/renci-logo.png" alt="RENCI Logo" />
+      <Link to="/" alt="Newest Edition">
+        <StaticImage src="../../images/renci-logo.png" alt="RENCI Logo" />
+      </Link>
       <Typography
         level="h1"
         sx={{
