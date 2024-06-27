@@ -31,12 +31,6 @@ export const Navbar = () => {
         },
       }}
     >
-      <Link to="/" className="nav-link">
-        Home
-      </Link>
-      <Link to="/archive/2024/05" className="nav-link">
-        Newest Edition
-      </Link>
       <Link to="/archive" className="nav-link">
         Archive
       </Link>

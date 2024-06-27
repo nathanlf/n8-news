@@ -1,16 +1,12 @@
 import * as React from "react";
-import { Link } from "../components/Link";
-import { PageTitle } from "../components/Layout/PageTitle";
+import { Newsletter } from "../components/Newsletter";
 
 const IndexPage = () => {
+  // as of now, the `vol` and `iss` props for this landing page are set manually
+
   return (
     <>
-      <PageTitle title="Home" />
-      <p>Welcome to the RENCI Internal Newsletter Web Application!</p>
-      <div>
-        <span>Check out our newest edition here! </span>
-        <Link to="/archive/2024/05">Visit</Link>
-      </div>
+      <Newsletter vol={4} iss={5} />
     </>
   );
 };
