@@ -37,7 +37,10 @@ const ArchiveYear = ({ data }) => {
 
 export const query = graphql`
   query IssuesByYear($vol: Int) {
-    allMarkdownRemark(filter: { frontmatter: { volume: { eq: $vol } } }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { volume: { eq: $vol } } }
+      sort: { frontmatter: { issue: DESC } }
+    ) {
       nodes {
         frontmatter {
           volume
