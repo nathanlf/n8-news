@@ -37,8 +37,8 @@ export const Navbar = () => {
       <Link to="/about" className="nav-link">
         About
       </Link>
-      <Link to="/settings" className="nav-link">
-        Settings
+      <Link to="/initiatives" className="nav-link">
+        Initiatives
       </Link>
     </Stack>
   );
