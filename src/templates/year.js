@@ -6,11 +6,12 @@ import { PageTitle } from "../components/Layout/PageTitle";
 
 const ArchiveYear = ({ data }) => {
   const year = 2020 + data.allMarkdownRemark.nodes[0].frontmatter.volume;
-  const nodesToRender = data.allMarkdownRemark.nodes;
+  let nodesToRender = [];
 
   // remove first node (nodes[0]) from nodes to prevent newest edition rendering on archive page
   // as of now, this if statement will need to be changed manually each year, to properly keep the archive working
   if (year === 2024) nodesToRender = data.allMarkdownRemark.nodes.slice(1);
+  else nodesToRender = data.allMarkdownRemark.nodes;
 
   return (
     <>
