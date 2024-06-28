@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import { useLocation } from "@reach/router";
 import { Stack, Typography } from "@mui/joy";
@@ -10,7 +10,7 @@ import { Link as LinkCopyIcon } from "@mui/icons-material";
 export const SectionHeader = ({ title }) => {
   const slug = createSlug(title);
   const location = useLocation();
-  const [copyText] = useState(`${location.origin}${location.pathname}#${slug}`);
+  const copyText = useMemo(() => `${location.origin}${location.pathname}#${slug}`, []);
 
   return (
     <Typography
