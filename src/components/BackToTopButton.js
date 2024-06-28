@@ -11,6 +11,8 @@ export const BackToTopButton = () => {
           behavior: "smooth",
         });
       }}
+      variant="solid"
+      color="primary"
     >
       <BackToTopIcon variant="soft" />
     </IconButton>

@@ -1,0 +1,53 @@
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import {
+  IconButton,
+  Tooltip,
+} from "@mui/joy";
+import {
+  ContentCopy as CopyIcon,
+  Check as CopiedIcon,
+} from "@mui/icons-material";
+import { copyToClipboard } from "../util/copyToClipboard";
+
+export const CopyButton = ({
+  children,
+  copyText = "",
+  icon = <CopyIcon />,
+}) => {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) {
+      return;
+    }
+    const noticeTimer = setTimeout(() => {
+      setCopied(false);
+    }, 2000);
+  }, [copied])
+
+  const handleClick = () => {
+    copyToClipboard(copyText);
+    setCopied(true);
+  };
+
+  return (
+    <Tooltip
+      title={ copied ? 'Copied!' : 'Copy link here' }
+    >
+      <IconButton
+        onClick={ handleClick }
+        variant="solid"
+        color={ copied ? 'success' : 'primary' }
+      >
+        { copied ? <CopiedIcon /> : icon }
+      </IconButton>
+    </Tooltip>
+  );
+};
+
+CopyButton.propTypes = {
+  children: PropTypes.node,
+  icon: PropTypes.node,
+  copyText: PropTypes.string.isRequired,
+};
