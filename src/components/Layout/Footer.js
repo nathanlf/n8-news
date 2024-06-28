@@ -8,9 +8,10 @@ export const Footer = () => {
       sx={{
         flexBasis: "5rem",
         alignContent: "center",
-        backgroundColor: "#fafafa",
-        width: "100vw",
+        backgroundColor: "#fafafa33",
         py: 6,
+        backdropFilter: 'blur(4px)',
+        borderTop: '1px solid var(--joy-palette-divider)',
       }}
     >
       <Typography level="body-lg" align="center" variant="subtitle1">
