@@ -6,6 +6,7 @@ import "/src/styles/global.css";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Box } from "@mui/joy";
+import { Container } from "./Container";
 
 export const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -23,11 +24,11 @@ export const Layout = ({ children }) => {
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
-      <Header title={data.site.siteMetadata.title} />
-      <Navbar />
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Container>
+        <Header title={data.site.siteMetadata.title} />
+        <Navbar />
         {children}
-      </Box>
+      </Container>
       <Footer />
     </>
   );
