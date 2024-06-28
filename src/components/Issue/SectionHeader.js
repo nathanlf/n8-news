@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { useLocation } from "@reach/router";
 import { Stack, Typography } from "@mui/joy";
 import { createSlug } from "../../util/createSlug";
 import { CopyButton } from "../CopyButton";
@@ -8,16 +9,18 @@ import { Link as LinkCopyIcon } from "@mui/icons-material";
 
 export const SectionHeader = ({ title }) => {
   const slug = createSlug(title);
+  const location = useLocation();
+  const [copyText] = useState(`${location.origin}${location.pathname}#${slug}`);
 
   return (
     <Typography
       level="h1"
       id={slug}
       endDecorator={
-        <Stack direction="row" gap={ 1 }>
+        <Stack direction="row" gap={1}>
           <CopyButton
-            copyText={ 'hello' }
-            icon={ <LinkCopyIcon /> }
+            copyText={ copyText }
+            icon={<LinkCopyIcon />}
           />
           <BackToTopButton />
         </Stack>

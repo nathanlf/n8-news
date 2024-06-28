@@ -6,7 +6,7 @@ import { copyToClipboard } from "../util/copyToClipboard";
 
 export const CopyButton = ({
   children,
-  copyText = "hey",
+  copyText = "",
   icon = <CopyIcon />,
 }) => {
   return (
