@@ -1,5 +1,6 @@
 import React from "react";
-import { Typography, Box } from "@mui/joy";
+import { Typography, Box, Grid } from "@mui/joy";
+import { Link } from "../Link";
 
 export const Footer = () => {
   return (
@@ -9,14 +10,57 @@ export const Footer = () => {
         flexBasis: "5rem",
         alignContent: "center",
         backgroundColor: "#fafafa33",
-        py: 6,
-        backdropFilter: 'blur(4px)',
-        borderTop: '1px solid var(--joy-palette-divider)',
+        py: 3,
+        backdropFilter: "blur(4px)",
+        borderTop: "1px solid var(--joy-palette-divider)",
       }}
     >
-      <Typography level="body-lg" align="center" variant="subtitle1">
-        Copyright 2024 RENCI
-      </Typography>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="flex-start"
+        mx={4}
+      >
+        <Grid item xs={12} sm={4} md={4} lg={4}>
+          <Typography level="title-lg" align="center">
+            RENCI Info
+          </Typography>
+          <Typography level="body-sm" align="center" gutterBottom>
+            RENCI (Renaissance Computing Institute) develops and deploys
+            advanced technologies to enable research discoveries and practical
+            innovations. Lorem ipsum ...
+          </Typography>
+          <Typography level="body-md" align="center">
+            <Link to="https://renci.org/">Learn More</Link>
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={4} md={4} lg={4}>
+          <Typography
+            level="body-md"
+            align="center"
+            sx={{
+              py: 6,
+            }}
+          >
+            © 2024 RENCI
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={4} md={4} lg={4}>
+          <Typography level="title-lg" align="center">
+            Get Connected
+          </Typography>
+          <Typography level="body-md" align="center">
+            <Link to="https://renci.org/">Example 1</Link>
+          </Typography>
+          <Typography level="body-md" align="center">
+            <Link to="https://renci.org/">Example 2</Link>
+          </Typography>
+          <Typography level="body-md" align="center">
+            <Link to="https://renci.org/">Example 3</Link>
+          </Typography>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
