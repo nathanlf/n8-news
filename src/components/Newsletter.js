@@ -50,7 +50,7 @@ export const Newsletter = ({ vol, iss }) => {
         <TableOfContents headers={headers} />
       </div>
       <div>
-        <GatsbyImage image={coverImg} />
+        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
       </div>
       <Typography
         level="body-sm"
