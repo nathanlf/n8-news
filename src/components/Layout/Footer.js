@@ -27,7 +27,7 @@ export const Footer = () => {
           maxWidth: "800px",
         }}
       >
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item={true ? 1 : undefined} xs={12} sm={6} md={4}>
           <Typography level="title-lg" align="center">
             RENCI Info
           </Typography>
@@ -40,7 +40,7 @@ export const Footer = () => {
             <Link to="https://renci.org/">Learn More</Link>
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item={true ? 1 : undefined} xs={12} sm={6} md={4}>
           <Typography
             level="body-md"
             align="center"
@@ -51,7 +51,7 @@ export const Footer = () => {
             © 2024 RENCI
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item={true ? 1 : undefined} xs={12} sm={6} md={4}>
           <Typography level="title-lg" align="center">
             Get Connected
           </Typography>
