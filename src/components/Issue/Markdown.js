@@ -15,10 +15,12 @@ export const Markdown = ({ src }) => {
           <Typography level="body-md">{children}</Typography>
         ),
         strong: ({ children }) => (
-          <Typography level="title-lg">{children}</Typography>
+          <Typography component="strong" level="title-lg">
+            {children}
+          </Typography>
         ),
         li: ({ children }) => <ListItem>{children}</ListItem>,
-        ul: ({ children }) => <List>{children}</List>,
+        ul: ({ children }) => <List marker="disc">{children}</List>,
         a: ({ href, children }) => <Link to={href}>{children}</Link>,
       }}
     />
