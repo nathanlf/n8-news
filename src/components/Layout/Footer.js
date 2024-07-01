@@ -6,6 +6,8 @@ export const Footer = () => {
   return (
     <Box
       component="footer"
+      justifyContent="center"
+      display="flex"
       sx={{
         flexBasis: "5rem",
         alignContent: "center",
@@ -20,22 +22,25 @@ export const Footer = () => {
         direction="row"
         justifyContent="center"
         alignItems="flex-start"
-        mx={4}
+        spacing={4}
+        sx={{
+          maxWidth: "800px",
+        }}
       >
-        <Grid item xs={12} sm={4} md={4} lg={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Typography level="title-lg" align="center">
             RENCI Info
           </Typography>
           <Typography level="body-sm" align="center" gutterBottom>
             RENCI (Renaissance Computing Institute) develops and deploys
-            advanced technologies to enable research discoveries and practical
+            advanced technologies \ to enable research discoveries and practical
             innovations. Lorem ipsum ...
           </Typography>
           <Typography level="body-md" align="center">
             <Link to="https://renci.org/">Learn More</Link>
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={4} md={4} lg={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Typography
             level="body-md"
             align="center"
@@ -46,7 +51,7 @@ export const Footer = () => {
             © 2024 RENCI
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={4} md={4} lg={4}>
+        <Grid item xs={12} sm={6} md={4}>
           <Typography level="title-lg" align="center">
             Get Connected
           </Typography>
