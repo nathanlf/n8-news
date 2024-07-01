@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 import PropTypes from "prop-types";
 import { SectionHeader } from "./SectionHeader";
-import { Typography } from "@mui/joy";
+import { List, ListItem, Typography } from "@mui/joy";
 import { Link } from "../Link";
 
 export const Markdown = ({ src }) => {
@@ -17,11 +17,8 @@ export const Markdown = ({ src }) => {
         strong: ({ children }) => (
           <Typography level="title-lg">{children}</Typography>
         ),
-        li: ({ children }) => (
-          <li>
-            <Typography level="body-md">{children}</Typography>
-          </li>
-        ),
+        li: ({ children }) => <ListItem>{children}</ListItem>,
+        ul: ({ children }) => <List>{children}</List>,
         a: ({ href, children }) => <Link to={href}>{children}</Link>,
       }}
     />
