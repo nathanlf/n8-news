@@ -29,6 +29,7 @@ export const ArchiveFolders = () => {
           const year = 2020 + volumeNum;
           return (
             <Grid
+              key={year}
               id={volumeNum}
               md={2}
               border={1}
