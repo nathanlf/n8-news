@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Grid } from "@mui/joy";
+import { Typography, Box, Grid, Stack } from "@mui/joy";
 import { Link } from "../Link";
 
 export const Footer = () => {
@@ -21,23 +21,23 @@ export const Footer = () => {
         container
         direction="row"
         justifyContent="center"
-        alignItems="flex-start"
+        alignItems="center"
         sx={{
           maxWidth: "800px",
         }}
       >
         <Grid item xs={12} sm={12} md={4}>
-          <Typography level="title-lg" align="center">
-            RENCI Info
-          </Typography>
-          <Typography level="body-sm" align="center" gutterBottom>
-            RENCI (Renaissance Computing Institute) develops and deploys
-            advanced technologies to enable research discoveries and practical
-            innovations. Lorem ipsum ...
-          </Typography>
-          <Typography level="body-md" align="center">
+          <Stack alignItems="center">
+            <Typography level="title-lg" align="center">
+              RENCI Info
+            </Typography>
+            <Typography level="body-sm" align="center" gutterBottom>
+              RENCI (Renaissance Computing Institute) develops and deploys
+              advanced technologies to enable research discoveries and practical
+              innovations. Lorem ipsum ...
+            </Typography>
             <Link to="https://renci.org/">Learn More</Link>
-          </Typography>
+          </Stack>
         </Grid>
         <Grid
           item
@@ -47,7 +47,6 @@ export const Footer = () => {
           sx={{
             display: "flex",
             alignItems: "center",
-            height: "100%",
             justifyContent: "center",
           }}
         >
@@ -55,19 +54,25 @@ export const Footer = () => {
             © 2024 RENCI
           </Typography>
         </Grid>
-        <Grid item xs={8} sm={6} md={4}>
+        <Grid
+          item
+          xs={8}
+          sm={6}
+          md={4}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <Typography level="title-lg" align="center">
             Get Connected
           </Typography>
-          <Typography level="body-md" align="center">
+          <Stack alignItems="center">
             <Link to="https://renci.org/">Example 1</Link>
-          </Typography>
-          <Typography level="body-md" align="center">
             <Link to="https://renci.org/">Example 2</Link>
-          </Typography>
-          <Typography level="body-md" align="center">
             <Link to="https://renci.org/">Example 3</Link>
-          </Typography>
+          </Stack>
         </Grid>
       </Grid>
     </Box>
