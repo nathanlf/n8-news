@@ -22,36 +22,40 @@ export const Footer = () => {
         direction="row"
         justifyContent="center"
         alignItems="flex-start"
-        spacing={4}
         sx={{
           maxWidth: "800px",
         }}
       >
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={12} md={4}>
           <Typography level="title-lg" align="center">
             RENCI Info
           </Typography>
           <Typography level="body-sm" align="center" gutterBottom>
             RENCI (Renaissance Computing Institute) develops and deploys
-            advanced technologies \ to enable research discoveries and practical
+            advanced technologies to enable research discoveries and practical
             innovations. Lorem ipsum ...
           </Typography>
           <Typography level="body-md" align="center">
             <Link to="https://renci.org/">Learn More</Link>
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <Typography
-            level="body-md"
-            align="center"
-            sx={{
-              py: 6,
-            }}
-          >
+        <Grid
+          item
+          xs={4}
+          sm={6}
+          md={4}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            height: "100%",
+            justifyContent: "center",
+          }}
+        >
+          <Typography level="body-md" align="center">
             © 2024 RENCI
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={8} sm={6} md={4}>
           <Typography level="title-lg" align="center">
             Get Connected
           </Typography>
