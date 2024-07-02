@@ -35,7 +35,7 @@ export const Newsletter = ({ vol, iss }) => {
   return (
     <>
       <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-      <Typography color="neutral" level="h4" variant="plain">
+      <Typography color="neutral" level="h4" variant="plain" gutterBottom>
         {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
       </Typography>
       <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
