@@ -38,28 +38,29 @@ export const Newsletter = ({ vol, iss }) => {
       <Typography color="neutral" level="h4" variant="plain">
         {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
       </Typography>
+      <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
       <Typography
-        level="body-lg"
+        level="body-sm"
+        textAlign="center"
+        gutterBottom
         sx={{
           fontStyle: "italic",
+          py: 1,
         }}
       >
-        {blurb}
+        {caption}
       </Typography>
       <div>
         <TableOfContents headers={headers} />
       </div>
-      <div>
-        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-      </div>
       <Typography
-        level="body-sm"
-        textAlign="center"
+        level="body-lg"
         sx={{
           fontStyle: "italic",
+          fontWeight: 500,
         }}
       >
-        {caption}
+        {blurb}
       </Typography>
       <Markdown src={rawMarkdownBody} />
     </>
