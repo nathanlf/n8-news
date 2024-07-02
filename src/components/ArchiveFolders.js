@@ -12,7 +12,9 @@ export const ArchiveFolders = () => {
     }
   `);
 
-  const volumes = data.allMarkdownRemark.volumes.map((str) => parseInt(str));
+  const volumes = data.allMarkdownRemark.volumes
+    .map((str) => parseInt(str))
+    .reverse();
 
   return (
     <>
