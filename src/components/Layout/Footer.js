@@ -26,7 +26,7 @@ export const Footer = () => {
           maxWidth: "800px",
         }}
       >
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid xs={12} sm={12} md={4}>
           <Stack alignItems="center">
             <Typography level="title-lg" align="center">
               RENCI Info
@@ -40,7 +40,6 @@ export const Footer = () => {
           </Stack>
         </Grid>
         <Grid
-          item
           xs={4}
           sm={6}
           md={4}
@@ -55,7 +54,6 @@ export const Footer = () => {
           </Typography>
         </Grid>
         <Grid
-          item
           xs={8}
           sm={6}
           md={4}
