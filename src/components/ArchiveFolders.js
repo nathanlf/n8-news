@@ -44,7 +44,7 @@ export const ArchiveFolders = () => {
               <Link
                 to={`/archive/${year}`}
                 sx={{
-                  fontWeight: 700,
+                  fontWeight: 550,
                 }}
               >
                 <Stack direction="column" justifyContent="space-between">

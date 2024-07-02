@@ -17,6 +17,7 @@ export const Navbar = () => {
         border: "1px",
         borderRadius: "sm",
         boxShadow: "md",
+        fontWeight: 600,
         backgroundColor: "#fafafa",
         py: 2,
         ".nav-link": {
