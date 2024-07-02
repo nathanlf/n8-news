@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { Link } from "../components/Link";
-import { Box, Grid, Sheet, Stack } from "@mui/joy";
+import { Grid, Stack } from "@mui/joy";
 import FolderIcon from "@mui/icons-material/Folder";
 
 export const ArchiveFolders = () => {
