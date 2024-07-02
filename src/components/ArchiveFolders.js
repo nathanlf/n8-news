@@ -1,7 +1,8 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { Link } from "../components/Link";
-import { Grid } from "@mui/joy";
+import { Box, Grid, Sheet, Stack } from "@mui/joy";
+import FolderIcon from "@mui/icons-material/Folder";
 
 export const ArchiveFolders = () => {
   const data = useStaticQuery(graphql`
@@ -12,6 +13,7 @@ export const ArchiveFolders = () => {
     }
   `);
 
+  // distinct query returns strings - convert to integers, then convert to descending order
   const volumes = data.allMarkdownRemark.volumes
     .map((str) => parseInt(str))
     .reverse();
@@ -20,26 +22,36 @@ export const ArchiveFolders = () => {
     <>
       <Grid
         container
-        spacing={4}
+        justifyContent="space-between"
         textAlign="center"
-        sx={{
-          paddingLeft: 2,
-          py: 2,
-        }}
+        alignItems="center"
       >
         {volumes.map((volumeNum) => {
           const year = 2020 + volumeNum;
           return (
             <Grid
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              columnSpacing={4}
               key={year}
               id={volumeNum}
-              md={2}
-              border={1}
               sx={{
-                backgroundColor: "#f2f2f2",
+                paddingBottom: 3,
               }}
             >
-              <Link to={`/archive/${year}`}>{year} Folder</Link>
+              <Link
+                to={`/archive/${year}`}
+                sx={{
+                  fontWeight: 700,
+                }}
+              >
+                <Stack direction="column" justifyContent="space-between">
+                  <FolderIcon color="neutral" sx={{ py: 3, fontSize: 90 }} />
+                  {year}
+                </Stack>
+              </Link>
             </Grid>
           );
         })}
