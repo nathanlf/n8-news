@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { Link } from "../components/Link";
 import { Typography } from "@mui/joy";
-import { PageTitle } from "../components/Layout/PageTitle";
+import { YearSelector } from "../components/YearSelector";
 
 const ArchiveYear = ({ data }) => {
   const year = 2020 + data.allMarkdownRemark.nodes[0].frontmatter.volume;
@@ -15,7 +15,7 @@ const ArchiveYear = ({ data }) => {
 
   return (
     <>
-      <PageTitle title={year} />
+      <YearSelector />
       {nodesToRender.map((node) => {
         const { issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
