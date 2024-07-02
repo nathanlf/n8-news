@@ -11,7 +11,12 @@ import { graphql, useStaticQuery } from "gatsby";
 export const useIssue = (vol, iss) => {
   const data = useStaticQuery(graphql`
     query AllNewsletterIssues {
-      allMarkdownRemark(sort: { frontmatter: { volume: ASC } }) {
+      allMarkdownRemark(
+        sort: [
+          { frontmatter: { volume: ASC } }
+          { frontmatter: { issue: ASC } }
+        ]
+      ) {
         nodes {
           frontmatter {
             volume
