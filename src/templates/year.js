@@ -15,7 +15,7 @@ const ArchiveYear = ({ data }) => {
 
   return (
     <>
-      <YearSelector />
+      <YearSelector defaultYear={year} />
       {nodesToRender.map((node) => {
         const { issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;

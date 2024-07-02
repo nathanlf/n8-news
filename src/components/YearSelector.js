@@ -1,9 +1,10 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
+import PropTypes from "prop-types";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 
-export const YearSelector = () => {
+export const YearSelector = ({ defaultYear }) => {
   const data = useStaticQuery(graphql`
     query VolumeNums {
       allMarkdownRemark {
@@ -20,7 +21,7 @@ export const YearSelector = () => {
 
   return (
     <Select
-      defaultValue={years[0]}
+      defaultValue={defaultYear}
       sx={{
         py: 1,
       }}
@@ -32,4 +33,8 @@ export const YearSelector = () => {
       ))}
     </Select>
   );
+};
+
+YearSelector.propTypes = {
+  defaultYear: PropTypes.number.isRequired,
 };
