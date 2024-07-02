@@ -11,5 +11,5 @@ export const PageTitle = ({ title }) => {
 };
 
 PageTitle.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
