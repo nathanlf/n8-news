@@ -48,7 +48,7 @@ export const ArchiveFolders = () => {
                 }}
               >
                 <Stack direction="column" justifyContent="space-between">
-                  <FolderIcon color="neutral" sx={{ py: 3, fontSize: 90 }} />
+                  <FolderIcon color="secondary" sx={{ py: 3, fontSize: 90 }} />
                   {year}
                 </Stack>
               </Link>

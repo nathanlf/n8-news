@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import {
-  IconButton,
-  Tooltip,
-} from "@mui/joy";
+import { IconButton, Tooltip } from "@mui/joy";
 import {
   ContentCopy as CopyIcon,
   Check as CopiedIcon,
@@ -24,7 +21,7 @@ export const CopyButton = ({
     const noticeTimer = setTimeout(() => {
       setCopied(false);
     }, 2000);
-  }, [copied])
+  }, [copied]);
 
   const handleClick = () => {
     copyToClipboard(copyText);
@@ -32,15 +29,13 @@ export const CopyButton = ({
   };
 
   return (
-    <Tooltip
-      title={ copied ? 'Copied!' : 'Copy link here' }
-    >
+    <Tooltip title={copied ? "Copied!" : "Copy link here"}>
       <IconButton
-        onClick={ handleClick }
+        onClick={handleClick}
         variant="solid"
-        color={ copied ? 'success' : 'primary' }
+        color={copied ? "success" : "secondary"}
       >
-        { copied ? <CopiedIcon /> : icon }
+        {copied ? <CopiedIcon /> : icon}
       </IconButton>
     </Tooltip>
   );

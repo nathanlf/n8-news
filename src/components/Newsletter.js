@@ -2,7 +2,7 @@ import React from "react";
 import { useIssue } from "../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
-import { TableOfContents } from "../components/Issue/TableOfContents";
+import { TableOfContents } from "./Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
 import { PageTitle } from "../components/Layout/PageTitle";
 
@@ -35,7 +35,7 @@ export const Newsletter = ({ vol, iss }) => {
   return (
     <>
       <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-      <Typography color="neutral" level="h4" variant="plain" gutterBottom>
+      <Typography level="h4" variant="plain" gutterBottom>
         {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
       </Typography>
       <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
