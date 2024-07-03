@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { graphql } from "gatsby";
 import { Link } from "../components/Link";
 import { Typography } from "@mui/joy";
@@ -13,9 +13,15 @@ const ArchiveYear = ({ data }) => {
   if (year === 2024) nodesToRender = data.allMarkdownRemark.nodes.slice(1);
   else nodesToRender = data.allMarkdownRemark.nodes;
 
+  // memoize the YearSelector component to prevent unnecessary re-renders
+  const MemoizedYearSelector = useMemo(
+    () => <YearSelector defaultYear={year} />,
+    [year]
+  );
+
   return (
     <>
-      <YearSelector defaultYear={year} />
+      {MemoizedYearSelector}
       {nodesToRender.map((node) => {
         const { issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
