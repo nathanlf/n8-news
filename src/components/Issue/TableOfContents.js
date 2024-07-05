@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { toc } from "./issue.module.css";
 import { createSlug } from "../../util/createSlug";
-import { Button, Typography } from "@mui/joy";
+import { Button, Sheet, Typography } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 
 export const TableOfContents = ({ headers }) => {
   return (
-    <div className={toc}>
+    <Sheet
+      sx={{
+        position: "sticky",
+        backgroundColor: "transparent",
+        top: "12px",
+      }}
+    >
       <Typography
         level="h3"
         align="left"
@@ -24,7 +29,7 @@ export const TableOfContents = ({ headers }) => {
             <Button
               variant="soft"
               color="neutral"
-              size="md"
+              size="sm"
               sx={{
                 mx: "auto",
                 my: 0.5,
@@ -44,7 +49,7 @@ export const TableOfContents = ({ headers }) => {
           </div>
         );
       })}
-    </div>
+    </Sheet>
   );
 };
 
