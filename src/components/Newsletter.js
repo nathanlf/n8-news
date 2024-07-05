@@ -35,11 +35,11 @@ export const Newsletter = ({ vol, iss }) => {
 
   return (
     <>
-      <Grid container direction="row" alignItems="flex-start">
-        <Grid xs={4}>
+      <Grid container direction="row">
+        <Grid lg={4}>
           <TableOfContents headers={headers} />
         </Grid>
-        <Grid xs={8}>
+        <Grid xs={12} lg={8}>
           <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
           <Typography level="h4" variant="plain" gutterBottom>
             {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}

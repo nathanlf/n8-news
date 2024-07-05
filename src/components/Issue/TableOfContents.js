@@ -9,10 +9,9 @@ export const TableOfContents = ({ headers }) => {
   return (
     <Sheet
       sx={{
-        position: "fixed",
+        position: "sticky",
         backgroundColor: "transparent",
-        // alignSelf: "start",
-        // position: "-webkit-sticky"
+        top: "12px",
       }}
     >
       <Typography
