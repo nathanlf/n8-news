@@ -5,6 +5,7 @@ import Typography from "@mui/joy/Typography";
 import { TableOfContents } from "./Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
 import { PageTitle } from "../components/Layout/PageTitle";
+import { Grid } from "@mui/joy";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -34,35 +35,39 @@ export const Newsletter = ({ vol, iss }) => {
 
   return (
     <>
-      <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-      <Typography level="h4" variant="plain" gutterBottom>
-        {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
-      </Typography>
-      <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-      <Typography
-        level="body-sm"
-        textAlign="center"
-        gutterBottom
-        sx={{
-          fontStyle: "italic",
-          py: 1,
-        }}
-      >
-        {caption}
-      </Typography>
-      <div>
-        <TableOfContents headers={headers} />
-      </div>
-      <Typography
-        level="body-lg"
-        sx={{
-          fontStyle: "italic",
-          fontWeight: 500,
-        }}
-      >
-        {blurb}
-      </Typography>
-      <Markdown src={rawMarkdownBody} />
+      <Grid container direction="row" alignItems="flex-start">
+        <Grid xs={4}>
+          <TableOfContents headers={headers} />
+        </Grid>
+        <Grid xs={8}>
+          <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
+          <Typography level="h4" variant="plain" gutterBottom>
+            {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
+          </Typography>
+          <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
+          <Typography
+            level="body-sm"
+            textAlign="center"
+            gutterBottom
+            sx={{
+              fontStyle: "italic",
+              py: 1,
+            }}
+          >
+            {caption}
+          </Typography>
+          <Typography
+            level="body-lg"
+            sx={{
+              fontStyle: "italic",
+              fontWeight: 500,
+            }}
+          >
+            {blurb}
+          </Typography>
+          <Markdown src={rawMarkdownBody} />
+        </Grid>
+      </Grid>
     </>
   );
 };
