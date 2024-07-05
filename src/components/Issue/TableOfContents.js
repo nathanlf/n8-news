@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { toc } from "./issue.module.css";
 import { createSlug } from "../../util/createSlug";
 import { Button, Sheet, Typography } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
