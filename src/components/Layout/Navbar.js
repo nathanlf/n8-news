@@ -21,7 +21,7 @@ export const Navbar = () => {
         borderRadius: "sm",
         fontWeight: 600,
         ".nav-link": {
-          px: 1,
+          px: 1.5,
           py: 1,
           textDecoration: "none",
           "&:hover": {
