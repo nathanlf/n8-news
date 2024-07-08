@@ -10,7 +10,8 @@ export const TableOfContents = ({ headers }) => {
       sx={{
         position: "sticky",
         backgroundColor: "transparent",
-        top: "12px",
+        top: "2%",
+        height: "100vh",
       }}
     >
       <Typography

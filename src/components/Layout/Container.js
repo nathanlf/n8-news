@@ -10,6 +10,7 @@ export const Container = ({ children }) => {
         margin: "0 auto",
         maxWidth: "800px",
         width: "100%",
+        position: "relative",
       }}
     >
       {children}
