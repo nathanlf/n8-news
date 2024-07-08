@@ -5,7 +5,7 @@ import Typography from "@mui/joy/Typography";
 import { TableOfContents } from "./Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
 import { PageTitle } from "../components/Layout/PageTitle";
-import { Grid } from "@mui/joy";
+import { Box } from "@mui/joy";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -35,39 +35,45 @@ export const Newsletter = ({ vol, iss }) => {
 
   return (
     <>
-      <Grid container direction="row">
-        <Grid lg={4}>
-          <TableOfContents headers={headers} />
-        </Grid>
-        <Grid xs={12} lg={8}>
-          <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-          <Typography level="h4" variant="plain" gutterBottom>
-            {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
-          </Typography>
-          <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-          <Typography
-            level="body-sm"
-            textAlign="center"
-            gutterBottom
-            sx={{
-              fontStyle: "italic",
-              py: 1,
-            }}
-          >
-            {caption}
-          </Typography>
-          <Typography
-            level="body-lg"
-            sx={{
-              fontStyle: "italic",
-              fontWeight: 500,
-            }}
-          >
-            {blurb}
-          </Typography>
-          <Markdown src={rawMarkdownBody} />
-        </Grid>
-      </Grid>
+      <Box
+        sx={{
+          position: "absolute",
+          right: "100%",
+          width: "250px",
+          mr: 5,
+          height: "100%",
+        }}
+      >
+        <TableOfContents headers={headers} />
+      </Box>
+      <Box>
+        <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
+        <Typography level="h4" variant="plain" gutterBottom>
+          {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
+        </Typography>
+        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
+        <Typography
+          level="body-sm"
+          textAlign="center"
+          gutterBottom
+          sx={{
+            fontStyle: "italic",
+            py: 1,
+          }}
+        >
+          {caption}
+        </Typography>
+        <Typography
+          level="body-lg"
+          sx={{
+            fontStyle: "italic",
+            fontWeight: 500,
+          }}
+        >
+          {blurb}
+        </Typography>
+        <Markdown src={rawMarkdownBody} />
+      </Box>
     </>
   );
 };
