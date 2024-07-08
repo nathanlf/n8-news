@@ -2,30 +2,31 @@ import React from "react";
 import { Link } from "../Link";
 import Stack from "@mui/joy/Stack";
 import Divider from "@mui/material/Divider";
+import InfoIcon from "@mui/icons-material/Info";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import { Typography } from "@mui/joy";
 
 export const Navbar = () => {
   return (
     <Stack
       role="navigation"
       direction="row"
-      divider={<Divider orientation="vertical" flexItem size="lg" />}
+      divider={<Divider orientation="vertical" flexItem size={10} />}
       alignItems="center"
-      justifyContent="center"
-      spacing={4}
+      justifyContent="right"
+      spacing={2}
       sx={{
         my: 2,
         border: "1px",
         borderRadius: "sm",
-        boxShadow: "md",
         fontWeight: 600,
-        backgroundColor: "#fafafa",
-        py: 2,
         ".nav-link": {
-          px: 2,
+          px: 1,
           py: 1,
           textDecoration: "none",
           "&:hover": {
             textDecoration: "underline",
+            textDecorationColor: "#000000",
             backgroundColor: "#ececec",
             borderRadius: 4,
           },
@@ -33,13 +34,14 @@ export const Navbar = () => {
       }}
     >
       <Link to="/archive" className="nav-link">
-        Archive
+        <Typography level="h4" startDecorator={<LibraryBooksIcon />}>
+          Archive
+        </Typography>
       </Link>
       <Link to="/about" className="nav-link">
-        About
-      </Link>
-      <Link to="/initiatives" className="nav-link">
-        Initiatives
+        <Typography level="h4" startDecorator={<InfoIcon />}>
+          About
+        </Typography>
       </Link>
     </Stack>
   );
