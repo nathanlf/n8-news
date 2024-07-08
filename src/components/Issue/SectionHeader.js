@@ -10,7 +10,10 @@ import { Link as LinkCopyIcon } from "@mui/icons-material";
 export const SectionHeader = ({ title }) => {
   const slug = createSlug(title);
   const location = useLocation();
-  const copyText = useMemo(() => `${location.origin}${location.pathname}#${slug}`, []);
+  const copyText = useMemo(
+    () => `${location.origin}${location.pathname}#${slug}`,
+    [location.origin, location.pathname, slug]
+  );
 
   return (
     <Typography
@@ -18,10 +21,7 @@ export const SectionHeader = ({ title }) => {
       id={slug}
       endDecorator={
         <Stack direction="row" gap={1}>
-          <CopyButton
-            copyText={ copyText }
-            icon={<LinkCopyIcon />}
-          />
+          <CopyButton copyText={copyText} icon={<LinkCopyIcon />} />
           <BackToTopButton />
         </Stack>
       }
