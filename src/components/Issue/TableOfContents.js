@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import { Button, Sheet, Typography } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import { BackToTopButton } from "../BackToTopButton";
 
 export const TableOfContents = ({ headers }) => {
   return (
@@ -15,14 +16,17 @@ export const TableOfContents = ({ headers }) => {
       }}
     >
       <Typography
-        level="h3"
+        level="h4"
         align="left"
         fontWeight="bold"
         gutterBottom
         startDecorator={<FormatListBulletedIcon />}
+        endDecorator={<BackToTopButton />}
+        sx={{ boxShadow: 5 }}
       >
         Table of Contents
       </Typography>
+
       {headers.map((header) => {
         const slug = createSlug(header);
         return (
@@ -33,7 +37,7 @@ export const TableOfContents = ({ headers }) => {
               size="sm"
               sx={{
                 mx: "auto",
-                my: 0.5,
+                my: 0.4,
                 gap: 1,
                 borderRadius: "sm",
                 boxShadow: "md",
