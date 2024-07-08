@@ -21,6 +21,7 @@ export const CopyButton = ({
     const noticeTimer = setTimeout(() => {
       setCopied(false);
     }, 2000);
+    return () => clearTimeout(noticeTimer);
   }, [copied]);
 
   const handleClick = () => {
