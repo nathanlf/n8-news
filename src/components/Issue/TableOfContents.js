@@ -1,19 +1,63 @@
 import React from "react";
-import { toc } from "./newsletters.module.css";
+import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
+import { Button, Sheet, Typography } from "@mui/joy";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import { BackToTopButton } from "../BackToTopButton";
 
-const TableOfContents = ({ headers }) => {
+export const TableOfContents = ({ headers }) => {
   return (
-    <div className={toc}>
+    <Sheet
+      sx={{
+        position: "sticky",
+        backgroundColor: "transparent",
+        top: "2%",
+        height: "100vh",
+      }}
+    >
+      <Typography
+        level="h4"
+        align="left"
+        fontWeight="bold"
+        gutterBottom
+        startDecorator={<FormatListBulletedIcon />}
+        endDecorator={<BackToTopButton />}
+        sx={{ boxShadow: 5 }}
+      >
+        Table of Contents
+      </Typography>
+
       {headers.map((header) => {
+        const slug = createSlug(header);
         return (
-          <div>
-            <a href={`#${createSlug(header)}`}>{header}</a>
+          <div key={slug}>
+            <Button
+              variant="soft"
+              color="neutral"
+              size="sm"
+              sx={{
+                mx: "auto",
+                my: 0.4,
+                gap: 1,
+                borderRadius: "sm",
+                boxShadow: "md",
+              }}
+              onClick={() => {
+                const element = document.querySelector(`#${slug}`);
+                element?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+            >
+              {header}
+            </Button>
           </div>
         );
       })}
-    </div>
+    </Sheet>
   );
 };
 
-export default TableOfContents;
+TableOfContents.propTypes = {
+  headers: PropTypes.arrayOf(PropTypes.string),
+};

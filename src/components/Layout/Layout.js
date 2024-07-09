@@ -1,11 +1,27 @@
 import * as React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import Navbar from "./Navbar";
-import { container, heading, footer } from "./layout.module.css";
+import PropTypes from "prop-types";
+import "/src/styles/global.css";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import { styled } from "@mui/joy/styles";
+import { Container } from "./Container";
+import renciLinesSvg from "../../images/renci-lines.svg";
+import { Divider } from "@mui/joy";
 
-const Layout = ({ pageTitle, children }) => {
+const FancyBackground = styled("div")(() => ({
+  background: `linear-gradient(#ffffffee 75%, #ffffff66 100%), url(${renciLinesSvg})`,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "0 0",
+  backgroundSize: "contain",
+  flexGrow: 1,
+  display: "flex",
+  flexDirection: "column",
+}));
+
+export const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query {
+    query Title {
       site {
         siteMetadata {
           title
@@ -15,17 +31,21 @@ const Layout = ({ pageTitle, children }) => {
   `);
 
   return (
-    <div className={container}>
-      <Navbar title={data.site.siteMetadata.title} />
-      <main>
-        <h1 className={heading}>{pageTitle}</h1>
+    <FancyBackground>
+      <Container>
+        <Header title={data.site.siteMetadata.title} />
+        <Divider
+          orientation="horizontal"
+          role="presentation"
+          sx={{ marginBottom: 2 }}
+        />
         {children}
-      </main>
-      <footer className={footer}>
-        <p>Copyright 2024 RENCI</p>
-      </footer>
-    </div>
+      </Container>
+      <Footer />
+    </FancyBackground>
   );
 };
 
-export default Layout;
+Layout.propTypes = {
+  children: PropTypes.node,
+};

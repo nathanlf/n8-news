@@ -1,11 +1,6 @@
 {
-  "name": "the-great-gatsby",
-  "version": "1.0.0",
+  "name": "renci-newsletter",
   "private": true,
-  "description": "the-great-gatsby",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -13,9 +8,15 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "predevelop": "node scripts/optimize.js && gatsby develop"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@fontsource/inter": "^5.0.18",
+    "@mui/icons-material": "^5.15.20",
+    "@mui/joy": "^5.0.0-beta.36",
     "dotenv": "^16.4.5",
     "gatsby": "^5.13.5",
     "gatsby-plugin-image": "^3.13.1",
@@ -24,6 +25,7 @@
     "gatsby-transformer-remark": "^6.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
     "prettier": "^3.3.2",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
