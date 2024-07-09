@@ -16,9 +16,7 @@ export const Navbar = () => {
       divider={<Divider orientation="vertical" flexItem />}
       alignItems="center"
       justifyContent="right"
-      spacing={1}
       sx={{
-        my: 2,
         border: "1px",
         borderRadius: "sm",
         fontWeight: 600,
