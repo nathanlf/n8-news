@@ -4,6 +4,8 @@ import Stack from "@mui/joy/Stack";
 import Divider from "@mui/material/Divider";
 import InfoIcon from "@mui/icons-material/Info";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import ArticleIcon from "@mui/icons-material/Article";
+import EventIcon from "@mui/icons-material/Event";
 import { Typography } from "@mui/joy";
 
 export const Navbar = () => {
@@ -11,10 +13,10 @@ export const Navbar = () => {
     <Stack
       role="navigation"
       direction="row"
-      divider={<Divider orientation="vertical" flexItem size={10} />}
+      divider={<Divider orientation="vertical" flexItem />}
       alignItems="center"
       justifyContent="right"
-      spacing={2}
+      spacing={1}
       sx={{
         my: 2,
         border: "1px",
@@ -33,13 +35,39 @@ export const Navbar = () => {
         },
       }}
     >
+      <Link to="/" className="nav-link">
+        <Typography
+          level="h4"
+          startDecorator={<ArticleIcon />}
+          sx={{ fontSize: 17 }}
+        >
+          Newest Edition
+        </Typography>
+      </Link>
       <Link to="/archive" className="nav-link">
-        <Typography level="h4" startDecorator={<LibraryBooksIcon />}>
+        <Typography
+          level="h4"
+          startDecorator={<LibraryBooksIcon />}
+          sx={{ fontSize: 17 }}
+        >
           Archive
         </Typography>
       </Link>
+      <Link to="/initiatives" className="nav-link">
+        <Typography
+          level="h4"
+          startDecorator={<EventIcon />}
+          sx={{ fontSize: 17 }}
+        >
+          Initiatives
+        </Typography>
+      </Link>
       <Link to="/about" className="nav-link">
-        <Typography level="h4" startDecorator={<InfoIcon />}>
+        <Typography
+          level="h4"
+          startDecorator={<InfoIcon />}
+          sx={{ fontSize: 17 }}
+        >
           About
         </Typography>
       </Link>

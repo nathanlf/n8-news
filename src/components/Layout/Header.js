@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticImage } from "gatsby-plugin-image";
-import { Box, Typography } from "@mui/joy";
+import { Box, Stack, Typography } from "@mui/joy";
 import { Link } from "../Link";
+import { Navbar } from "./Navbar";
 
 export const Header = ({ title }) => {
   return (
@@ -11,21 +12,23 @@ export const Header = ({ title }) => {
       component="header"
       display="flex"
       sx={{
-        py: 2,
         flexBasis: "5rem",
       }}
     >
       <Link to="/" alt="Newest Edition">
         <StaticImage src="../../images/renci-logo.png" alt="RENCI Logo" />
       </Link>
-      <Typography
-        level="h1"
-        sx={{
-          mt: 4,
-        }}
-      >
-        {title}
-      </Typography>
+      <Stack direction="column" alignItems="flex-end">
+        <Typography
+          level="h1"
+          sx={{
+            mt: 4,
+          }}
+        >
+          {title}
+        </Typography>
+        <Navbar />
+      </Stack>
     </Box>
   );
 };
