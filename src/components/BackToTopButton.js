@@ -1,6 +1,6 @@
 import React from "react";
 import { IconButton } from "@mui/joy";
-import { KeyboardArrowUp as BackToTopIcon } from "@mui/icons-material";
+import { KeyboardDoubleArrowUp as BackToTopIcon } from "@mui/icons-material";
 
 export const BackToTopButton = () => {
   return (
@@ -11,9 +11,9 @@ export const BackToTopButton = () => {
           behavior: "smooth",
         });
       }}
-      color="primary"
+      color="neutral"
     >
-      <BackToTopIcon color="secondary" />
+      <BackToTopIcon />
     </IconButton>
   );
 };
