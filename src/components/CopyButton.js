@@ -30,11 +30,11 @@ export const CopyButton = ({
   };
 
   return (
-    <Tooltip title={copied ? "Copied!" : "Copy link here"}>
+    <Tooltip title={copied ? "Copied!" : "Copy to Clipboard"}>
       <IconButton
         onClick={handleClick}
-        variant="solid"
-        color={copied ? "success" : "secondary"}
+        variant="plain"
+        color={copied ? "success" : "neutral"}
       >
         {copied ? <CopiedIcon /> : icon}
       </IconButton>
