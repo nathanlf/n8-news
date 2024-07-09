@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
-import { Button, Sheet, Typography } from "@mui/joy";
+import {
+  List,
+  Stack,
+  ListItem,
+  Typography,
+  ListItemButton,
+  IconButton,
+  Sheet,
+} from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import { BackToTopButton } from "../BackToTopButton";
 
 export const TableOfContents = ({ headers }) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <Sheet
       sx={{
@@ -15,45 +24,63 @@ export const TableOfContents = ({ headers }) => {
         height: "100vh",
       }}
     >
-      <Typography
-        level="h4"
-        align="left"
-        fontWeight="bold"
-        gutterBottom
-        startDecorator={<FormatListBulletedIcon />}
-        endDecorator={<BackToTopButton />}
-        sx={{ boxShadow: 5 }}
-      >
-        Table of Contents
-      </Typography>
-
-      {headers.map((header) => {
-        const slug = createSlug(header);
-        return (
-          <div key={slug}>
-            <Button
-              variant="soft"
-              color="neutral"
+      <List size="sm">
+        <ListItem
+          nested
+          sx={{
+            my: 1,
+          }}
+          startAction={
+            <IconButton
+              variant="plain"
               size="sm"
-              sx={{
-                mx: "auto",
-                my: 0.4,
-                gap: 1,
-                borderRadius: "sm",
-                boxShadow: "md",
-              }}
-              onClick={() => {
-                const element = document.querySelector(`#${slug}`);
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
+              color="neutral"
+              onClick={() => setOpen(!open)}
+              sx={{}}
             >
-              {header}
-            </Button>
-          </div>
-        );
-      })}
+              {open && (
+                <Stack direction="row" alignItems="space-between">
+                  <Typography
+                    level="inherit"
+                    sx={{
+                      fontWeight: open ? "bold" : undefined,
+                      color: open ? "#0000000" : "secondary",
+                    }}
+                  >
+                    Table of Contents
+                  </Typography>
+                </Stack>
+              )}
+              <FormatListBulletedIcon
+                sx={{ color: open ? "#000000" : "secondary" }}
+              />
+            </IconButton>
+          }
+        >
+          {open && (
+            <List sx={{ paddingTop: "32px" }}>
+              {headers.map((header) => {
+                const slug = createSlug(header);
+                return (
+                  <ListItem key={slug}>
+                    <ListItemButton
+                      size="sm"
+                      onClick={() => {
+                        const element = document.querySelector(`#${slug}`);
+                        element?.scrollIntoView({
+                          behavior: "smooth",
+                        });
+                      }}
+                    >
+                      {header}
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+            </List>
+          )}
+        </ListItem>
+      </List>
     </Sheet>
   );
 };
