@@ -2,7 +2,7 @@ import React from "react";
 import { IconButton } from "@mui/joy";
 import { KeyboardDoubleArrowUp as BackToTopIcon } from "@mui/icons-material";
 
-export const BackToTopButton = () => {
+export const BackToTopButton = ({ children }) => {
   return (
     <IconButton
       onClick={() => {
@@ -13,7 +13,10 @@ export const BackToTopButton = () => {
       }}
       color="neutral"
     >
-      <BackToTopIcon />
+      <>
+        {children}
+        <BackToTopIcon />
+      </>
     </IconButton>
   );
 };

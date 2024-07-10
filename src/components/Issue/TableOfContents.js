@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
-import { Button, Sheet, Typography } from "@mui/joy";
+import {
+  List,
+  Stack,
+  ListItem,
+  Typography,
+  ListItemButton,
+  IconButton,
+  Sheet,
+} from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
 
 export const TableOfContents = ({ headers }) => {
+  const [open, setOpen] = useState(false);
+
   return (
     <Sheet
       sx={{
@@ -15,45 +25,79 @@ export const TableOfContents = ({ headers }) => {
         height: "100vh",
       }}
     >
-      <Typography
-        level="h4"
-        align="left"
-        fontWeight="bold"
-        gutterBottom
-        startDecorator={<FormatListBulletedIcon />}
-        endDecorator={<BackToTopButton />}
-        sx={{ boxShadow: 5 }}
-      >
-        Table of Contents
-      </Typography>
-
-      {headers.map((header) => {
-        const slug = createSlug(header);
-        return (
-          <div key={slug}>
-            <Button
-              variant="soft"
-              color="neutral"
-              size="sm"
-              sx={{
-                mx: "auto",
-                my: 0.4,
-                gap: 1,
-                borderRadius: "sm",
-                boxShadow: "md",
-              }}
-              onClick={() => {
-                const element = document.querySelector(`#${slug}`);
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                });
-              }}
+      <List size="sm">
+        <Stack
+          direction="row"
+          startDecorator={<BackToTopButton />}
+          justifyContent="flex-end"
+        >
+          <IconButton
+            variant="plain"
+            size="sm"
+            color="neutral"
+            spacing={2}
+            onClick={() => setOpen(!open)}
+          >
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              sx={{ mx: 1 }}
             >
-              {header}
-            </Button>
-          </div>
-        );
-      })}
+              {open && (
+                <Typography
+                  level="h5"
+                  sx={{
+                    fontWeight: open ? "bold" : undefined,
+                    color: open ? "#000000" : "secondary",
+                  }}
+                >
+                  Table of Contents
+                </Typography>
+              )}
+              <FormatListBulletedIcon
+                sx={{ color: open ? "#000000" : "secondary" }}
+              />
+            </Stack>
+          </IconButton>
+        </Stack>
+        <ListItem nested>
+          {open && (
+            <List sx={{ alignItems: "flex-end" }}>
+              {headers.map((header) => {
+                const slug = createSlug(header);
+                return (
+                  <ListItemButton
+                    key={slug}
+                    size="sm"
+                    variant="plain"
+                    sx={{
+                      justifyContent: "flex-end",
+                    }}
+                    onClick={() => {
+                      const element = document.querySelector(`#${slug}`);
+                      element?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }}
+                  >
+                    {header}
+                  </ListItemButton>
+                );
+              })}
+            </List>
+          )}
+        </ListItem>
+        {open && (
+          <Stack direction="row" justifyContent="flex-end" sx={{ mx: 1 }}>
+            <BackToTopButton>
+              <Typography level="title-sm" sx={{ px: 0.25 }}>
+                Back to top
+              </Typography>
+            </BackToTopButton>
+          </Stack>
+        )}
+      </List>
     </Sheet>
   );
 };
