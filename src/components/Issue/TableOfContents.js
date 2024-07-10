@@ -63,24 +63,26 @@ export const TableOfContents = ({ headers }) => {
         </Stack>
         <ListItem nested>
           {open && (
-            <List>
+            <List sx={{ alignItems: "flex-end" }}>
               {headers.map((header) => {
                 const slug = createSlug(header);
                 return (
-                  <ListItem key={slug}>
-                    <ListItemButton
-                      size="sm"
-                      variant="plain"
-                      onClick={() => {
-                        const element = document.querySelector(`#${slug}`);
-                        element?.scrollIntoView({
-                          behavior: "smooth",
-                        });
-                      }}
-                    >
-                      {header}
-                    </ListItemButton>
-                  </ListItem>
+                  <ListItemButton
+                    key={slug}
+                    size="sm"
+                    variant="plain"
+                    sx={{
+                      justifyContent: "flex-end",
+                    }}
+                    onClick={() => {
+                      const element = document.querySelector(`#${slug}`);
+                      element?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                    }}
+                  >
+                    {header}
+                  </ListItemButton>
                 );
               })}
             </List>
