@@ -13,13 +13,13 @@ import {
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
 
-export const TableOfContents = ({ headers }) => {
+export const TableOfContents = ({ headers, compact }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <Sheet
       sx={{
-        position: "sticky",
+        position: compact ? "static" : "sticky",
         backgroundColor: "transparent",
         top: "2%",
         height: "100vh",
@@ -29,7 +29,7 @@ export const TableOfContents = ({ headers }) => {
         <Stack
           direction="row"
           startDecorator={<BackToTopButton />}
-          justifyContent="flex-end"
+          justifyContent={compact ? "flex-start" : "flex-end"}
         >
           <IconButton
             variant="plain"
@@ -104,4 +104,5 @@ export const TableOfContents = ({ headers }) => {
 
 TableOfContents.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string),
+  compact: PropTypes.bool,
 };

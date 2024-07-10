@@ -6,6 +6,7 @@ import { TableOfContents } from "./Issue/TableOfContents";
 import { Markdown } from "../components/Issue/Markdown";
 import { PageTitle } from "../components/Layout/PageTitle";
 import { Box } from "@mui/joy";
+import { useWindowWidth } from "../hooks/useWindowWidth";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -14,6 +15,7 @@ import { Box } from "@mui/joy";
  * */
 export const Newsletter = ({ vol, iss }) => {
   const issueObj = useIssue(vol, iss);
+  const { isCompact } = useWindowWidth();
 
   const { blurb } = issueObj.frontmatter;
   const { rawMarkdownBody, htmlAst } = issueObj;
@@ -35,17 +37,6 @@ export const Newsletter = ({ vol, iss }) => {
 
   return (
     <>
-      <Box
-        sx={{
-          position: "absolute",
-          right: "100%",
-          width: "250px",
-          mr: 5,
-          height: "100%",
-        }}
-      >
-        <TableOfContents headers={headers} />
-      </Box>
       <Box>
         <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
         <Typography level="h4" variant="plain" gutterBottom>
@@ -72,6 +63,21 @@ export const Newsletter = ({ vol, iss }) => {
         >
           {blurb}
         </Typography>
+        {isCompact ? (
+          <TableOfContents headers={headers} />
+        ) : (
+          <Box
+            sx={{
+              position: "absolute",
+              right: "100%",
+              width: "250px",
+              mr: 5,
+              height: "100%",
+            }}
+          >
+            <TableOfContents headers={headers} />
+          </Box>
+        )}
         <Markdown src={rawMarkdownBody} />
       </Box>
     </>
