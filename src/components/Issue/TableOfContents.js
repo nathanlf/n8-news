@@ -25,7 +25,7 @@ export const TableOfContents = ({ headers }) => {
         height: "100vh",
       }}
     >
-      <List size="sm">
+      <List size="sm" justifyContent="flex-end">
         <Stack
           direction="row"
           startDecorator={<BackToTopButton />}
@@ -88,15 +88,7 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && (
-          <Stack direction="row" justifyContent="flex-end" sx={{ mx: 1 }}>
-            <BackToTopButton>
-              <Typography level="title-sm" sx={{ px: 0.25 }}>
-                Back to top
-              </Typography>
-            </BackToTopButton>
-          </Stack>
-        )}
+        {open && <BackToTopButton>Back to top</BackToTopButton>}
       </List>
     </Sheet>
   );
