@@ -12,24 +12,27 @@ import {
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
-export const TableOfContents = ({ headers, compact }) => {
+export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(false);
+  const { isCompact } = useWindowWidth();
+  console.log(isCompact);
 
   return (
     <Sheet
       sx={{
-        position: compact ? "static" : "sticky",
+        position: isCompact ? "static" : "sticky",
         backgroundColor: "transparent",
         top: "2%",
-        height: "100vh",
+        height: isCompact ? "100%" : "100vh",
       }}
     >
       <List size="sm">
         <Stack
           direction="row"
           startDecorator={<BackToTopButton />}
-          justifyContent={compact ? "flex-start" : "flex-end"}
+          justifyContent={isCompact ? "flex-start" : "flex-end"}
         >
           <IconButton
             variant="plain"
@@ -72,7 +75,7 @@ export const TableOfContents = ({ headers, compact }) => {
                     size="sm"
                     variant="plain"
                     sx={{
-                      justifyContent: "flex-end",
+                      justifyContent: isCompact ? "flex-start" : "flex-end",
                     }}
                     onClick={() => {
                       const element = document.querySelector(`#${slug}`);
@@ -89,7 +92,10 @@ export const TableOfContents = ({ headers, compact }) => {
           )}
         </ListItem>
         {open && (
-          <Stack direction="row" justifyContent="flex-end" sx={{ mx: 1 }}>
+          <Stack
+            direction="row"
+            justifyContent={isCompact ? "flex-start" : "flex-end"}
+          >
             <BackToTopButton>
               <Typography level="title-sm" sx={{ px: 0.25 }}>
                 Back to top
@@ -104,5 +110,4 @@ export const TableOfContents = ({ headers, compact }) => {
 
 TableOfContents.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string),
-  compact: PropTypes.bool,
 };

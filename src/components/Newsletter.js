@@ -37,12 +37,25 @@ export const Newsletter = ({ vol, iss }) => {
 
   return (
     <>
+      {!isCompact && (
+        <Box
+          sx={{
+            position: "absolute",
+            right: "100%",
+            width: "250px",
+            mr: 5,
+            height: "100%",
+          }}
+        >
+          <TableOfContents headers={headers} />
+        </Box>
+      )}
+      <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
+      <Typography level="h4" variant="plain" gutterBottom>
+        {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
+      </Typography>
+      <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
       <Box>
-        <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-        <Typography level="h4" variant="plain" gutterBottom>
-          {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
-        </Typography>
-        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
         <Typography
           level="body-sm"
           textAlign="center"
@@ -56,6 +69,7 @@ export const Newsletter = ({ vol, iss }) => {
         </Typography>
         <Typography
           level="body-lg"
+          gutterBottom
           sx={{
             fontStyle: "italic",
             fontWeight: 500,
@@ -63,21 +77,7 @@ export const Newsletter = ({ vol, iss }) => {
         >
           {blurb}
         </Typography>
-        {isCompact ? (
-          <TableOfContents headers={headers} />
-        ) : (
-          <Box
-            sx={{
-              position: "absolute",
-              right: "100%",
-              width: "250px",
-              mr: 5,
-              height: "100%",
-            }}
-          >
-            <TableOfContents headers={headers} />
-          </Box>
-        )}
+        {isCompact && <TableOfContents headers={headers} />}
         <Markdown src={rawMarkdownBody} />
       </Box>
     </>
