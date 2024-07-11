@@ -17,7 +17,6 @@ import { useWindowWidth } from "../../hooks/useWindowWidth";
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(false);
   const { isCompact } = useWindowWidth();
-  console.log(isCompact);
 
   const responsiveStyle = {
     ".MuiList-root": isCompact
