@@ -19,21 +19,39 @@ export const TableOfContents = ({ headers }) => {
   const { isCompact } = useWindowWidth();
   console.log(isCompact);
 
+  const responsiveStyle = {
+    ".MuiList-root": isCompact
+      ? {
+          height: "100%",
+          ".toc-toggler": {
+            justifyContent: "flex-start",
+          },
+          ".section-btn": {
+            justifyContent: "flex-start",
+          },
+        }
+      : {
+          height: "100vh",
+          ".toc-toggler": {
+            justifyContent: "flex-end",
+          },
+          ".section-btn": {
+            justifyContent: "flex-end",
+          },
+        },
+  };
+
   return (
     <Sheet
       sx={{
         position: isCompact ? "static" : "sticky",
         backgroundColor: "transparent",
         top: "2%",
-        height: isCompact ? "100%" : "100vh",
+        ...responsiveStyle,
       }}
     >
       <List size="sm">
-        <Stack
-          direction="row"
-          startDecorator={<BackToTopButton />}
-          justifyContent={isCompact ? "flex-start" : "flex-end"}
-        >
+        <Stack className="toc-toggler" direction="row">
           <IconButton
             variant="plain"
             size="sm"
@@ -71,18 +89,17 @@ export const TableOfContents = ({ headers }) => {
                 const slug = createSlug(header);
                 return (
                   <ListItemButton
+                    className="section-btn"
                     key={slug}
                     size="sm"
                     variant="plain"
-                    sx={{
-                      justifyContent: isCompact ? "flex-start" : "flex-end",
-                    }}
                     onClick={() => {
                       const element = document.querySelector(`#${slug}`);
                       element?.scrollIntoView({
                         behavior: "smooth",
                       });
                     }}
+                    sx={{ ...responsiveStyle }}
                   >
                     {header}
                   </ListItemButton>
@@ -91,7 +108,7 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && (
+        {open && !isCompact && (
           <Stack
             direction="row"
             justifyContent={isCompact ? "flex-start" : "flex-end"}
