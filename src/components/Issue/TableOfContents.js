@@ -12,24 +12,27 @@ import {
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(false);
+  const { isCompact } = useWindowWidth();
+  console.log(isCompact);
 
   return (
     <Sheet
       sx={{
-        position: "sticky",
+        position: isCompact ? "static" : "sticky",
         backgroundColor: "transparent",
         top: "2%",
-        height: "100vh",
+        height: isCompact ? "100%" : "100vh",
       }}
     >
       <List size="sm" justifyContent="flex-end">
         <Stack
           direction="row"
           startDecorator={<BackToTopButton />}
-          justifyContent="flex-end"
+          justifyContent={isCompact ? "flex-start" : "flex-end"}
         >
           <Button
             variant="plain"
@@ -62,7 +65,7 @@ export const TableOfContents = ({ headers }) => {
                     size="sm"
                     variant="plain"
                     sx={{
-                      justifyContent: "flex-end",
+                      justifyContent: isCompact ? "flex-start" : "flex-end",
                     }}
                     onClick={() => {
                       const element = document.querySelector(`#${slug}`);
@@ -78,7 +81,7 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && <BackToTopButton>Back to top</BackToTopButton>}
+        {open && !isCompact && <BackToTopButton>Back to top</BackToTopButton>}
       </List>
     </Sheet>
   );
