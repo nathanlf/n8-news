@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: containers.renci.org/renci-dot-org/newsletter-temp
+  tag: "1.0.0"
+
+resources:
+  limits:
+    cpu: 250m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  host: newsletter.apps.renci.org
+  path: /
+  tls: true
+  public: false
