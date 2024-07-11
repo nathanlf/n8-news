@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -13,10 +13,18 @@ import {
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
+  const { scrollPosition } = useScrollPosition();
   const { isCompact } = useWindowWidth();
+
+  useEffect(() => {
+    // determine which section is active
+    // set that slug (or id, ref, etc.) to activeHeading
+  }, [scrollPosition]);
 
   const responsiveStyle = {
     ".MuiList-root": isCompact
@@ -74,6 +82,8 @@ export const TableOfContents = ({ headers }) => {
           {open && (
             <List sx={{ alignItems: "flex-end" }}>
               {headers.map((header) => {
+                // is this section ACTIVE?
+                // if so, style it as active (at the top, in responsiveStyling :.section-btn)
                 const slug = createSlug(header);
                 return (
                   <ListItemButton
