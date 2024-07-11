@@ -1,19 +1,19 @@
 import React from "react";
-import { useIssue } from "../hooks/useIssue";
+import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
-import { TableOfContents } from "./Issue/TableOfContents";
-import { Markdown } from "../components/Issue/Markdown";
-import { PageTitle } from "../components/Layout/PageTitle";
+import { TableOfContents } from "./TableOfContents";
+import { Markdown } from "../Markdown";
+import { PageTitle } from "../Layout/PageTitle";
 import { Box } from "@mui/joy";
-import { useWindowWidth } from "../hooks/useWindowWidth";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
  * @param     {number}    iss      The edition issue identifier, corresponds to the month
  * @return    The requested edition's content to be rendered
  * */
-export const Newsletter = ({ vol, iss }) => {
+export const Issue = ({ vol, iss }) => {
   const issueObj = useIssue(vol, iss);
   const { isCompact } = useWindowWidth();
 
