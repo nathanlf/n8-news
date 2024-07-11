@@ -7,7 +7,6 @@ import {
   ListItem,
   Typography,
   ListItemButton,
-  IconButton,
   Button,
   Sheet,
 } from "@mui/joy";
@@ -36,14 +35,13 @@ export const TableOfContents = ({ headers }) => {
             variant="plain"
             size="sm"
             color="primary"
-            spacing={4}
             onClick={() => setOpen(!open)}
           >
             {open && (
               <Typography
                 level="h5"
                 sx={{
-                  fontWeight: open ? "bold" : undefined,
+                  fontWeight: "bold",
                   mr: 1,
                 }}
               >
