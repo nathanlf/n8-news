@@ -31,7 +31,6 @@ export const TableOfContents = ({ headers }) => {
           },
         }
       : {
-          height: "100vh",
           ".toc-toggler": {
             justifyContent: "flex-end",
           },
@@ -99,7 +98,6 @@ export const TableOfContents = ({ headers }) => {
                         behavior: "smooth",
                       });
                     }}
-                    sx={{ ...responsiveStyle }}
                   >
                     {header}
                   </ListItemButton>
@@ -108,18 +106,7 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && !isCompact && (
-          <Stack
-            direction="row"
-            justifyContent={isCompact ? "flex-start" : "flex-end"}
-          >
-            <BackToTopButton>
-              <Typography level="title-sm" sx={{ px: 0.25 }}>
-                Back to top
-              </Typography>
-            </BackToTopButton>
-          </Stack>
-        )}
+        {open && !isCompact && <BackToTopButton>Back to top</BackToTopButton>}
       </List>
     </Sheet>
   );

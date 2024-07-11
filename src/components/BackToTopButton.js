@@ -12,6 +12,7 @@ export const BackToTopButton = ({ children }) => {
         });
       }}
       color="neutral"
+      sx={{ alignSelf: "flex-end" }}
     >
       <>
         {children}
