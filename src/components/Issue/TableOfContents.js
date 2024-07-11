@@ -8,6 +8,7 @@ import {
   Typography,
   ListItemButton,
   IconButton,
+  Button,
   Sheet,
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
@@ -25,41 +26,32 @@ export const TableOfContents = ({ headers }) => {
         height: "100vh",
       }}
     >
-      <List size="sm">
+      <List size="sm" justifyContent="flex-end">
         <Stack
           direction="row"
           startDecorator={<BackToTopButton />}
           justifyContent="flex-end"
         >
-          <IconButton
+          <Button
             variant="plain"
             size="sm"
-            color="neutral"
-            spacing={2}
+            color="primary"
+            spacing={4}
             onClick={() => setOpen(!open)}
           >
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={1}
-              sx={{ mx: 1 }}
-            >
-              {open && (
-                <Typography
-                  level="h5"
-                  sx={{
-                    fontWeight: open ? "bold" : undefined,
-                    color: open ? "#000000" : "secondary",
-                  }}
-                >
-                  Table of Contents
-                </Typography>
-              )}
-              <FormatListBulletedIcon
-                sx={{ color: open ? "#000000" : "secondary" }}
-              />
-            </Stack>
-          </IconButton>
+            {open && (
+              <Typography
+                level="h5"
+                sx={{
+                  fontWeight: open ? "bold" : undefined,
+                  mr: 1,
+                }}
+              >
+                Table of Contents
+              </Typography>
+            )}
+            <FormatListBulletedIcon />
+          </Button>
         </Stack>
         <ListItem nested>
           {open && (
@@ -88,15 +80,7 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && (
-          <Stack direction="row" justifyContent="flex-end" sx={{ mx: 1 }}>
-            <BackToTopButton>
-              <Typography level="title-sm" sx={{ px: 0.25 }}>
-                Back to top
-              </Typography>
-            </BackToTopButton>
-          </Stack>
-        )}
+        {open && <BackToTopButton>Back to top</BackToTopButton>}
       </List>
     </Sheet>
   );
