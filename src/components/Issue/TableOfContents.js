@@ -8,6 +8,7 @@ import {
   Typography,
   ListItemButton,
   IconButton,
+  Button,
   Sheet,
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
@@ -31,35 +32,26 @@ export const TableOfContents = ({ headers }) => {
           startDecorator={<BackToTopButton />}
           justifyContent="flex-end"
         >
-          <IconButton
+          <Button
             variant="plain"
             size="sm"
-            color="neutral"
-            spacing={2}
+            color="primary"
+            spacing={4}
             onClick={() => setOpen(!open)}
           >
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={1}
-              sx={{ mx: 1 }}
-            >
-              {open && (
-                <Typography
-                  level="h5"
-                  sx={{
-                    fontWeight: open ? "bold" : undefined,
-                    color: open ? "#000000" : "secondary",
-                  }}
-                >
-                  Table of Contents
-                </Typography>
-              )}
-              <FormatListBulletedIcon
-                sx={{ color: open ? "#000000" : "secondary" }}
-              />
-            </Stack>
-          </IconButton>
+            {open && (
+              <Typography
+                level="h5"
+                sx={{
+                  fontWeight: open ? "bold" : undefined,
+                  mr: 1,
+                }}
+              >
+                Table of Contents
+              </Typography>
+            )}
+            <FormatListBulletedIcon />
+          </Button>
         </Stack>
         <ListItem nested>
           {open && (

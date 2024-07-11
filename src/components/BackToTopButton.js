@@ -17,7 +17,7 @@ export const BackToTopButton = ({ children }) => {
           scrollToTop();
         }}
         variant="plain"
-        color="neutral"
+        color="primary"
         endDecorator={<BackToTopIcon />}
         sx={{ mt: 2, alignSelf: "flex-end" }}
       >
@@ -31,7 +31,7 @@ export const BackToTopButton = ({ children }) => {
       onClick={() => {
         scrollToTop();
       }}
-      color="neutral"
+      color="primary"
     >
       <BackToTopIcon />
     </IconButton>
