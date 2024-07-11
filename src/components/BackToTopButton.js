@@ -31,7 +31,7 @@ export const BackToTopButton = ({ children }) => {
       onClick={() => {
         scrollToTop();
       }}
-      color="primary"
+      color="neutral"
     >
       <BackToTopIcon />
     </IconButton>

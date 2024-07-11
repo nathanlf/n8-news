@@ -19,21 +19,38 @@ export const TableOfContents = ({ headers }) => {
   const { isCompact } = useWindowWidth();
   console.log(isCompact);
 
+  const responsiveStyle = {
+    ".MuiList-root": isCompact
+      ? {
+          height: "100%",
+          ".toc-toggler": {
+            justifyContent: "flex-start",
+          },
+          ".section-btn": {
+            justifyContent: "flex-start",
+          },
+        }
+      : {
+          ".toc-toggler": {
+            justifyContent: "flex-end",
+          },
+          ".section-btn": {
+            justifyContent: "flex-end",
+          },
+        },
+  };
+
   return (
     <Sheet
       sx={{
         position: isCompact ? "static" : "sticky",
         backgroundColor: "transparent",
         top: "2%",
-        height: isCompact ? "100%" : "100vh",
+        ...responsiveStyle,
       }}
     >
-      <List size="sm" justifyContent="flex-end">
-        <Stack
-          direction="row"
-          startDecorator={<BackToTopButton />}
-          justifyContent={isCompact ? "flex-start" : "flex-end"}
-        >
+      <List size="sm">
+        <Stack className="toc-toggler" direction="row">
           <Button
             variant="plain"
             size="sm"
@@ -61,12 +78,10 @@ export const TableOfContents = ({ headers }) => {
                 const slug = createSlug(header);
                 return (
                   <ListItemButton
+                    className="section-btn"
                     key={slug}
                     size="sm"
                     variant="plain"
-                    sx={{
-                      justifyContent: isCompact ? "flex-start" : "flex-end",
-                    }}
                     onClick={() => {
                       const element = document.querySelector(`#${slug}`);
                       element?.scrollIntoView({
