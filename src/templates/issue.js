@@ -1,13 +1,13 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { Newsletter } from "../components/Newsletter";
+import { Issue } from "../components/Issue/Issue";
 
 const NewsletterIssue = ({ data }) => {
   const { volume, issue } = data.markdownRemark.frontmatter;
 
   return (
     <>
-      <Newsletter vol={volume} iss={issue} />
+      <Issue vol={volume} iss={issue} />
     </>
   );
 };

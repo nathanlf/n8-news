@@ -1,19 +1,21 @@
 import React from "react";
-import { useIssue } from "../hooks/useIssue";
+import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
-import { TableOfContents } from "./Issue/TableOfContents";
-import { Markdown } from "../components/Issue/Markdown";
-import { PageTitle } from "../components/Layout/PageTitle";
+import { TableOfContents } from "./TableOfContents";
+import { Markdown } from "../Markdown";
+import { PageTitle } from "../Layout/PageTitle";
 import { Box } from "@mui/joy";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
  * @param     {number}    iss      The edition issue identifier, corresponds to the month
  * @return    The requested edition's content to be rendered
  * */
-export const Newsletter = ({ vol, iss }) => {
+export const Issue = ({ vol, iss }) => {
   const issueObj = useIssue(vol, iss);
+  const { isCompact } = useWindowWidth();
 
   const { blurb } = issueObj.frontmatter;
   const { rawMarkdownBody, htmlAst } = issueObj;
@@ -35,23 +37,25 @@ export const Newsletter = ({ vol, iss }) => {
 
   return (
     <>
-      <Box
-        sx={{
-          position: "absolute",
-          right: "100%",
-          width: "250px",
-          mr: 5,
-          height: "100%",
-        }}
-      >
-        <TableOfContents headers={headers} />
-      </Box>
+      {!isCompact && (
+        <Box
+          sx={{
+            position: "absolute",
+            right: "100%",
+            width: "250px",
+            mr: 5,
+            height: "100%",
+          }}
+        >
+          <TableOfContents headers={headers} />
+        </Box>
+      )}
+      <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
+      <Typography level="h4" variant="plain" gutterBottom>
+        {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
+      </Typography>
+      <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
       <Box>
-        <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-        <Typography level="h4" variant="plain" gutterBottom>
-          {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
-        </Typography>
-        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
         <Typography
           level="body-sm"
           textAlign="center"
@@ -65,6 +69,7 @@ export const Newsletter = ({ vol, iss }) => {
         </Typography>
         <Typography
           level="body-lg"
+          gutterBottom
           sx={{
             fontStyle: "italic",
             fontWeight: 500,
@@ -72,6 +77,7 @@ export const Newsletter = ({ vol, iss }) => {
         >
           {blurb}
         </Typography>
+        {isCompact && <TableOfContents headers={headers} />}
         <Markdown src={rawMarkdownBody} />
       </Box>
     </>
