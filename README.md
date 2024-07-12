@@ -1,3 +1,5 @@
+# renci-newsletter
+
 ## Formatting
 
 This project uses Prettier with the default rules. To format the entire project, run `npm run format` and to check if the project is properly formatted, run `npm run check-format`.
@@ -42,3 +44,23 @@ We recommend setting up auto-formatting on save in your editor. If you're using 
 **Pandoc's conversion with complex documents is almost perfect, unlike many other document conversion tools. However, there may be some small conversion errors to look out for.**
 
 -
+
+## Deployment
+
+First, decide the version number of your release using [semver](https://semver.org/). For this example, we will assume the version number is 1.1.4. The latest image version number can be found in the [harbor repo](https://containers.renci.org/harbor/projects/34/repositories/newsletter-temp/artifacts-tab) and latest deployed image can be found by using this command:
+
+```bash
+kubectl get pods -n comms -o jsonpath="{.items[*].spec.containers[*].image}" -l app.kubernetes.io/name=renci-dot-org-newsletter-temp
+```
+
+To build the image, draft a new release in GitHub, give it a version, then publish it. Github Actions will be triggered on the publishing of a new release. You can view the details of the build under the Actions tab in the repo.
+
+Once the image has been successfully built, update the deployment tag in the [kubernetes/value.yaml](https://github.com/RENCI/renci-newsletter/blob/main/kubernetes/values.yaml) file.
+
+After the tag has been updated, run this command to perform the upgrade in the kubernetes cluster:
+
+```bash
+helm upgrade renci-newsletter ./kubernetes -n comms
+```
+
+Be sure to commit and push the image tag change made to `values.yaml`.
