@@ -21,9 +21,19 @@ export const TableOfContents = ({ headers }) => {
   const { scrollPosition } = useScrollPosition();
   const { isCompact } = useWindowWidth();
 
+  // to get an html element and store it in a variable, element = document.getElementById('yourElementId');
+  // then you can define const { height } = element.getBoundingClientRect();
+  // with these lines, we can get all the h1 elements and all their heights to be compared to scrollPosition
+  //  and their ids to be compared to each header being mapped over in headers in the list
+
+  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
   useEffect(() => {
     // determine which section is active
-    // set that slug (or id, ref, etc.) to activeHeading
+    //    - if scroll position is above the first section, either change activeSection to it
+    //      OR change activeSection to "intro" or "cover" or something, and add a corresponding item in toc
+    //      -- maybe do this by including the site title h1 in this with document.querySelectorAll('h1');
+    //    - use getBoundingClientRect() on h1 elements to get access to their `height`
+    //    - if scrollPosition passes a height threshold, then setActivesection = currentElement's slug/id/ref
   }, [scrollPosition]);
 
   const responsiveStyle = {
@@ -82,8 +92,9 @@ export const TableOfContents = ({ headers }) => {
           {open && (
             <List sx={{ alignItems: "flex-end" }}>
               {headers.map((header) => {
-                // is this section ACTIVE?
-                // if so, style it as active (at the top, in responsiveStyling :.section-btn)
+                // is this section ACTIVE? (id/slug/ref === activeSection)
+                // if so, style it as active (change/extend the responsiveStyling's style for :.section-btn)
+
                 const slug = createSlug(header);
                 return (
                   <ListItemButton
