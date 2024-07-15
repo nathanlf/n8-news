@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -13,10 +13,17 @@ import {
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
+import { StaticImage } from "gatsby-plugin-image";
 
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
   const { isCompact } = useWindowWidth();
+  const { scrollPosition } = useScrollPosition();
+
+  useEffect(() => {
+    // update scroll position
+  }, [scrollPosition]);
 
   const responsiveStyle = {
     ".MuiList-root": isCompact
@@ -48,7 +55,14 @@ export const TableOfContents = ({ headers }) => {
         ...responsiveStyle,
       }}
     >
-      <List size="sm">
+      {!isCompact && scrollPosition > 120 && (
+        <StaticImage
+          width={75}
+          src="../../images/renci-logo.png"
+          alt="RENCI Logo"
+        />
+      )}
+      <List size="sm" sx={{ mt: 2 }}>
         <Stack className="toc-toggler" direction="row">
           <Button
             variant="plain"
