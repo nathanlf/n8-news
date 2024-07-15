@@ -49,7 +49,7 @@ export const TableOfContents = ({ headers }) => {
   const animatedLogoStyle = {
     "@keyframes slide-in": {
       from: {
-        transform: "translateY(-2rem)",
+        transform: "translateY(-4rem)",
       },
       to: {
         transform: "translateY(0px)",
