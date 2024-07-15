@@ -15,7 +15,7 @@ import { BackToTopButton } from "../BackToTopButton";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 export const TableOfContents = ({ headers }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const { isCompact } = useWindowWidth();
 
   const responsiveStyle = {
