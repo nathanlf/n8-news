@@ -20,7 +20,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   `);
 
   // For more on distinct queries, https://danielabaron.me/blog/gatsby5-distinct-query/
-  // * This query returns an array of volume numbers as strings
+  // This query returns an array of volume numbers as strings
   const volumeNums = await graphql(`
     query VolumeNums {
       allMarkdownRemark {
@@ -37,6 +37,27 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const volumes = volumeNums.data.allMarkdownRemark.volumes.map((str) =>
     parseInt(str)
   );
+
+  // get node for newest edition
+  const maxVolume = Math.max(...volumes);
+  let maxIssue = -1;
+  let newestIssueObj = {};
+  posts.forEach((node) => {
+    const { volume, issue } = node.frontmatter;
+    if (volume === maxVolume) {
+      if (issue > maxIssue) {
+        maxIssue = issue;
+        newestIssueObj = node;
+      }
+    }
+  });
+
+  // call `createPage` for landing page (newest edition)
+  createPage({
+    path: "/",
+    component: issueTemplate,
+    context: { id: newestIssueObj.id },
+  });
 
   // call `createPage` for each newsletter issue
   posts.forEach((node) => {
