@@ -46,23 +46,56 @@ export const TableOfContents = ({ headers }) => {
         },
   };
 
+  const animatedLogoStyle = {
+    "@keyframes slide-in": {
+      from: {
+        transform: "translateY(-2rem)",
+      },
+      to: {
+        transform: "translateY(0px)",
+      },
+    },
+    // "@keyframes slide-out": {
+    //   from: {
+    //     transform: "translateY(0)",
+    //   },
+    //   to: {
+    //     transform: "translateY(-2rem)",
+    //   },
+    // },
+    animation:
+      // !isCompact && scrollPosition > 120 ?
+      "slide-in 1s ease",
+    // : "slide-out 1st ease",
+  };
+
   return (
     <Sheet
       sx={{
         position: isCompact ? "static" : "sticky",
         backgroundColor: "transparent",
-        top: "2%",
+        top: "1rem",
         ...responsiveStyle,
       }}
     >
       {!isCompact && scrollPosition > 120 && (
-        <StaticImage
-          width={75}
-          src="../../images/renci-logo.png"
-          alt="RENCI Logo"
-        />
+        <Sheet
+          className="mini-logo"
+          sx={{
+            backgroundColor: "#ffffff",
+            my: 2,
+            ...animatedLogoStyle,
+          }}
+        >
+          <StaticImage
+            width={75}
+            src="../../images/renci-logo.png"
+            alt="RENCI Logo"
+          />
+        </Sheet>
       )}
-      <List size="sm" sx={{ mt: 2 }}>
+
+      <List size="sm">
         <Stack className="toc-toggler" direction="row">
           <Button
             variant="plain"
