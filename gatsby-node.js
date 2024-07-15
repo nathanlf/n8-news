@@ -38,18 +38,29 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     parseInt(str)
   );
 
-  // get node for newest edition
+  // prepare to get node for newest edition
   const maxVolume = Math.max(...volumes);
   let maxIssue = -1;
-  let newestIssueObj = {};
+  let newestIssueObj = undefined;
+
+  // call `createPage` for each newsletter issue, find node for newest edition
   posts.forEach((node) => {
     const { volume, issue } = node.frontmatter;
+
+    // find newest issue of newest volume
     if (volume === maxVolume) {
       if (issue > maxIssue) {
         maxIssue = issue;
         newestIssueObj = node;
       }
     }
+
+    const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
+    createPage({
+      path: `archive/` + `${2020 + volume}` + `/` + formattedIssue,
+      component: issueTemplate,
+      context: { id: node.id },
+    });
   });
 
   // call `createPage` for landing page (newest edition)
@@ -57,17 +68,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     path: "/",
     component: issueTemplate,
     context: { id: newestIssueObj.id },
-  });
-
-  // call `createPage` for each newsletter issue
-  posts.forEach((node) => {
-    const { volume, issue } = node.frontmatter;
-    const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
-    createPage({
-      path: `archive/` + `${2020 + volume}` + `/` + formattedIssue,
-      component: issueTemplate,
-      context: { id: node.id },
-    });
   });
 
   // call `createPage` for each collection of years
