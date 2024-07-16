@@ -8,7 +8,7 @@ export const BackToTopButton = ({ children }) => {
       top: 0,
       behavior: "smooth",
     });
-  });
+  }, []);
 
   if (children) {
     return (
