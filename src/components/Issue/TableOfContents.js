@@ -34,6 +34,51 @@ export const TableOfContents = ({ headers }) => {
     //      -- maybe do this by including the site title h1 in this with document.querySelectorAll('h1');
     //    - use getBoundingClientRect() on h1 elements to get access to their `height`
     //    - if scrollPosition passes a height threshold, then setActivesection = currentElement's slug/id/ref
+    const headingTops = headers.map((header) => {
+      const slug = createSlug(header);
+      const el = document.querySelector(`#${slug}`);
+      const { top, bottom } = el.getBoundingClientRect();
+      return { slug, top, bottom };
+    });
+
+    console.table({ scrollPosition });
+    console.table(headingTops);
+    console.log("vh," + window.innerHeight);
+    let activeHeading = headingTops.find(
+      (header) =>
+        header.top > 0 ||
+        (header.top < 0 &&
+          headingTops[headingTops.indexOf(header) + 1]?.top >
+            window.innerHeight)
+    );
+    // let nextHeading = headingTops.find(
+    //   (header) => header.top > activeHeading?.top
+    // );
+    // let nextHeading = headingTops[headingTops.indexOf(activeHeading) + 1];
+
+    // if (nextHeading.top < )
+
+    // // check if active section is taller than viewport
+    // if (nextHeading.top - activeHeading.top > viewportHeight) {
+    //   // determine when to switch active section
+    //   nextHeading.top < 600 && activeHeading.top
+    //     ? setActiveSection(nextHeading.slug)
+    //     : setActiveSection(activeHeading.slug);
+    // } else {
+    //   setActiveSection(activeHeading.slug);
+    // }
+
+    console.log(activeHeading?.slug, activeHeading?.top);
+
+    if (activeHeading) setActiveSection(activeHeading);
+
+    console.log("active: ", activeSection);
+
+    // console.log(nextHeading?.slug, nextHeading?.top);
+    // console.log(activeSection);
+
+    // what if the active section is taller than the viewport?
+    // - look at nextTop? and see when that gets within a certain distance of our scroll position
   }, [scrollPosition]);
 
   const responsiveStyle = {
