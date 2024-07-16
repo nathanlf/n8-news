@@ -23,6 +23,7 @@ const DynamicMiniLogo = ({ visible }) => {
         minHeight: "100px",
         filter: "opactiy(1.0)",
         transition: "min-height 250ms, filter 500ms",
+        mb: 0.5,
       }
     : {
         minHeight: 0,
@@ -39,7 +40,7 @@ const DynamicMiniLogo = ({ visible }) => {
         backgroundPosition: "100% 50%",
         borderBottom: "1px solid var(--joy-palette-divider)",
         backgroundSize: "60%",
-        mr: 1.5,
+        mr: 0.75,
         ...dynamicStyles,
       }}
     />
@@ -88,7 +89,7 @@ export const TableOfContents = ({ headers }) => {
       }}
     >
       {!isCompact && <DynamicMiniLogo visible={showMiniLogo} />}
-      <List size="sm">
+      <List size="sm" sx={{ alignItems: "flex-end" }}>
         <Stack className="toc-toggler" direction="row">
           <Button
             variant="plain"
@@ -101,13 +102,15 @@ export const TableOfContents = ({ headers }) => {
                 level="h5"
                 sx={{
                   fontWeight: "bold",
-                  mr: 1,
+                  fontSize: 16,
+                  mr: 1.5,
+                  ml: -0.5,
                 }}
               >
                 Table of Contents
               </Typography>
             )}
-            <FormatListBulletedIcon />
+            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
           </Button>
         </Stack>
         <ListItem nested>
@@ -128,7 +131,9 @@ export const TableOfContents = ({ headers }) => {
                       });
                     }}
                   >
-                    {header}
+                    <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
+                      {header}
+                    </Typography>
                   </ListItemButton>
                 );
               })}
