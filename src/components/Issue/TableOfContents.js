@@ -9,12 +9,42 @@ import {
   ListItemButton,
   Button,
   Sheet,
+  Box,
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
-import { StaticImage } from "gatsby-plugin-image";
+import renciLogo from "../../images/renci-logo.png";
+
+const DynamicMiniLogo = ({ visible }) => {
+  const dynamicStyles = visible
+    ? {
+        minHeight: "100px",
+        filter: "opactiy(1.0)",
+        transition: "min-height 250ms, filter 500ms",
+      }
+    : {
+        minHeight: 0,
+        filter: "opacity(0)",
+        transition: "min-height 250ms 100ms, filter 250ms",
+      };
+
+  return (
+    <Box
+      sx={{
+        overflow: "hidden",
+        background: `url(${renciLogo})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "100% 50%",
+        borderBottom: "1px solid var(--joy-palette-divider)",
+        backgroundSize: "60%",
+        mr: 1.5,
+        ...dynamicStyles,
+      }}
+    />
+  );
+};
 
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
@@ -46,28 +76,7 @@ export const TableOfContents = ({ headers }) => {
         },
   };
 
-  const animatedLogoStyle = {
-    "@keyframes slide-in": {
-      from: {
-        transform: "translateY(-4rem)",
-      },
-      to: {
-        transform: "translateY(0px)",
-      },
-    },
-    // "@keyframes slide-out": {
-    //   from: {
-    //     transform: "translateY(0)",
-    //   },
-    //   to: {
-    //     transform: "translateY(-2rem)",
-    //   },
-    // },
-    animation:
-      // !isCompact && scrollPosition > 120 ?
-      "slide-in 1s ease",
-    // : "slide-out 1st ease",
-  };
+  const showMiniLogo = scrollPosition > 120;
 
   return (
     <Sheet
@@ -78,23 +87,7 @@ export const TableOfContents = ({ headers }) => {
         ...responsiveStyle,
       }}
     >
-      {!isCompact && scrollPosition > 120 && (
-        <Sheet
-          className="mini-logo"
-          sx={{
-            backgroundColor: "#ffffff",
-            my: 2,
-            ...animatedLogoStyle,
-          }}
-        >
-          <StaticImage
-            width={75}
-            src="../../images/renci-logo.png"
-            alt="RENCI Logo"
-          />
-        </Sheet>
-      )}
-
+      {!isCompact && <DynamicMiniLogo visible={showMiniLogo} />}
       <List size="sm">
         <Stack className="toc-toggler" direction="row">
           <Button
