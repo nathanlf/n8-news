@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -9,14 +9,52 @@ import {
   ListItemButton,
   Button,
   Sheet,
+  Box,
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
+import renciLogo from "../../images/renci-logo.png";
+
+const DynamicMiniLogo = ({ visible }) => {
+  const dynamicStyles = visible
+    ? {
+        minHeight: "100px",
+        filter: "opactiy(1.0)",
+        transition: "min-height 250ms, filter 500ms",
+        mb: 0.5,
+      }
+    : {
+        minHeight: 0,
+        filter: "opacity(0)",
+        transition: "min-height 250ms 100ms, filter 250ms",
+      };
+
+  return (
+    <Box
+      sx={{
+        overflow: "hidden",
+        background: `url(${renciLogo})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "100% 50%",
+        borderBottom: "1px solid var(--joy-palette-divider)",
+        backgroundSize: "60%",
+        mr: 0.75,
+        ...dynamicStyles,
+      }}
+    />
+  );
+};
 
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
   const { isCompact } = useWindowWidth();
+  const { scrollPosition } = useScrollPosition();
+
+  useEffect(() => {
+    // update scroll position
+  }, [scrollPosition]);
 
   const responsiveStyle = {
     ".MuiList-root": isCompact
@@ -39,16 +77,19 @@ export const TableOfContents = ({ headers }) => {
         },
   };
 
+  const showMiniLogo = scrollPosition > 120;
+
   return (
     <Sheet
       sx={{
         position: isCompact ? "static" : "sticky",
         backgroundColor: "transparent",
-        top: "2%",
+        top: "1rem",
         ...responsiveStyle,
       }}
     >
-      <List size="sm">
+      {!isCompact && <DynamicMiniLogo visible={showMiniLogo} />}
+      <List size="sm" sx={{ alignItems: "flex-end" }}>
         <Stack className="toc-toggler" direction="row">
           <Button
             variant="plain"
@@ -61,13 +102,15 @@ export const TableOfContents = ({ headers }) => {
                 level="h5"
                 sx={{
                   fontWeight: "bold",
-                  mr: 1,
+                  fontSize: 16,
+                  mr: 1.5,
+                  ml: -0.5,
                 }}
               >
                 Table of Contents
               </Typography>
             )}
-            <FormatListBulletedIcon />
+            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
           </Button>
         </Stack>
         <ListItem nested>
@@ -88,7 +131,9 @@ export const TableOfContents = ({ headers }) => {
                       });
                     }}
                   >
-                    {header}
+                    <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
+                      {header}
+                    </Typography>
                   </ListItemButton>
                 );
               })}
