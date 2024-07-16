@@ -34,6 +34,9 @@ export const SectionHeader = ({ title }) => {
         fontSize: "large",
         color: "#ffffff",
         borderRadius: 8,
+        position: "sticky",
+        top: 0,
+        zIndex: 9,
       }}
     >
       {title}
