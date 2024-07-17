@@ -49,12 +49,25 @@ const DynamicMiniLogo = ({ visible }) => {
 
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
-  const { isCompact } = useWindowWidth();
+  const [activeSection, setActiveSection] = useState(headers[0]);
   const { scrollPosition } = useScrollPosition();
+  const { isCompact } = useWindowWidth();
 
+  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
   useEffect(() => {
-    // update scroll position
-  }, [scrollPosition]);
+    const headingTops = headers.map((header) => {
+      const slug = createSlug(header);
+      const el = document.querySelector(`#${slug}`);
+      const { top } = el.getBoundingClientRect();
+      return { slug, top };
+    });
+
+    const activeHeading = headingTops
+      .reverse()
+      .find((header) => header.top === 0);
+
+    if (activeHeading) setActiveSection(activeHeading);
+  }, [headers, scrollPosition]);
 
   const responsiveStyle = {
     ".MuiList-root": isCompact
@@ -130,10 +143,23 @@ export const TableOfContents = ({ headers }) => {
                     size="sm"
                     variant="plain"
                     onClick={() => {
-                      const element = document.querySelector(`#${slug}`);
-                      element?.scrollIntoView({
+                      const headingSibling = document.querySelector(
+                        `#${slug} + *`
+                      );
+                      const scrollTop =
+                        headingSibling.getBoundingClientRect().top +
+                        window.scrollY;
+                      window.scrollTo({
+                        top: scrollTop - 92,
                         behavior: "smooth",
                       });
+                    }}
+                    sx={{
+                      borderRight:
+                        slug === activeSection?.slug
+                          ? "4px solid var(--joy-palette-primary-main)"
+                          : "4px solid #0001",
+                      transition: "border-color 250ms",
                     }}
                   >
                     <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
