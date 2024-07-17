@@ -117,6 +117,7 @@ export const TableOfContents = ({ headers }) => {
                         slug === activeSection?.slug
                           ? "4px solid var(--joy-palette-primary-main)"
                           : "4px solid #0001",
+                      transition: "border-color 250ms",
                     }}
                   >
                     {header}
