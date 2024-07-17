@@ -26,32 +26,23 @@ export const TableOfContents = ({ headers }) => {
     const headingTops = headers.map((header) => {
       const slug = createSlug(header);
       const el = document.querySelector(`#${slug}`);
-      const { top, bottom } = el.getBoundingClientRect();
-      return { slug, top, bottom };
+      const { top } = el.getBoundingClientRect();
+      return { slug, top };
     });
 
-    // console.table({ scrollPosition });
-    // console.table(headingTops);
-    // console.log("vh," + window.innerHeight);
+    // used to calculate point to switch active section for large sections
+    const viewportHeight = window.innerHeight;
 
+    // find the next section that is on-screen,
+    // the OR and subsequent IF statement ensure desired behavior for sections larger than viewport
     let activeHeading = headingTops.find(
       (header) =>
         header.top > 0 ||
-        headingTops[headingTops.indexOf(header) + 1]?.top >
-          window.innerHeight - 200
+        headingTops[headingTops.indexOf(header) + 1]?.top > viewportHeight - 200
     );
 
-    // console.log(activeHeading?.slug, activeHeading?.top);
-
+    // in the case that there are no headings found that meet the above conditional, do not change state
     if (activeHeading) setActiveSection(activeHeading);
-
-    // console.log("active: ", activeSection);
-
-    // console.log(nextHeading?.slug, nextHeading?.top);
-    // console.log(activeSection);
-
-    // what if the active section is taller than the viewport?
-    // - look at nextTop? and see when that gets within a certain distance of our scroll position
   }, [headers, scrollPosition]);
 
   const responsiveStyle = {
@@ -110,12 +101,7 @@ export const TableOfContents = ({ headers }) => {
           {open && (
             <List sx={{ alignItems: "flex-end" }}>
               {headers.map((header) => {
-                // is this section ACTIVE? (id/slug/ref === activeSection)
-                // if so, style it as active (change/extend the responsiveStyling's style for :.section-btn)
-
                 const slug = createSlug(header);
-                console.log("active section: ", activeSection);
-                console.log("current slug: ", slug);
                 return (
                   <ListItemButton
                     className="section-btn"
@@ -123,15 +109,21 @@ export const TableOfContents = ({ headers }) => {
                     size="sm"
                     variant="plain"
                     onClick={() => {
-                      const element = document.querySelector(`#${slug}`);
-                      element?.scrollIntoView({
+                      const headingSibling = document.querySelector(
+                        `#${slug} + *`
+                      );
+                      const scrollTop =
+                        headingSibling.getBoundingClientRect().top +
+                        window.scrollY;
+                      window.scrollTo({
+                        top: scrollTop - 93,
                         behavior: "smooth",
                       });
                     }}
                     sx={{
                       borderRight:
                         slug === activeSection.slug
-                          ? "4px solid red"
+                          ? "4px solid var(--joy-palette-primary-main)"
                           : "4px solid #0001",
                     }}
                   >
