@@ -107,7 +107,7 @@ export const TableOfContents = ({ headers }) => {
                   fontWeight: "bold",
                   fontSize: 16,
                   ml: isCompact ? 1 : -0.5,
-                  mr: isCompact ? 0 : 1,
+                  mr: isCompact ? 0 : 1.5,
                 }}
               >
                 Table of Contents
