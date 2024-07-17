@@ -130,7 +130,7 @@ export const TableOfContents = ({ headers }) => {
                     }}
                     sx={{
                       borderRight:
-                        slug === activeSection
+                        slug === activeSection.slug
                           ? "4px solid red"
                           : "4px solid #0001",
                     }}
