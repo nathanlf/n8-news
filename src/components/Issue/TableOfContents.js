@@ -38,7 +38,7 @@ export const TableOfContents = ({ headers }) => {
       (header) =>
         header.top > 0 ||
         headingTops[headingTops.indexOf(header) + 1]?.top >
-          window.innerHeight + 100
+          window.innerHeight - 200
     );
 
     // console.log(activeHeading?.slug, activeHeading?.top);
