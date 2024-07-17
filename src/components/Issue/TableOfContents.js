@@ -17,7 +17,7 @@ import { useScrollPosition } from "../../hooks/useScrollPosition";
 
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState(headers[0]);
   const { scrollPosition } = useScrollPosition();
   const { isCompact } = useWindowWidth();
 
@@ -30,18 +30,10 @@ export const TableOfContents = ({ headers }) => {
       return { slug, top };
     });
 
-    // used to calculate point to switch active section for large sections
-    const viewportHeight = window.innerHeight;
+    const activeHeading = headingTops
+      .reverse()
+      .find((header) => header.top === 0);
 
-    // find the next section that is on-screen,
-    // the OR and subsequent IF statement ensure desired behavior for sections larger than viewport
-    let activeHeading = headingTops.find(
-      (header) =>
-        header.top > 0 ||
-        headingTops[headingTops.indexOf(header) + 1]?.top > viewportHeight - 200
-    );
-
-    // in the case that there are no headings found that meet the above conditional, do not change state
     if (activeHeading) setActiveSection(activeHeading);
   }, [headers, scrollPosition]);
 
@@ -116,13 +108,13 @@ export const TableOfContents = ({ headers }) => {
                         headingSibling.getBoundingClientRect().top +
                         window.scrollY;
                       window.scrollTo({
-                        top: scrollTop - 93,
+                        top: scrollTop - 92,
                         behavior: "smooth",
                       });
                     }}
                     sx={{
                       borderRight:
-                        slug === activeSection.slug
+                        slug === activeSection?.slug
                           ? "4px solid var(--joy-palette-primary-main)"
                           : "4px solid #0001",
                     }}
