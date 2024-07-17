@@ -89,7 +89,7 @@ export const TableOfContents = ({ headers }) => {
       }}
     >
       {!isCompact && <DynamicMiniLogo visible={showMiniLogo} />}
-      <List size="sm" sx={{ alignItems: "flex-end" }}>
+      <List size="sm">
         <Stack className="toc-toggler" direction="row">
           <Button
             variant="plain"
@@ -97,20 +97,25 @@ export const TableOfContents = ({ headers }) => {
             color="primary"
             onClick={() => setOpen(!open)}
           >
+            {isCompact && (
+              <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
+            )}
             {open && (
               <Typography
                 level="h5"
                 sx={{
                   fontWeight: "bold",
                   fontSize: 16,
-                  mr: 1.5,
-                  ml: -0.5,
+                  ml: isCompact ? 1 : -0.5,
+                  mr: isCompact ? 0 : 1.5,
                 }}
               >
                 Table of Contents
               </Typography>
             )}
-            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
+            {!isCompact && (
+              <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
+            )}
           </Button>
         </Stack>
         <ListItem nested>

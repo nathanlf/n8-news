@@ -19,7 +19,7 @@ export const BackToTopButton = ({ children }) => {
         variant="plain"
         color="primary"
         endDecorator={<BackToTopIcon sx={{ fontSize: 24, mx: -1.5 }} />}
-        sx={{ mt: 2 }}
+        sx={{ mt: 2, alignSelf: "flex-end" }}
       >
         <Typography
           level="h5"
