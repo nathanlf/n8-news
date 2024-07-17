@@ -21,19 +21,8 @@ export const TableOfContents = ({ headers }) => {
   const { scrollPosition } = useScrollPosition();
   const { isCompact } = useWindowWidth();
 
-  // to get an html element and store it in a variable, element = document.getElementById('yourElementId');
-  // then you can define const { height } = element.getBoundingClientRect();
-  // with these lines, we can get all the h1 elements and all their heights to be compared to scrollPosition
-  //  and their ids to be compared to each header being mapped over in headers in the list
-
   // this hook watches the scrollPosition for any changes, then sets the active section accordingly
   useEffect(() => {
-    // determine which section is active
-    //    - if scroll position is above the first section, either change activeSection to it
-    //      OR change activeSection to "intro" or "cover" or something, and add a corresponding item in toc
-    //      -- maybe do this by including the site title h1 in this with document.querySelectorAll('h1');
-    //    - use getBoundingClientRect() on h1 elements to get access to their `height`
-    //    - if scrollPosition passes a height threshold, then setActivesection = currentElement's slug/id/ref
     const headingTops = headers.map((header) => {
       const slug = createSlug(header);
       const el = document.querySelector(`#${slug}`);
@@ -41,45 +30,29 @@ export const TableOfContents = ({ headers }) => {
       return { slug, top, bottom };
     });
 
-    console.table({ scrollPosition });
-    console.table(headingTops);
-    console.log("vh," + window.innerHeight);
+    // console.table({ scrollPosition });
+    // console.table(headingTops);
+    // console.log("vh," + window.innerHeight);
+
     let activeHeading = headingTops.find(
       (header) =>
         header.top > 0 ||
-        (header.top < 0 &&
-          headingTops[headingTops.indexOf(header) + 1]?.top >
-            window.innerHeight)
+        headingTops[headingTops.indexOf(header) + 1]?.top >
+          window.innerHeight + 100
     );
-    // let nextHeading = headingTops.find(
-    //   (header) => header.top > activeHeading?.top
-    // );
-    // let nextHeading = headingTops[headingTops.indexOf(activeHeading) + 1];
 
-    // if (nextHeading.top < )
-
-    // // check if active section is taller than viewport
-    // if (nextHeading.top - activeHeading.top > viewportHeight) {
-    //   // determine when to switch active section
-    //   nextHeading.top < 600 && activeHeading.top
-    //     ? setActiveSection(nextHeading.slug)
-    //     : setActiveSection(activeHeading.slug);
-    // } else {
-    //   setActiveSection(activeHeading.slug);
-    // }
-
-    console.log(activeHeading?.slug, activeHeading?.top);
+    // console.log(activeHeading?.slug, activeHeading?.top);
 
     if (activeHeading) setActiveSection(activeHeading);
 
-    console.log("active: ", activeSection);
+    // console.log("active: ", activeSection);
 
     // console.log(nextHeading?.slug, nextHeading?.top);
     // console.log(activeSection);
 
     // what if the active section is taller than the viewport?
     // - look at nextTop? and see when that gets within a certain distance of our scroll position
-  }, [scrollPosition]);
+  }, [headers, scrollPosition]);
 
   const responsiveStyle = {
     ".MuiList-root": isCompact
@@ -141,6 +114,8 @@ export const TableOfContents = ({ headers }) => {
                 // if so, style it as active (change/extend the responsiveStyling's style for :.section-btn)
 
                 const slug = createSlug(header);
+                console.log("active section: ", activeSection);
+                console.log("current slug: ", slug);
                 return (
                   <ListItemButton
                     className="section-btn"
@@ -152,6 +127,12 @@ export const TableOfContents = ({ headers }) => {
                       element?.scrollIntoView({
                         behavior: "smooth",
                       });
+                    }}
+                    sx={{
+                      borderRight:
+                        slug === activeSection
+                          ? "4px solid red"
+                          : "4px solid #0001",
                     }}
                   >
                     {header}
