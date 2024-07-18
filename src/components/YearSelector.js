@@ -1,24 +1,13 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
 import PropTypes from "prop-types";
 import { Link } from "./Link";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import { useVolumes } from "../hooks/useVolumes";
 
 export const YearSelector = ({ defaultYear }) => {
-  const data = useStaticQuery(graphql`
-    query VolumeNums {
-      allMarkdownRemark {
-        volumes: distinct(field: { frontmatter: { volume: SELECT } })
-      }
-    }
-  `);
-
-  // distinct query returns strings - convert to integers, reverse to list volumes DESC (newest to oldest)
-  const volumes = data.allMarkdownRemark.volumes
-    .map((str) => parseInt(str))
-    .reverse();
+  const volumes = useVolumes();
   const years = volumes.map((volume) => volume + 2020);
 
   return (
