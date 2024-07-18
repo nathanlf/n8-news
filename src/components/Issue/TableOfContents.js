@@ -143,14 +143,19 @@ export const TableOfContents = ({ headers }) => {
                     size="sm"
                     variant="plain"
                     onClick={() => {
+                      // scroll to heading's immediate sibling, since heading is sticky
                       const headingSibling = document.querySelector(
                         `#${slug} + *`
                       );
+                      // calculate where to scroll,
+                      // offset of -70 chosen to maintain active section state
+                      // & to uncover the start of section
                       const scrollTop =
                         headingSibling.getBoundingClientRect().top +
-                        window.scrollY;
+                        window.scrollY -
+                        70;
                       window.scrollTo({
-                        top: scrollTop - 92,
+                        top: scrollTop,
                         behavior: "smooth",
                       });
                     }}
