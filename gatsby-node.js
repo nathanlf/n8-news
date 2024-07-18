@@ -19,8 +19,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  // For more on distinct queries, https://danielabaron.me/blog/gatsby5-distinct-query/
-  // This query returns an array of volume numbers as strings
+  if (issues.errors) {
+    reporter.panicOnBuild("Error loading MD issues", issues.errors);
+  }
+
+  // This query returns an array of volume numbers as strings in increasing order, same as src/hooks/useVolumes.js
   const volumeNums = await graphql(`
     query VolumeNums {
       allMarkdownRemark {
@@ -29,17 +32,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     }
   `);
 
-  if (issues.errors) {
-    reporter.panicOnBuild("Error loading MD issues", issues.errors);
-  }
-
   const posts = issues.data.allMarkdownRemark.nodes;
-  const volumes = volumeNums.data.allMarkdownRemark.volumes.map((str) =>
-    parseInt(str)
-  );
+  const volumes = volumeNums.data.allMarkdownRemark.volumes
+    .map((str) => parseInt(str))
+    .reverse();
 
-  // prepare to get node for newest edition
-  const maxVolume = Math.max(...volumes);
+  // prepare to get node for newest edition,
+  // we know that first element is max because we reversed the volume numbers
+  const maxVolume = volumes[0];
   let maxIssue = -1;
   let newestIssueObj = undefined;
 

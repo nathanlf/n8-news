@@ -1,22 +1,11 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
 import { Link } from "../components/Link";
 import { Grid, Stack } from "@mui/joy";
 import FolderIcon from "@mui/icons-material/Folder";
+import { useVolumes } from "../hooks/useVolumes";
 
 export const ArchiveFolders = () => {
-  const data = useStaticQuery(graphql`
-    query VolumeNums {
-      allMarkdownRemark {
-        volumes: distinct(field: { frontmatter: { volume: SELECT } })
-      }
-    }
-  `);
-
-  // distinct query returns strings - convert to integers, then convert to descending order
-  const volumes = data.allMarkdownRemark.volumes
-    .map((str) => parseInt(str))
-    .reverse();
+  const volumes = useVolumes();
 
   return (
     <>

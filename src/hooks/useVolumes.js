@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 export const useVolumes = () => {
-  // query returns volume numbers as strings
+  // query returns volume numbers as strings in increasing order
   // for more on distinct queries, https://danielabaron.me/blog/gatsby5-distinct-query/
   const data = useStaticQuery(graphql`
     query VolumeNums {
