@@ -1,5 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import PropTypes from "prop-types";
 import { SectionHeader } from "./Issue/SectionHeader";
 import { List, ListItem, Typography } from "@mui/joy";
@@ -8,6 +9,7 @@ import { Link } from "./Link";
 export const Markdown = ({ src }) => {
   return (
     <ReactMarkdown
+      remarkPlugins={[remarkGfm]}
       children={src}
       components={{
         h1: ({ children }) => <SectionHeader title={children} />,
