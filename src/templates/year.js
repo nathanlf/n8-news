@@ -27,7 +27,7 @@ const ArchiveYear = ({ data }) => {
         const { issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
         const path = `${formattedIssue}`;
-        const date = new Date(`${year}-${issue}-01`);
+        const date = new Date(year, issue - 1, 1); // Date objects expect months to be zero-indexed
 
         return (
           <div key={node.id}>

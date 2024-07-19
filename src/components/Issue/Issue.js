@@ -7,6 +7,7 @@ import { Markdown } from "../Markdown";
 import { PageTitle } from "../Layout/PageTitle";
 import { Box } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { CompactTableOfContents } from "./CompactTableOfContents";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -77,7 +78,7 @@ export const Issue = ({ vol, iss }) => {
         >
           {blurb}
         </Typography>
-        {isCompact && <TableOfContents headers={headers} />}
+        {isCompact && <CompactTableOfContents headers={headers} />}
         <Markdown src={rawMarkdownBody} />
       </Box>
     </>
