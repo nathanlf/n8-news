@@ -8,12 +8,35 @@ import ArticleIcon from "@mui/icons-material/Article";
 import EventIcon from "@mui/icons-material/Event";
 import { Typography } from "@mui/joy";
 
-const NavLink = ({ icon, label, to }) => {
+const menuItems = [
+  {
+    to: "/",
+    Icon: ArticleIcon,
+    label: "Newest Edition",
+  },
+  {
+    to: "/archive",
+    Icon: LibraryBooksIcon,
+    label: "Archive",
+  },
+  {
+    to: "/initiatives",
+    Icon: EventIcon,
+    label: "Initiatives",
+  },
+  {
+    to: "/about",
+    Icon: InfoIcon,
+    label: "About",
+  },
+]
+
+const NavLink = ({ Icon, label, to }) => {
   return (
     <Link to={ to } className="nav-link">
       <Typography
         level="h4"
-        startDecorator={<ArticleIcon />}
+        startDecorator={<Icon />}
         sx={{ fontSize: 17 }}
       >{ label }</Typography>
     </Link>
@@ -45,10 +68,7 @@ export const Navbar = () => {
         },
       }}
     >
-      <NavLink to="/" icon={<ArticleIcon />} label="Newest Edition" />
-      <NavLink to="/archive" icon={<LibraryBooksIcon />} label="Archive" />
-      <NavLink to="/initiatives" icon={<EventIcon />} label="Initiatives" />
-      <NavLink to="/about" icon={<InfoIcon />} label="About" />
+      {menuItems.map(item => <NavLink key={ item.to } { ...item } />)}
     </Stack>
   );
 };
