@@ -22,7 +22,7 @@ const DynamicMiniLogo = ({ visible }) => {
         minHeight: "100px",
         filter: "opactiy(1.0)",
         transition: "min-height 250ms, filter 500ms",
-        mb: 0.5,
+        mb: 2,
       }
     : {
         minHeight: 0,
@@ -43,6 +43,31 @@ const DynamicMiniLogo = ({ visible }) => {
         ...dynamicStyles,
       }}
     />
+  );
+};
+
+const DynamicBackToTop = ({ visible, children }) => {
+  const dynamicStyles = visible
+    ? {
+        minHeight: "500px",
+        filter: "opactiy(1.0)",
+        transition: "min-height 250ms, filter 500ms",
+      }
+    : {
+        minHeight: "400px",
+        filter: "opacity(0)",
+        transition: "min-height 250ms 100ms, filter 250ms",
+      };
+
+  return (
+    <Box
+      sx={{
+        alignSelf: "flex-end",
+        ...dynamicStyles,
+      }}
+    >
+      <BackToTopButton>{children}</BackToTopButton>
+    </Box>
   );
 };
 
@@ -67,7 +92,7 @@ export const TableOfContents = ({ headers }) => {
     if (activeHeading) setActiveSection(activeHeading);
   }, [headers, scrollPosition]);
 
-  const showMiniLogo = scrollPosition > 120;
+  const showOnScroll = scrollPosition > 120;
 
   return (
     <Sheet
@@ -83,7 +108,7 @@ export const TableOfContents = ({ headers }) => {
         },
       }}
     >
-      <DynamicMiniLogo visible={showMiniLogo} />
+      <DynamicMiniLogo visible={showOnScroll} />
       <List size="sm">
         <Stack className="toc-toggler" direction="row">
           <Button
@@ -110,7 +135,7 @@ export const TableOfContents = ({ headers }) => {
         </Stack>
         <ListItem nested>
           {open && (
-            <List sx={{ alignItems: "flex-end" }}>
+            <List sx={{ alignItems: "flex-end", mt: 1 }}>
               {headers.map((header) => {
                 const slug = createSlug(header);
                 return (
@@ -137,6 +162,7 @@ export const TableOfContents = ({ headers }) => {
                       });
                     }}
                     sx={{
+                      mr: 1,
                       borderRight:
                         slug === activeSection?.slug
                           ? "4px solid var(--joy-palette-primary-main)"
@@ -153,7 +179,9 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && <BackToTopButton>Back to top</BackToTopButton>}
+        <DynamicBackToTop visible={open && showOnScroll}>
+          Back to top
+        </DynamicBackToTop>
       </List>
     </Sheet>
   );
