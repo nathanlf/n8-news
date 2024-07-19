@@ -37,7 +37,20 @@ const menuItems = [
 
 const NavLink = ({ Icon, label, to }) => {
   return (
-    <Link to={ to } className="nav-link">
+    <Link
+      to={ to }
+      sx={{
+        px: 1.5,
+        py: 1,
+        textDecoration: "none",
+        "&:hover": {
+          textDecoration: "underline",
+          textDecorationColor: "#000000",
+          backgroundColor: "#ececec",
+          borderRadius: 4,
+        },
+      }}
+    >
       <Typography
         level="h4"
         startDecorator={<Icon />}
@@ -59,17 +72,6 @@ export const Navbar = () => {
         border: "1px",
         borderRadius: "sm",
         fontWeight: 600,
-        ".nav-link": {
-          px: 1.5,
-          py: 1,
-          textDecoration: "none",
-          "&:hover": {
-            textDecoration: "underline",
-            textDecorationColor: "#000000",
-            backgroundColor: "#ececec",
-            borderRadius: 4,
-          },
-        },
       }}
     >
       {menuItems.map(item => <NavLink key={ item.to } { ...item } />)}
