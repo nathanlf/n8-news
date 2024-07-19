@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import PropTypes from "prop-types";
 import { SectionHeader } from "./Issue/SectionHeader";
-import { List, ListItem, Typography } from "@mui/joy";
+import { List, ListItem, Typography, Table } from "@mui/joy";
 import { Link } from "./Link";
 
 export const Markdown = ({ src }) => {
@@ -20,6 +20,21 @@ export const Markdown = ({ src }) => {
           <Typography component="strong" level="title-lg">
             {children}
           </Typography>
+        ),
+        table: ({ children }) => (
+          <Table
+            variant="outlined"
+            size="md"
+            borderAxis="bothBetween"
+            sx={{
+              my: 2,
+              "& thead th": { whiteSpace: "normal", wordWrap: "break-word" },
+              "& thead th:nth-child(1)": { width: "25%" },
+              "& tbody": { fontSize: 16 },
+            }}
+          >
+            {children}
+          </Table>
         ),
         li: ({ children }) => <ListItem>{children}</ListItem>,
         ul: ({ children }) => <List marker="disc">{children}</List>,
