@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -9,7 +9,6 @@ import {
   ListItemButton,
   Button,
   Sheet,
-  Box,
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 
