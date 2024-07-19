@@ -1,32 +1,36 @@
 import React from "react";
 import { Link } from "../Link";
-import Stack from "@mui/joy/Stack";
-import Divider from "@mui/material/Divider";
-import InfoIcon from "@mui/icons-material/Info";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import ArticleIcon from "@mui/icons-material/Article";
-import EventIcon from "@mui/icons-material/Event";
-import { Typography } from "@mui/joy";
+import {
+  Stack,
+  Divider,
+  Typography,
+} from "@mui/joy";
+import {
+  Info as AboutIcon,
+  LibraryBooks as ArchiveIcon,
+  Article as NewestEditionIcon,
+  Event as InitiativesIcon,
+} from "@mui/icons-material";
 
 const menuItems = [
   {
     to: "/",
-    Icon: ArticleIcon,
+    Icon: NewestEditionIcon,
     label: "Newest Edition",
   },
   {
     to: "/archive",
-    Icon: LibraryBooksIcon,
+    Icon: ArchiveIcon,
     label: "Archive",
   },
   {
     to: "/initiatives",
-    Icon: EventIcon,
+    Icon: InitiativesIcon,
     label: "Initiatives",
   },
   {
     to: "/about",
-    Icon: InfoIcon,
+    Icon: AboutIcon,
     label: "About",
   },
 ]
