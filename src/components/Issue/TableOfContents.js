@@ -46,6 +46,32 @@ const DynamicMiniLogo = ({ visible }) => {
   );
 };
 
+const DynamicBackToTop = ({ visible, children }) => {
+  const dynamicStyles = visible
+    ? {
+        minHeight: "500px",
+        filter: "opactiy(1.0)",
+        transition: "min-height 250ms, filter 500ms",
+        // mb: 0.5,
+      }
+    : {
+        minHeight: "400px",
+        filter: "opacity(0)",
+        transition: "min-height 250ms 100ms, filter 250ms",
+      };
+
+  return (
+    <Box
+      sx={{
+        ...dynamicStyles,
+      }}
+    >
+      <Typography>hello</Typography>
+      <BackToTopButton>{children}</BackToTopButton>
+    </Box>
+  );
+};
+
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
   const [activeSection, setActiveSection] = useState(headers[0]);
@@ -67,7 +93,7 @@ export const TableOfContents = ({ headers }) => {
     if (activeHeading) setActiveSection(activeHeading);
   }, [headers, scrollPosition]);
 
-  const showMiniLogo = scrollPosition > 120;
+  const showOnScroll = scrollPosition > 120;
 
   return (
     <Sheet
@@ -83,7 +109,7 @@ export const TableOfContents = ({ headers }) => {
         },
       }}
     >
-      <DynamicMiniLogo visible={showMiniLogo} />
+      <DynamicMiniLogo visible={showOnScroll} />
       <List size="sm">
         <Stack className="toc-toggler" direction="row">
           <Button
@@ -153,7 +179,7 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && <BackToTopButton>Back to top</BackToTopButton>}
+        {open && <DynamicBackToTop>Back to top</DynamicBackToTop>}
       </List>
     </Sheet>
   );
