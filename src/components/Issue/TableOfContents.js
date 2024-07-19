@@ -22,7 +22,7 @@ const DynamicMiniLogo = ({ visible }) => {
         minHeight: "100px",
         filter: "opactiy(1.0)",
         transition: "min-height 250ms, filter 500ms",
-        mb: 0.5,
+        mb: 2,
       }
     : {
         minHeight: 0,
@@ -52,7 +52,6 @@ const DynamicBackToTop = ({ visible, children }) => {
         minHeight: "500px",
         filter: "opactiy(1.0)",
         transition: "min-height 250ms, filter 500ms",
-        // mb: 0.5,
       }
     : {
         minHeight: "400px",
@@ -63,10 +62,10 @@ const DynamicBackToTop = ({ visible, children }) => {
   return (
     <Box
       sx={{
+        alignSelf: "flex-end",
         ...dynamicStyles,
       }}
     >
-      <Typography>hello</Typography>
       <BackToTopButton>{children}</BackToTopButton>
     </Box>
   );
@@ -136,7 +135,7 @@ export const TableOfContents = ({ headers }) => {
         </Stack>
         <ListItem nested>
           {open && (
-            <List sx={{ alignItems: "flex-end" }}>
+            <List sx={{ alignItems: "flex-end", mt: 1 }}>
               {headers.map((header) => {
                 const slug = createSlug(header);
                 return (
@@ -163,6 +162,7 @@ export const TableOfContents = ({ headers }) => {
                       });
                     }}
                     sx={{
+                      mr: 1,
                       borderRight:
                         slug === activeSection?.slug
                           ? "4px solid var(--joy-palette-primary-main)"
@@ -179,7 +179,9 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && <DynamicBackToTop>Back to top</DynamicBackToTop>}
+        <DynamicBackToTop visible={open && showOnScroll}>
+          Back to top
+        </DynamicBackToTop>
       </List>
     </Sheet>
   );
