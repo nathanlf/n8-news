@@ -13,7 +13,6 @@ import {
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
-import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import renciLogo from "../../images/renci-logo.png";
 
@@ -51,7 +50,6 @@ export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
   const [activeSection, setActiveSection] = useState(headers[0]);
   const { scrollPosition } = useScrollPosition();
-  const { isCompact } = useWindowWidth();
 
   // this hook watches the scrollPosition for any changes, then sets the active section accordingly
   useEffect(() => {
@@ -69,39 +67,23 @@ export const TableOfContents = ({ headers }) => {
     if (activeHeading) setActiveSection(activeHeading);
   }, [headers, scrollPosition]);
 
-  const responsiveStyle = {
-    ".MuiList-root": isCompact
-      ? {
-          height: "100%",
-          ".toc-toggler": {
-            justifyContent: "flex-start",
-          },
-          ".section-btn": {
-            justifyContent: "flex-start",
-          },
-        }
-      : {
-          ".toc-toggler": {
-            justifyContent: "flex-end",
-          },
-          ".section-btn": {
-            justifyContent: "flex-end",
-          },
-        },
-  };
-
   const showMiniLogo = scrollPosition > 120;
 
   return (
     <Sheet
       sx={{
-        position: isCompact ? "static" : "sticky",
+        position: "sticky",
         backgroundColor: "transparent",
         top: "1rem",
-        ...responsiveStyle,
+        ".toc-toggler": {
+          justifyContent: "flex-end",
+        },
+        ".section-btn": {
+          justifyContent: "flex-end",
+        },
       }}
     >
-      {!isCompact && <DynamicMiniLogo visible={showMiniLogo} />}
+      <DynamicMiniLogo visible={showMiniLogo} />
       <List size="sm">
         <Stack className="toc-toggler" direction="row">
           <Button
@@ -110,25 +92,20 @@ export const TableOfContents = ({ headers }) => {
             color="primary"
             onClick={() => setOpen(!open)}
           >
-            {isCompact && (
-              <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
-            )}
             {open && (
               <Typography
                 level="h5"
                 sx={{
                   fontWeight: "bold",
                   fontSize: 16,
-                  ml: isCompact ? 1 : -0.5,
-                  mr: isCompact ? 0 : 1.5,
+                  ml: -0.5,
+                  mr: 1.5,
                 }}
               >
                 Table of Contents
               </Typography>
             )}
-            {!isCompact && (
-              <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
-            )}
+            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
           </Button>
         </Stack>
         <ListItem nested>
@@ -176,7 +153,7 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && !isCompact && <BackToTopButton>Back to top</BackToTopButton>}
+        {open && <BackToTopButton>Back to top</BackToTopButton>}
       </List>
     </Sheet>
   );
