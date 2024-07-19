@@ -94,6 +94,34 @@ export const TableOfContents = ({ headers }) => {
 
   const showOnScroll = scrollPosition > 120;
 
+  // units are in ms, as seen in the reducer below
+  const cascadeDuration = "250";
+  const cascadeDelay = "25";
+  const cascadeAnimation = {
+    // filter: open ? "opacity(1)" : "opacity(0)",
+    // transition: "filter 500ms",
+    "@keyframes slide-in": {
+      from: {
+        opacity: 0,
+        transform: "translateX(40px)",
+      },
+      to: {
+        opacity: 1,
+        transform: "translateX(0px)",
+      },
+    },
+  };
+
+  const cascadeStyles = Array(headers.length)
+    .keys()
+    .reduce((acc, i) => {
+      acc[`.section-btn:nth-of-type(${i + 1})`] = {
+        animation: `slide-in ${cascadeDuration}ms ${cascadeDelay * i}ms ease`,
+      };
+
+      return acc;
+    }, {});
+
   return (
     <Sheet
       sx={{
@@ -135,7 +163,14 @@ export const TableOfContents = ({ headers }) => {
         </Stack>
         <ListItem nested>
           {open && (
-            <List sx={{ alignItems: "flex-end", mt: 1 }}>
+            <List
+              sx={{
+                alignItems: "flex-end",
+                mt: 1,
+                ...cascadeAnimation,
+                ...cascadeStyles,
+              }}
+            >
               {headers.map((header) => {
                 const slug = createSlug(header);
                 return (
