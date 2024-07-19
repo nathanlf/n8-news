@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -9,81 +9,27 @@ import {
   ListItemButton,
   Button,
   Sheet,
-  Box,
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import { BackToTopButton } from "../BackToTopButton";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
-import renciLogo from "../../images/renci-logo.png";
 
-const DynamicMiniLogo = ({ visible }) => {
-  const dynamicStyles = visible
-    ? {
-        minHeight: "100px",
-        filter: "opactiy(1.0)",
-        transition: "min-height 250ms, filter 500ms",
-        mb: 0.5,
-      }
-    : {
-        minHeight: 0,
-        filter: "opacity(0)",
-        transition: "min-height 250ms 100ms, filter 250ms",
-      };
-
-  return (
-    <Box
-      sx={{
-        overflow: "hidden",
-        background: `url(${renciLogo})`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "100% 50%",
-        borderBottom: "1px solid var(--joy-palette-divider)",
-        backgroundSize: "60%",
-        mr: 0.75,
-        ...dynamicStyles,
-      }}
-    />
-  );
-};
-
-export const TableOfContents = ({ headers }) => {
+export const CompactTableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
-  const [activeSection, setActiveSection] = useState(headers[0]);
-  const { scrollPosition } = useScrollPosition();
-
-  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
-  useEffect(() => {
-    const headingTops = headers.map((header) => {
-      const slug = createSlug(header);
-      const el = document.querySelector(`#${slug}`);
-      const { top } = el.getBoundingClientRect();
-      return { slug, top };
-    });
-
-    const activeHeading = headingTops
-      .reverse()
-      .find((header) => header.top === 0);
-
-    if (activeHeading) setActiveSection(activeHeading);
-  }, [headers, scrollPosition]);
-
-  const showMiniLogo = scrollPosition > 120;
 
   return (
     <Sheet
       sx={{
-        position: "sticky",
+        position: "static",
         backgroundColor: "transparent",
         top: "1rem",
+        height: "100%",
         ".toc-toggler": {
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
         },
         ".section-btn": {
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
         },
       }}
     >
-      <DynamicMiniLogo visible={showMiniLogo} />
       <List size="sm">
         <Stack className="toc-toggler" direction="row">
           <Button
@@ -92,20 +38,19 @@ export const TableOfContents = ({ headers }) => {
             color="primary"
             onClick={() => setOpen(!open)}
           >
+            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
             {open && (
               <Typography
                 level="h5"
                 sx={{
                   fontWeight: "bold",
                   fontSize: 16,
-                  ml: -0.5,
-                  mr: 1.5,
+                  ml: 1.25,
                 }}
               >
                 Table of Contents
               </Typography>
             )}
-            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
           </Button>
         </Stack>
         <ListItem nested>
@@ -136,13 +81,6 @@ export const TableOfContents = ({ headers }) => {
                         behavior: "smooth",
                       });
                     }}
-                    sx={{
-                      borderRight:
-                        slug === activeSection?.slug
-                          ? "4px solid var(--joy-palette-primary-main)"
-                          : "4px solid #0001",
-                      transition: "border-color 250ms",
-                    }}
                   >
                     <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
                       {header}
@@ -153,12 +91,11 @@ export const TableOfContents = ({ headers }) => {
             </List>
           )}
         </ListItem>
-        {open && <BackToTopButton>Back to top</BackToTopButton>}
       </List>
     </Sheet>
   );
 };
 
-TableOfContents.propTypes = {
+CompactTableOfContents.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string),
 };
