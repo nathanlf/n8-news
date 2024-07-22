@@ -98,8 +98,6 @@ export const TableOfContents = ({ headers }) => {
   const cascadeDuration = "250";
   const cascadeDelay = "25";
   const cascadeAnimation = {
-    // filter: open ? "opacity(1)" : "opacity(0)",
-    // transition: "filter 500ms",
     "@keyframes slide-in": {
       from: {
         filter: "opacity(0.0)",
@@ -110,14 +108,23 @@ export const TableOfContents = ({ headers }) => {
         transform: "translateX(0px)",
       },
     },
-    ".section-btn": {
-      filter: "opacity(0.0)",
+    "@keyframes slide-out": {
+      from: {
+        filter: "opacity(1.0)",
+        transform: "translateX(0px)",
+      },
+      to: {
+        filter: "opacity(0.0)",
+        transform: "translateX(40px)",
+      },
     },
   };
 
   const cascadeStyles = [...Array(headers.length).keys()].reduce((acc, i) => {
     acc[`.section-btn:nth-of-type(${i + 1})`] = {
-      animation: `slide-in ${cascadeDuration}ms ${cascadeDelay * i}ms ease`,
+      animation: open
+        ? `slide-in ${cascadeDuration}ms ${cascadeDelay * i}ms ease`
+        : `slide-out ${cascadeDuration}ms ${cascadeDelay * i}ms ease`,
       animationFillMode: "forwards",
     };
 
@@ -169,6 +176,9 @@ export const TableOfContents = ({ headers }) => {
               sx={{
                 alignItems: "flex-end",
                 mt: 1,
+                ".section-btn": {
+                  filter: "opacity(0.0)",
+                },
                 ...cascadeAnimation,
                 ...cascadeStyles,
               }}
