@@ -50,7 +50,7 @@ const DynamicBackToTop = ({ visible, children }) => {
   const dynamicStyles = visible
     ? {
         minHeight: "500px",
-        filter: "opactiy(1.0)",
+        filter: "opacity(1.0)",
         transition: "min-height 250ms, filter 500ms",
       }
     : {
@@ -102,25 +102,27 @@ export const TableOfContents = ({ headers }) => {
     // transition: "filter 500ms",
     "@keyframes slide-in": {
       from: {
-        opacity: 0,
+        filter: "opacity(0.0)",
         transform: "translateX(40px)",
       },
       to: {
-        opacity: 1,
+        filter: "opacity(1.0)",
         transform: "translateX(0px)",
       },
     },
+    ".section-btn": {
+      filter: "opacity(0.0)",
+    },
   };
 
-  const cascadeStyles = Array(headers.length)
-    .keys()
-    .reduce((acc, i) => {
-      acc[`.section-btn:nth-of-type(${i + 1})`] = {
-        animation: `slide-in ${cascadeDuration}ms ${cascadeDelay * i}ms ease`,
-      };
+  const cascadeStyles = [...Array(headers.length).keys()].reduce((acc, i) => {
+    acc[`.section-btn:nth-of-type(${i + 1})`] = {
+      animation: `slide-in ${cascadeDuration}ms ${cascadeDelay * i}ms ease`,
+      animationFillMode: "forwards",
+    };
 
-      return acc;
-    }, {});
+    return acc;
+  }, {});
 
   return (
     <Sheet
