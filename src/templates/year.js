@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { graphql } from "gatsby";
 import { Link } from "../components/Link";
-import { Typography, Stack } from "@mui/joy";
+import { Typography, Stack, Grid, Card } from "@mui/joy";
 import { YearSelector } from "../components/YearSelector";
 
 const ArchiveYear = ({ data }) => {
@@ -22,34 +22,48 @@ const ArchiveYear = ({ data }) => {
 
   return (
     <>
-      <Stack direction="row" sx={{ mb: 1 }}>
+      <Stack direction="row">
         <Typography level="h2" sx={{ fontSize: 28, mr: 2 }}>
           Year:
         </Typography>
         {MemoizedYearSelector}
       </Stack>
-      {nodesToRender.map((node) => {
-        const { issue, blurb } = node.frontmatter;
-        const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
-        const path = `${formattedIssue}`;
-        const date = new Date(year, issue - 1, 1); // Date objects expect months to be zero-indexed
+      <Grid container spacing={2} sx={{ flexGrow: 1, py: 4 }}>
+        {nodesToRender.map((node) => {
+          const { issue, blurb } = node.frontmatter;
+          const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
+          const path = `${formattedIssue}`;
+          const date = new Date(year, issue - 1, 1); // Date objects expect months to be zero-indexed
 
-        return (
-          <div key={node.id}>
-            <Link to={path}>
-              <Typography
-                level="h4"
-                textColor="var(--joy-palette-primary-main)"
-              >
-                {date.toLocaleString("en-US", { month: "long" })}
-              </Typography>
-            </Link>
-            <Typography level="body-md" gutterBottom>
-              {blurb}
-            </Typography>
-          </div>
-        );
-      })}
+          return (
+            <Grid key={node.id} xs={12} lg={6}>
+              <Card sx={{ boxShadow: "5px 5px 5px #74747430" }}>
+                <Link to={path}>
+                  <Typography
+                    level="h4"
+                    textColor="var(--joy-palette-primary-main)"
+                  >
+                    {date.toLocaleString("en-US", { month: "long" })}
+                  </Typography>
+                </Link>
+                <Typography
+                  level="body-md"
+                  sx={{
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    display: "-webkit-box",
+                    WebkitLineClamp: "4",
+                    WebkitBoxOrient: "vertical",
+                  }}
+                  gutterBottom
+                >
+                  {blurb}
+                </Typography>
+              </Card>
+            </Grid>
+          );
+        })}
+      </Grid>
     </>
   );
 };
