@@ -1,6 +1,8 @@
 import React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 import { Typography, Box, Grid, Stack } from "@mui/joy";
 import { Link } from "../Link";
+import InfoIcon from "@mui/icons-material/Info";
 
 export const Footer = () => {
   return (
@@ -28,15 +30,20 @@ export const Footer = () => {
       >
         <Grid xs={12} sm={12} md={4}>
           <Stack alignItems="center">
-            <Typography level="title-lg" align="center">
-              RENCI Info
-            </Typography>
+            <Stack direction="row" justifyContent="center">
+              <InfoIcon
+                sx={{ fontSize: 22, px: 0.4, mt: 0.1, filter: "opacity(0.8)" }}
+              />
+              <Typography level="title-lg" align="center" gutterBottom>
+                About
+              </Typography>
+            </Stack>
+
             <Typography level="body-sm" align="center" gutterBottom>
-              RENCI (Renaissance Computing Institute) develops and deploys
-              advanced technologies to enable research discoveries and practical
-              innovations. Lorem ipsum ...
+              This web application was built to serve as a new home for RENCI's
+              internal newsletter. Feel free to view past newsletters in the
+              archive or check out this month's edition anytime!
             </Typography>
-            <Link to="https://renci.org/">Learn More</Link>
           </Stack>
         </Grid>
         <Grid
@@ -49,9 +56,18 @@ export const Footer = () => {
             justifyContent: "center",
           }}
         >
-          <Typography level="body-md" align="center">
-            © 2024 RENCI
-          </Typography>
+          <Stack direction="column" alignItems="center">
+            <Link to="https://renci.org/">
+              <StaticImage
+                src="../../images/renci-logo-gray-simple.png"
+                width={80}
+                alt="RENCI Simple Gray Logo"
+              />
+            </Link>
+            <Typography level="body-md" align="center" sx={{ mt: 2 }}>
+              © 2024
+            </Typography>
+          </Stack>
         </Grid>
         <Grid
           xs={8}
