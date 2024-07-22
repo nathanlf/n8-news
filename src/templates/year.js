@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { graphql } from "gatsby";
 import { Link } from "../components/Link";
-import { Typography } from "@mui/joy";
+import { Typography, Stack } from "@mui/joy";
 import { YearSelector } from "../components/YearSelector";
 
 const ArchiveYear = ({ data }) => {
@@ -22,7 +22,12 @@ const ArchiveYear = ({ data }) => {
 
   return (
     <>
-      {MemoizedYearSelector}
+      <Stack direction="row" sx={{ mb: 1 }}>
+        <Typography level="h2" sx={{ fontSize: 28, mr: 2 }}>
+          Year:
+        </Typography>
+        {MemoizedYearSelector}
+      </Stack>
       {nodesToRender.map((node) => {
         const { issue, blurb } = node.frontmatter;
         const formattedIssue = issue < 10 ? `0${issue}` : `${issue}`;
