@@ -11,8 +11,8 @@ const AboutPage = () => {
         internal newsletter.
       </Typography>
       <Typography level="body-lg">
-        Feel free to view past newsletters in the archive, search for keywords,
-        or check out this month's edition anytime!
+        Feel free to view past newsletters in the archive or check out this
+        month's edition anytime!
       </Typography>
     </>
   );
