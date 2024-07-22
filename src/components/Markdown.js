@@ -29,7 +29,7 @@ export const Markdown = ({ src }) => {
             sx={{
               my: 2,
               "& thead th": { whiteSpace: "normal", wordWrap: "break-word" },
-              "& thead th:nth-child(1)": { width: "25%" },
+              "& thead th:nth-of-type(1)": { width: "25%" },
               "& tbody": { fontSize: 16 },
             }}
           >
