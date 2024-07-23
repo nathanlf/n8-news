@@ -14,7 +14,7 @@ import {
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import { BackToTopButton } from "../BackToTopButton";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
-import renciLogo from "../../images/renci-logo.png";
+import renciLogo from "../../images/renci-logo-simple.png";
 
 const DynamicMiniLogo = ({ visible }) => {
   const dynamicStyles = visible
