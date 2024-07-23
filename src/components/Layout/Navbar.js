@@ -1,15 +1,10 @@
 import React from "react";
 import { Link } from "../Link";
+import { Stack, Divider, Typography } from "@mui/joy";
 import {
-  Stack,
-  Divider,
-  Typography,
-} from "@mui/joy";
-import {
-  Info as AboutIcon,
   LibraryBooks as ArchiveIcon,
   Article as NewestEditionIcon,
-  Event as InitiativesIcon,
+  // Event as InitiativesIcon,
 } from "@mui/icons-material";
 
 const menuItems = [
@@ -23,22 +18,18 @@ const menuItems = [
     Icon: ArchiveIcon,
     label: "Archive",
   },
-  {
-    to: "/initiatives",
-    Icon: InitiativesIcon,
-    label: "Initiatives",
-  },
-  {
-    to: "/about",
-    Icon: AboutIcon,
-    label: "About",
-  },
-]
+  // hide Initiatives page while under construction
+  // {
+  //   to: "/initiatives",
+  //   Icon: InitiativesIcon,
+  //   label: "Initiatives",
+  // },
+];
 
 const NavLink = ({ Icon, label, to }) => {
   return (
     <Link
-      to={ to }
+      to={to}
       sx={{
         px: 1.5,
         py: 1,
@@ -51,14 +42,12 @@ const NavLink = ({ Icon, label, to }) => {
         },
       }}
     >
-      <Typography
-        level="h4"
-        startDecorator={<Icon />}
-        sx={{ fontSize: 17 }}
-      >{ label }</Typography>
+      <Typography level="h4" startDecorator={<Icon />} sx={{ fontSize: 17 }}>
+        {label}
+      </Typography>
     </Link>
-  )
-}
+  );
+};
 
 export const Navbar = () => {
   return (
@@ -74,7 +63,9 @@ export const Navbar = () => {
         fontWeight: 600,
       }}
     >
-      {menuItems.map(item => <NavLink key={ item.to } { ...item } />)}
+      {menuItems.map((item) => (
+        <NavLink key={item.to} {...item} />
+      ))}
     </Stack>
   );
 };
