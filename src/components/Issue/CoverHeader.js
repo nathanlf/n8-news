@@ -22,7 +22,7 @@ export const CoverHeader = ({ vol, iss }) => {
       }}
     >
       <Stack direction="row" gap={1}>
-        <Box sx={{ px: 6, pt: 4, pb: 2 }}>
+        <Box sx={{ pl: 6, pr: 3, pt: 4, pb: 2 }}>
           <StaticImage
             width={110}
             src="../../images/renci-logo-white-simple.png"
@@ -33,7 +33,13 @@ export const CoverHeader = ({ vol, iss }) => {
         <Typography
           level="h2"
           style={{ whiteSpace: "pre-line" }}
-          sx={{ fontSize: "x-large", color: "#ffffff", py: 4, pl: 4 }}
+          sx={{
+            fontSize: "x-large",
+            textShadow: "1px 1px 1px #00000066",
+            color: "#ffffff",
+            py: 4,
+            pl: 2,
+          }}
         >
           {title}
         </Typography>
@@ -42,7 +48,12 @@ export const CoverHeader = ({ vol, iss }) => {
         level="h2"
         style={{ whiteSpace: "pre-line" }}
         textAlign="right"
-        sx={{ fontSize: "large", color: "#ffffff", pr: 6 }}
+        sx={{
+          fontSize: 20,
+          textShadow: "1px 1px 1px #00000066",
+          color: "#ffffff",
+          pr: 6,
+        }}
       >
         {edition}
       </Typography>
