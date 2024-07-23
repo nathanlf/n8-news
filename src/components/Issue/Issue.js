@@ -8,6 +8,7 @@ import { PageTitle } from "../Layout/PageTitle";
 import { Box } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
+import { CoverHeader } from "./CoverHeader";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -56,6 +57,7 @@ export const Issue = ({ vol, iss }) => {
         {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
       </Typography>
       <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
+      <CoverHeader vol={vol} iss={iss} />
       <Box>
         <Typography
           level="body-sm"
