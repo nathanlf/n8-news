@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { Stack, Typography, Box, Divider } from "@mui/joy";
 import { StaticImage } from "gatsby-plugin-image";
 
-export const CoverHeader = ({ vol, iss }) => {
+export const CoverHeader = ({ vol, iss, month, year }) => {
   const title = `Internal
     Newsletter`;
-  const edition = `Volume ${vol}
+  const edition = `${month}, ${year}
+    Volume ${vol}
     Issue ${iss}`;
 
   return (
