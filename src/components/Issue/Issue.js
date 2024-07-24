@@ -4,7 +4,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
-import { PageTitle } from "../Layout/PageTitle";
 import { Box } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
