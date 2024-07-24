@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PageTitle } from "../components/Layout/PageTitle";
 import { Typography } from "@mui/joy";
-import { FeedbackForm } from "../components/Form"
+import { ContactForm } from "../components/ContactForm/ContactForm"
 
 const InitiativesPage = () => {
   return (
@@ -11,7 +11,7 @@ const InitiativesPage = () => {
         How to get involved / ongoing initiatives / dynamic info live here...
       </Typography>
       {/* For Testing Purpose Only, Eventually create a Feedback Form page to import this form into */}
-      <FeedbackForm />
+      <ContactForm />
     </>
   );
 };
