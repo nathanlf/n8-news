@@ -54,7 +54,7 @@ export const Navbar = () => {
     <Stack
       role="navigation"
       direction="row"
-      divider={<Divider orientation="vertical" flexItem />}
+      divider={<Divider orientation="vertical" />}
       alignItems="center"
       justifyContent="right"
       sx={{

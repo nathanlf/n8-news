@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
@@ -82,4 +83,9 @@ export const Issue = ({ vol, iss }) => {
       </Box>
     </>
   );
+};
+
+Issue.propTypes = {
+  vol: PropTypes.number.isRequired,
+  iss: PropTypes.number.isRequired,
 };
