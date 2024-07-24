@@ -4,7 +4,6 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Typography from "@mui/joy/Typography";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
-import { PageTitle } from "../Layout/PageTitle";
 import { Box } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
@@ -26,6 +25,8 @@ export const Issue = ({ vol, iss }) => {
   );
   let caption = issueObj.frontmatter.coverImage?.caption;
   const date = new Date(`${2020 + vol}-${iss}-01`);
+  const year = date.getFullYear();
+  const month = date.toLocaleString("en-US", { month: "long" });
   const headers = [];
 
   // Traverse htmlAst to find h1 elements
@@ -52,12 +53,8 @@ export const Issue = ({ vol, iss }) => {
           <TableOfContents headers={headers} />
         </Box>
       )}
-      <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-      <Typography level="h4" variant="plain" gutterBottom>
-        {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
-      </Typography>
       <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-      <CoverHeader vol={vol} iss={iss} />
+      <CoverHeader vol={vol} iss={iss} month={month} year={year} />
       <Box>
         <Typography
           level="body-sm"

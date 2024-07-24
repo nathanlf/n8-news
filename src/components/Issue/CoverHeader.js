@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import { Stack, Typography, Box, Divider } from "@mui/joy";
 import { StaticImage } from "gatsby-plugin-image";
 
-export const CoverHeader = ({ vol, iss }) => {
+export const CoverHeader = ({ vol, iss, month, year }) => {
   const title = `Internal
     Newsletter`;
+  const date = `${month}, ${year}`;
   const edition = `Volume ${vol}
     Issue ${iss}`;
 
@@ -42,19 +43,33 @@ export const CoverHeader = ({ vol, iss }) => {
           {title}
         </Typography>
       </Stack>
-      <Typography
-        level="h2"
-        style={{ whiteSpace: "pre-line" }}
-        textAlign="right"
-        sx={{
-          fontSize: 20,
-          textShadow: "1px 1px 1px #00000066",
-          color: "#ffffff",
-          pr: 6,
-        }}
-      >
-        {edition}
-      </Typography>
+      <Stack direction="column" gap={1}>
+        <Typography
+          level="h2"
+          textAlign="right"
+          sx={{
+            fontSize: 22,
+            textShadow: "1px 1px 1px #00000066",
+            color: "#ffffff",
+            pr: 6,
+          }}
+        >
+          {date}
+        </Typography>
+        <Typography
+          level="h2"
+          style={{ whiteSpace: "pre-line" }}
+          textAlign="right"
+          sx={{
+            fontSize: 18,
+            textShadow: "1px 1px 1px #00000066",
+            color: "#ffffff",
+            pr: 6,
+          }}
+        >
+          {edition}
+        </Typography>
+      </Stack>
     </Box>
   );
 };
