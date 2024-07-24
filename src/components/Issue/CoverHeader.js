@@ -17,7 +17,7 @@ export const CoverHeader = ({ vol, iss, month, year }) => {
       sx={{
         display: "flex",
         flexGrow: 1,
-        backgroundColor: "#02aac6",
+        backgroundColor: "var(--joy-palette-primary-main)",
       }}
     >
       <Stack direction="row" gap={1}>
