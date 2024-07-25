@@ -73,6 +73,7 @@ export const Footer = () => {
                 src="../../images/renci-logo-gray-simple.png"
                 width={80}
                 alt="RENCI Simple Gray Logo"
+                placeholder="blurred"
               />
             </Link>
             <Typography level="body-md" align="center" sx={{ mt: 2 }}>

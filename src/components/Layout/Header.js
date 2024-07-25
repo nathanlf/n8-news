@@ -20,6 +20,7 @@ export const Header = ({ title }) => {
           src="../../images/renci-logo-simple.png"
           alt="RENCI Logo"
           width={200}
+          placeholder="blurred"
         />
       </Link>
       <Stack direction="column" alignItems="flex-end">
