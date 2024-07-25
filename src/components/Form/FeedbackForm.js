@@ -47,6 +47,7 @@ export const FeedbackForm = () => {
       {response !== "" && (
         <Typography
           sx={{
+            mt: 1,
             px: 2,
             py: 2,
             borderLeft: "3px solid var(--joy-palette-secondary-main)",
