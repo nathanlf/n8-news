@@ -1,18 +1,25 @@
-import React from 'react';
+import React from "react";
 import { toKebabCase } from "../../util/toKebabCase";
-import * as styles from "./ContactForm.module.css";
-import { Path, UseFormRegister, Validate } from "react-hook-form";
-import { IForm } from "./ContactForm";
+import { Box } from "@mui/joy";
 
-export const TextArea = ({
-  label,
-  register,
-  required,
-  validate,
-  rows,
-}) => {
+export const TextArea = ({ label, register, required, validate, rows }) => {
   return (
-    <div className={styles.inputGroup}>
+    <Box
+      sx={{
+        "& label": {
+          textTransform: "uppercase",
+        },
+        "& textarea": {
+          border: "1px solid #ccc",
+          my: 1,
+          px: 1,
+          py: 1,
+          borderRadius: "5px",
+          width: "100%",
+          boxSizing: "border-box",
+        },
+      }}
+    >
       <label htmlFor={toKebabCase(label)}>{label}</label>
       <textarea
         {...register(label, { validate, required })}
@@ -21,6 +28,6 @@ export const TextArea = ({
         rows={rows}
         required={required}
       ></textarea>
-    </div>
+    </Box>
   );
 };

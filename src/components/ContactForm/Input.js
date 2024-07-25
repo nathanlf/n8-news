@@ -1,18 +1,30 @@
-import React, { HTMLInputTypeAttribute } from 'react';
-import { Path, UseFormRegister, Validate } from 'react-hook-form';
-import { toKebabCase } from '../../util/toKebabCase';
-import * as styles from './ContactForm.module.css';
-import { IForm } from './ContactForm';
+import React from "react";
+import { toKebabCase } from "../../util/toKebabCase";
+import { Box } from "@mui/joy";
 
-export const Input = ({
-  label,
-  register,
-  required,
-  type,
-  validate
-}) => {
+export const Input = ({ label, register, required, type, validate }) => {
   return (
-    <div className={styles.inputGroup}>
+    <Box
+      sx={{
+        py: 2,
+        borderRadius: "10px",
+        width: "100%",
+        "& label": {
+          textTransform: "uppercase",
+        },
+        "& input, & select, & textarea": {
+          border: "1px solid #ccc",
+          my: 1,
+          px: 1,
+          py: 1,
+          borderRadius: "5px",
+          width: "100%",
+          boxSizing: "border-box",
+          fontFamily: "inherit",
+          fontSize: 16,
+        },
+      }}
+    >
       <label htmlFor={toKebabCase(label)}>{label}</label>
       {type === "select" ? (
         <select
@@ -20,12 +32,12 @@ export const Input = ({
           name={label}
           id={toKebabCase(label)}
         >
-          <option>I have a question</option>
-          <option>How can I get involved?</option>
-          <option>I&apos;d like to report a website issue</option>
-          <option>General inquiry</option>
+          <option>I'd like to contribute to the newsletter</option>
+          <option>I&apos;d like to report an issue</option>
+          <option>I have a suggestion</option>
+          <option>General inquiry/statement</option>
         </select>
-      ): (
+      ) : (
         <input
           {...register(label, { validate, required })}
           type={type}
@@ -33,6 +45,6 @@ export const Input = ({
           id={toKebabCase(label)}
         />
       )}
-    </div>
-  )
-}
+    </Box>
+  );
+};

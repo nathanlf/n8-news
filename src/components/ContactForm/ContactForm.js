@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/joy";
+import { Button, Box, Typography } from "@mui/joy";
 import { Send as SendIcon } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
-import * as styles from "./ContactForm.module.css";
 import { Input } from "./Input";
 import { TextArea } from "./TextArea";
 
@@ -46,20 +45,32 @@ export const ContactForm = () => {
   return (
     <>
       {response !== "" && (
-        <div className={styles.responseMessage}>{response}</div>
+        <Typography
+          sx={{
+            px: 2,
+            py: 2,
+            borderLeft: "3px solid var(--joy-palette-secondary-main)",
+            borderRadius: "0 10px 10px 0",
+          }}
+        >
+          {response}
+        </Typography>
       )}
-      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.nameEmailGroup}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Box
+          className="nameEmailGroup"
+          gap={5}
+          sx={{ flex: 1, display: "flex" }}
+        >
           <Input label="Name" required type="text" register={register} />
-
           <Input label="Email" required type="email" register={register} />
-        </div>
+        </Box>
 
         <Input label="Options" required type="select" register={register} />
 
         <TextArea label="Message" required rows={10} register={register} />
 
-        <div className={styles.submitButtonWrapper}>
+        <Box sx={{ pb: 4, fontSize: "0.85rem", textAlign: "right" }}>
           <Button
             type="submit"
             startDecorator={<SendIcon />}
@@ -67,7 +78,7 @@ export const ContactForm = () => {
           >
             Send
           </Button>
-        </div>
+        </Box>
       </form>
     </>
   );
