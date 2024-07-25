@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/joy";
 import { Send as SendIcon } from "@mui/icons-material";
-import {
-  Controller,
-  useFormContext,
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import * as styles from "./ContactForm.module.css";
 import { Input } from "./Input";
 import { TextArea } from "./TextArea";
