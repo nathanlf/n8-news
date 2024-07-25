@@ -38,7 +38,9 @@ export const Footer = () => {
         <Grid xs={12} sm={12} md={4}>
           <Stack alignItems="center">
             <Stack direction="row" justifyContent="center">
-              <AboutIcon sx={{ fontSize: 22, mr: 0.5 }} />
+              <AboutIcon
+                sx={{ fontSize: 22, mr: 0.5, filter: "opacity(0.9)" }}
+              />
               <Typography
                 level="title-lg"
                 align="center"
@@ -82,10 +84,12 @@ export const Footer = () => {
           xs={8}
           sm={6}
           md={4}
+          gap={2}
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <Stack direction="row" justifyContent="center">
@@ -104,7 +108,6 @@ export const Footer = () => {
             justifyContent="center"
             spacing={3}
             direction="row"
-            sx={{ my: 4 }}
           >
             <Link to="https://www.linkedin.com/company/renaissance-computing-institute/">
               <LinkedInIcon sx={{ fontSize: 40 }} />
@@ -115,11 +118,11 @@ export const Footer = () => {
             <Link to="https://www.facebook.com/renci.org">
               <FacebookIcon sx={{ fontSize: 40 }} />
             </Link>
-
             <Link to="https://x.com/renci">
               <XIcon sx={{ fontSize: 40 }} />
             </Link>
           </Stack>
+          <Link to="/feedback">Contact Us</Link>
         </Grid>
       </Grid>
     </Box>
