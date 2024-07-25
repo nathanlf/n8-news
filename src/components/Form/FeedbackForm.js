@@ -8,7 +8,7 @@ import { TextArea } from "./TextArea";
 const GOOGLE_APPS_SCRIPT_LINK =
   "https://script.google.com/macros/s/AKfycbxeB6s-NsD6jcs98qAamRziXyMg_Gt7g6uK8cdMqpmlPQZBYXVxWFJnRUkgH25LD_Ex/exec";
 
-export const ContactForm = () => {
+export const FeedbackForm = () => {
   const {
     register,
     handleSubmit,
