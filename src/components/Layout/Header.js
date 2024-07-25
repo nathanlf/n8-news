@@ -17,9 +17,10 @@ export const Header = ({ title }) => {
     >
       <Link to="/" alt="Newest Edition">
         <StaticImage
-          src="../../images/renci-logo-simple.png"
+          src="../../images/renci-logo.png"
           alt="RENCI Logo"
           width={200}
+          placeholder="blurred"
         />
       </Link>
       <Stack direction="column" alignItems="flex-end">
