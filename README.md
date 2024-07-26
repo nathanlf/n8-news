@@ -22,18 +22,15 @@ Each issue should start with frontmatter, denoted by opening and closing `---` l
   - A brief description of what is depicted in the cover image. This will be displayed immediately below the cover image in each newsletter.
 
 > [!NOTE]
-> As of now, links within the image caption are unsupported.
+> As of now, links within the image caption and inline images are unsupported.
 
 After the frontmatter, the only requirement is that you should use h1 headers (`# Section Title`) to denote the beginning of a new section. These h1s will be automatically converted to the smart section headers seen in each issue. These headers will also be automatically listed in the table of contents.
+
+We have included a template to follow in the following section, but feel free to look at past editions' `index.md` files in `/newsletter-issues` for additional guidance.
 
 > [!IMPORTANT]
 > Be sure not to use h1 headers in other ways, as they will only be interpreted as section headers.
 > Otherwise, feel free to use any valid markdown (GFM) syntax.
-
-> [!NOTE]
-> As of now, inline images are unsupported.
-
-We have included a template to follow in the following section, but feel free to look at past editions' `index.md` files in `/newsletter-issues` for additional guidance.
 
 ### Markdown File Template
 
