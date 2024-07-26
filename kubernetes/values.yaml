@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: containers.renci.org/renci-dot-org/newsletter-temp
+  repository: containers.renci.org/comms/newsletter
   tag: "1.2.0"
 
 resources:
