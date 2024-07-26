@@ -20,8 +20,7 @@ export const CompactTableOfContents = ({ headers }) => {
       sx={{
         position: "static",
         backgroundColor: "transparent",
-        top: "1rem",
-        height: "100%",
+        pt: 2,
         ".toc-toggler": {
           justifyContent: "flex-start",
         },

@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ReactMarkdown from "react-markdown";
 import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Typography from "@mui/joy/Typography";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
-import { Box } from "@mui/joy";
+import { Box, Divider, Typography } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { CoverHeader } from "./CoverHeader";
@@ -56,31 +56,29 @@ export const Issue = ({ vol, iss }) => {
       )}
       <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
       <CoverHeader vol={vol} iss={iss} month={month} year={year} />
-      <Box>
-        <Typography
-          level="body-sm"
-          textAlign="center"
-          gutterBottom
-          sx={{
-            fontStyle: "italic",
-            py: 1,
-          }}
-        >
-          {caption}
-        </Typography>
-        <Typography
-          level="body-lg"
-          gutterBottom
-          sx={{
-            fontStyle: "italic",
-            fontWeight: 500,
-          }}
-        >
-          {blurb}
-        </Typography>
-        {isCompact && <CompactTableOfContents headers={headers} />}
-        <Markdown src={rawMarkdownBody} />
-      </Box>
+      <Typography
+        textAlign="center"
+        sx={{
+          fontStyle: "italic",
+          px: 1,
+          py: 1.5,
+        }}
+      >
+        <Markdown src={caption} />
+      </Typography>
+      <Divider />
+      <Typography
+        level="body-lg"
+        sx={{
+          fontStyle: "italic",
+          fontWeight: 500,
+          pt: 1.5,
+        }}
+      >
+        {blurb}
+      </Typography>
+      {isCompact && <CompactTableOfContents headers={headers} />}
+      <Markdown src={rawMarkdownBody} />
     </>
   );
 };
