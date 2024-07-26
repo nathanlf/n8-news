@@ -30,6 +30,7 @@ const NavLink = ({ Icon, label, to }) => {
   return (
     <Link
       to={to}
+      color="primary"
       sx={{
         px: 1.5,
         py: 1,
@@ -40,11 +41,13 @@ const NavLink = ({ Icon, label, to }) => {
           backgroundColor: "#ececec",
           borderRadius: 4,
         },
+        '&[aria-current="page"]': {
+          backgroundColor: 'var(--joy-palette-primary-100)',
+        }
       }}
+      startDecorator={<Icon />}
     >
-      <Typography level="h4" startDecorator={<Icon />} sx={{ fontSize: 17 }}>
-        {label}
-      </Typography>
+      {label}
     </Link>
   );
 };
@@ -54,7 +57,6 @@ export const Navbar = () => {
     <Stack
       role="navigation"
       direction="row"
-      divider={<Divider orientation="vertical" />}
       alignItems="center"
       justifyContent="right"
       sx={{
