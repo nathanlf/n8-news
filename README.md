@@ -120,7 +120,7 @@ Pandoc's conversion with complex documents has few errors, unlike many other doc
 First, decide the version number of your release using [semver](https://semver.org/). For this example, we will assume the version number is 1.1.4. The latest image version number can be found in the [harbor repo](https://containers.renci.org/harbor/projects/34/repositories/newsletter-temp/artifacts-tab) and latest deployed image can be found by using this command:
 
 ```bash
-kubectl get pods -n comms -o jsonpath="{.items[*].spec.containers[*].image}" -l app.kubernetes.io/name=renci-dot-org-newsletter-temp
+kubectl get pods -n comms -o jsonpath="{.items[*].spec.containers[*].image}" -l app.kubernetes.io/name=comms-newsletter
 ```
 
 To build the image, draft a new release in GitHub, give it a version, then publish it. Github Actions will be triggered on the publishing of a new release. You can view the details of the build under the Actions tab in the repo.
