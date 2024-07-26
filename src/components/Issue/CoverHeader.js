@@ -6,7 +6,7 @@ import { StaticImage } from "gatsby-plugin-image";
 export const CoverHeader = ({ vol, iss, month, year }) => {
   const title = `Internal
     Newsletter`;
-  const date = `${month}, ${year}`;
+  const date = `${month} ${year}`;
   const edition = `Volume ${vol}
     Issue ${iss}`;
 
