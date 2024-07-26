@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "../Link";
-import { Stack, Divider, Typography } from "@mui/joy";
+import { Stack } from "@mui/joy";
 import {
   LibraryBooks as ArchiveIcon,
   Article as NewestEditionIcon,
