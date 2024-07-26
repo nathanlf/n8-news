@@ -21,16 +21,17 @@ Each issue should start with frontmatter, denoted by opening and closing `---` l
 - cover image caption [blockquote string]
   - A brief description of what is depicted in the cover image. This will be displayed immediately below the cover image in each newsletter.
 
-[!NOTE]
-As of now, links within the image caption are unsupported.
+> [!NOTE]
+> As of now, links within the image caption are unsupported.
 
 After the frontmatter, the only requirement is that you should use h1 headers (`# Section Title`) to denote the beginning of a new section. These h1s will be automatically converted to the smart section headers seen in each issue. These headers will also be automatically listed in the table of contents.
 
-[!IMPORTANT]
-Be sure not to use h1 headers in other ways, as they will only be interpreted as section headers. Otherwise, feel free to use any valid markdown (GFM) syntax.
+> [!IMPORTANT]
+> Be sure not to use h1 headers in other ways, as they will only be interpreted as section headers.
+> Otherwise, feel free to use any valid markdown (GFM) syntax.
 
-[!NOTE]
-As of now, inline images are unsupported.
+> [!NOTE]
+> As of now, inline images are unsupported.
 
 We have included a template to follow in the following section, but feel free to look at past editions' `index.md` files in `/newsletter-issues` for additional guidance.
 
@@ -44,11 +45,11 @@ volume: 4
 issue: 5
 blurb: >
   The May edition of the RENCI Internal Newsletter includes
-  all kinds of awesome things! ...
+  all kinds of awesome things ...
 coverImage:
   path: "cover-image.png"
   caption: >
-    Pictured: Image description goes here! If this caption ends up being
+    Pictured: Image description goes here. If this caption ends up being
       longer than one line, make sure to include a small indent on subsequent
       lines, as shown here ...
 ---
@@ -65,8 +66,11 @@ coverImage:
 # Ongoing Initiatives
 ```
 
-[!TIP]
-You may find it helpful to use a previewer when writing in markdown to see what it may look like ahead of publication. GitHub has an editor and preview tab built-in when viewing a markdown file in the repository. Otherwise, feel free to use sites like [this](https://markdownlivepreview.com/), or [this](https://loilo.github.io/gfm-preview/) for GFM.
+> [!TIP]
+> You may find it helpful to use a previewer when writing in markdown to see what it may look like
+> ahead of publication. GitHub has an editor and preview tab built-in when viewing a markdown file in
+> the repository. Otherwise, feel free to use sites like [this](https://markdownlivepreview.com/),
+> or [this](https://loilo.github.io/gfm-preview/) for GFM.
 
 ### Adding a New Edition
 
@@ -81,8 +85,8 @@ In this new edition's directory, include the following files:
 
 Once these files are added to this new edition's directory, the application will automatically update the newest edition (landing) page to accommodate this change.
 
-[!NOTE]
-The newest edition will not be displayed in the archive until it is no longer the newest edition.
+> [!NOTE]
+> The newest edition will not be displayed in the archive until it is no longer the newest edition.
 
 ## Deployment
 
