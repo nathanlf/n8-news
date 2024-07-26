@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactMarkdown from "react-markdown";
 import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TableOfContents } from "./TableOfContents";
