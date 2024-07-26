@@ -1,6 +1,15 @@
 import React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 import { Typography, Box, Grid, Stack } from "@mui/joy";
 import { Link } from "../Link";
+import {
+  Info as AboutIcon,
+  LinkedIn as LinkedInIcon,
+  YouTube as YouTubeIcon,
+  Facebook as FacebookIcon,
+  X as XIcon,
+  Hub as HubIcon,
+} from "@mui/icons-material";
 
 export const Footer = () => {
   return (
@@ -21,22 +30,31 @@ export const Footer = () => {
         container
         direction="row"
         justifyContent="center"
-        alignItems="center"
+        alignItems="flex-start"
         sx={{
           maxWidth: "800px",
         }}
       >
         <Grid xs={12} sm={12} md={4}>
           <Stack alignItems="center">
-            <Typography level="title-lg" align="center">
-              RENCI Info
-            </Typography>
+            <Stack direction="row" justifyContent="center">
+              <AboutIcon
+                sx={{ fontSize: 22, mr: 0.5, filter: "opacity(0.9)" }}
+              />
+              <Typography
+                level="title-lg"
+                align="center"
+                sx={{ fontWeight: 700 }}
+                gutterBottom
+              >
+                About
+              </Typography>
+            </Stack>
             <Typography level="body-sm" align="center" gutterBottom>
-              RENCI (Renaissance Computing Institute) develops and deploys
-              advanced technologies to enable research discoveries and practical
-              innovations. Lorem ipsum ...
+              This web application was built to serve as a new home for RENCI's
+              internal newsletter. Feel free to view past newsletters in the
+              archive or check out this month's edition anytime!
             </Typography>
-            <Link to="https://renci.org/">Learn More</Link>
           </Stack>
         </Grid>
         <Grid
@@ -49,28 +67,63 @@ export const Footer = () => {
             justifyContent: "center",
           }}
         >
-          <Typography level="body-md" align="center">
-            © 2024 RENCI
-          </Typography>
+          <Stack direction="column" alignItems="center" sx={{ my: 4 }}>
+            <Link to="https://renci.org/">
+              <StaticImage
+                src="../../images/renci-logo-gray-simple.png"
+                width={80}
+                alt="RENCI Simple Gray Logo"
+                placeholder="blurred"
+              />
+            </Link>
+            <Typography level="body-md" align="center" sx={{ mt: 2 }}>
+              © 2024
+            </Typography>
+          </Stack>
         </Grid>
         <Grid
           xs={8}
           sm={6}
           md={4}
+          gap={2}
           sx={{
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Typography level="title-lg" align="center">
-            Get Connected
-          </Typography>
-          <Stack alignItems="center">
-            <Link to="https://renci.org/">Example 1</Link>
-            <Link to="https://renci.org/">Example 2</Link>
-            <Link to="https://renci.org/">Example 3</Link>
+          <Stack direction="row" justifyContent="center">
+            <HubIcon sx={{ fontSize: 22, mr: 0.8 }} />
+            <Typography
+              level="title-lg"
+              align="center"
+              sx={{ fontWeight: 700 }}
+              gutterBottom
+            >
+              Get Connected
+            </Typography>
           </Stack>
+          <Stack
+            alignItems="center"
+            justifyContent="center"
+            spacing={3}
+            direction="row"
+          >
+            <Link to="https://www.linkedin.com/company/renaissance-computing-institute/">
+              <LinkedInIcon sx={{ fontSize: 40 }} />
+            </Link>
+            <Link to="https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA">
+              <YouTubeIcon sx={{ fontSize: 40 }} />
+            </Link>
+            <Link to="https://www.facebook.com/renci.org">
+              <FacebookIcon sx={{ fontSize: 40 }} />
+            </Link>
+            <Link to="https://x.com/renci">
+              <XIcon sx={{ fontSize: 40 }} />
+            </Link>
+          </Stack>
+          <Link to="/feedback">Contact Us</Link>
         </Grid>
       </Grid>
     </Box>

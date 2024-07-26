@@ -15,9 +15,7 @@ export const YearSelector = ({ defaultYear }) => {
       defaultValue={defaultYear}
       indicator={<KeyboardArrowDown />}
       sx={{
-        py: 1,
-        width: 240,
-        fontWeight: 600,
+        width: 90,
         display: "flex",
         justifyContent: "center",
         [`& .${selectClasses.indicator}`]: {
@@ -29,14 +27,7 @@ export const YearSelector = ({ defaultYear }) => {
       }}
     >
       {years.map((year) => (
-        <Link
-          key={year}
-          to={`/archive/${year}`}
-          sx={{
-            fontWeight: 500,
-            justifyContent: "center",
-          }}
-        >
+        <Link key={year} to={`/archive/${year}`}>
           <Option value={year} sx={{ flexGrow: 1 }}>
             {year}
           </Option>

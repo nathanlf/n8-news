@@ -7,7 +7,7 @@ const InitiativesPage = () => {
     <>
       <PageTitle title="Initiatives" />
       <Typography level="body-lg">
-        How to get involved / ongoing initiatives / dynamic info live here...
+        Ongoing initiatives, service groups, dynamic info, TBD will live here...
       </Typography>
     </>
   );

@@ -1,13 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Typography from "@mui/joy/Typography";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
-import { PageTitle } from "../Layout/PageTitle";
-import { Box } from "@mui/joy";
+import { Box, Divider, Typography } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
+import { CoverHeader } from "./CoverHeader";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -25,6 +25,8 @@ export const Issue = ({ vol, iss }) => {
   );
   let caption = issueObj.frontmatter.coverImage?.caption;
   const date = new Date(`${2020 + vol}-${iss}-01`);
+  const year = date.getFullYear();
+  const month = date.toLocaleString("en-US", { month: "long" });
   const headers = [];
 
   // Traverse htmlAst to find h1 elements
@@ -51,36 +53,36 @@ export const Issue = ({ vol, iss }) => {
           <TableOfContents headers={headers} />
         </Box>
       )}
-      <PageTitle title={`Volume ${vol}, Issue ${iss}`} />
-      <Typography level="h4" variant="plain" gutterBottom>
-        {`${date.toLocaleString("en-US", { month: "long" })} ${date.getFullYear()}`}
-      </Typography>
       <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-      <Box>
-        <Typography
-          level="body-sm"
-          textAlign="center"
-          gutterBottom
-          sx={{
-            fontStyle: "italic",
-            py: 1,
-          }}
-        >
-          {caption}
-        </Typography>
-        <Typography
-          level="body-lg"
-          gutterBottom
-          sx={{
-            fontStyle: "italic",
-            fontWeight: 500,
-          }}
-        >
-          {blurb}
-        </Typography>
-        {isCompact && <CompactTableOfContents headers={headers} />}
-        <Markdown src={rawMarkdownBody} />
-      </Box>
+      <CoverHeader vol={vol} iss={iss} month={month} year={year} />
+      <Typography
+        textAlign="center"
+        sx={{
+          fontStyle: "italic",
+          px: 1,
+          py: 1.5,
+        }}
+      >
+        <Markdown src={caption} />
+      </Typography>
+      <Divider />
+      <Typography
+        level="body-lg"
+        sx={{
+          fontStyle: "italic",
+          fontWeight: 500,
+          pt: 1.5,
+        }}
+      >
+        {blurb}
+      </Typography>
+      {isCompact && <CompactTableOfContents headers={headers} />}
+      <Markdown src={rawMarkdownBody} />
     </>
   );
+};
+
+Issue.propTypes = {
+  vol: PropTypes.number.isRequired,
+  iss: PropTypes.number.isRequired,
 };
