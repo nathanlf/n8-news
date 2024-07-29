@@ -37,13 +37,12 @@ const NavLink = ({ Icon, label, to }) => {
         textDecoration: "none",
         "&:hover": {
           textDecoration: "underline",
-          textDecorationColor: "#000000",
           backgroundColor: "#ececec",
           borderRadius: 4,
         },
         '&[aria-current="page"]': {
-          backgroundColor: 'var(--joy-palette-primary-100)',
-        }
+          backgroundColor: "var(--joy-palette-primary-100)",
+        },
       }}
       startDecorator={<Icon />}
     >
