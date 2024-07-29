@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "../Link";
-import { Stack, Divider, Typography } from "@mui/joy";
+import { Stack } from "@mui/joy";
 import {
   LibraryBooks as ArchiveIcon,
   Article as NewestEditionIcon,
@@ -30,21 +30,23 @@ const NavLink = ({ Icon, label, to }) => {
   return (
     <Link
       to={to}
+      color="primary"
       sx={{
         px: 1.5,
         py: 1,
         textDecoration: "none",
         "&:hover": {
           textDecoration: "underline",
-          textDecorationColor: "#000000",
           backgroundColor: "#ececec",
           borderRadius: 4,
         },
+        '&[aria-current="page"]': {
+          backgroundColor: "var(--joy-palette-primary-100)",
+        },
       }}
+      startDecorator={<Icon />}
     >
-      <Typography level="h4" startDecorator={<Icon />} sx={{ fontSize: 17 }}>
-        {label}
-      </Typography>
+      {label}
     </Link>
   );
 };
@@ -54,7 +56,6 @@ export const Navbar = () => {
     <Stack
       role="navigation"
       direction="row"
-      divider={<Divider orientation="vertical" />}
       alignItems="center"
       justifyContent="right"
       sx={{
