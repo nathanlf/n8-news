@@ -26,7 +26,7 @@ const menuItems = [
   //   label: "Initiatives",
   // },
   {
-    to: "/feedback",
+    to: "/contact",
     Icon: ContactIcon,
     label: "Contact",
   },
