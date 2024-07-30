@@ -7,6 +7,7 @@ export const TextArea = ({ label, register, required, validate, rows }) => {
     <Box
       sx={{
         pt: 1,
+
         "& label": {
           textTransform: "uppercase",
         },
@@ -17,6 +18,7 @@ export const TextArea = ({ label, register, required, validate, rows }) => {
           py: 1,
           borderRadius: "5px",
           width: "100%",
+          resize: "vertical",
           boxSizing: "border-box",
         },
       }}
