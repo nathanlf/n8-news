@@ -34,11 +34,11 @@ const NavLink = ({ Icon, label, to }) => {
       sx={{
         px: 1.5,
         py: 1,
-        textDecoration: "none",
         "&:hover": {
-          textDecoration: "underline",
+          textDecoration: "none",
           backgroundColor: "#ececec",
-          borderRadius: 4,
+          transition: "background-color 250ms",
+          border: "1px",
         },
         '&[aria-current="page"]': {
           backgroundColor: "var(--joy-palette-primary-100)",
@@ -59,8 +59,6 @@ export const Navbar = () => {
       alignItems="center"
       justifyContent="right"
       sx={{
-        border: "1px",
-        borderRadius: "sm",
         fontWeight: 600,
       }}
     >
