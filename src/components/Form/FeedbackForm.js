@@ -70,7 +70,7 @@ export const FeedbackForm = () => {
 
         <TextArea label="Message" required rows={10} register={register} />
 
-        <Box sx={{ pt: 0.5, pb: 4, fontSize: "0.85rem", textAlign: "right" }}>
+        <Box sx={{ pt: 0.5, pb: 2, fontSize: "0.85rem", textAlign: "right" }}>
           <Button
             type="submit"
             startDecorator={<SendIcon />}
