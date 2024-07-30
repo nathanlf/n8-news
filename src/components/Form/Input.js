@@ -6,7 +6,7 @@ export const Input = ({ label, register, required, type, validate }) => {
   return (
     <Box
       sx={{
-        py: 2,
+        pt: 1,
         borderRadius: "10px",
         width: "100%",
         "& label": {

@@ -62,15 +62,15 @@ export const FeedbackForm = () => {
           gap={5}
           sx={{ flex: 1, display: "flex" }}
         >
-          <Input label="Name" required type="text" register={register} />
+          <Input label="Your Name" required type="text" register={register} />
           <Input label="Email" required type="email" register={register} />
         </Box>
 
-        <Input label="Options" required type="select" register={register} />
+        <Input label="Subject" required type="select" register={register} />
 
         <TextArea label="Message" required rows={10} register={register} />
 
-        <Box sx={{ pb: 4, fontSize: "0.85rem", textAlign: "right" }}>
+        <Box sx={{ pt: 0.5, pb: 4, fontSize: "0.85rem", textAlign: "right" }}>
           <Button
             type="submit"
             startDecorator={<SendIcon />}

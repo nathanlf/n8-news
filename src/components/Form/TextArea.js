@@ -6,6 +6,7 @@ export const TextArea = ({ label, register, required, validate, rows }) => {
   return (
     <Box
       sx={{
+        pt: 1,
         "& label": {
           textTransform: "uppercase",
         },
