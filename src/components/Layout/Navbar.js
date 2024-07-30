@@ -7,6 +7,7 @@ import {
   // Event as InitiativesIcon,
   ContactMail as ContactIcon,
 } from "@mui/icons-material";
+import { useLocation } from "@reach/router";
 
 const menuItems = [
   {
@@ -33,6 +34,12 @@ const menuItems = [
 ];
 
 const NavLink = ({ Icon, label, to }) => {
+  const location = useLocation();
+  let isActive = location.pathname.includes(to);
+
+  // ensures that the "Newest Edition" tab does not always appear active
+  if (to === "/") isActive = location.pathname === to;
+
   return (
     <Link
       to={to}
@@ -46,9 +53,10 @@ const NavLink = ({ Icon, label, to }) => {
           transition: "background-color 250ms",
           border: "1px",
         },
-        '&[aria-current="page"]': {
-          backgroundColor: "var(--joy-palette-primary-100)",
-        },
+
+        ...(isActive
+          ? { backgroundColor: "var(--joy-palette-primary-100)" }
+          : {}),
       }}
       startDecorator={<Icon />}
     >
