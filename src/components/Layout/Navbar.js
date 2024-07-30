@@ -5,6 +5,7 @@ import {
   LibraryBooks as ArchiveIcon,
   Article as NewestEditionIcon,
   // Event as InitiativesIcon,
+  ContactMail as ContactIcon,
 } from "@mui/icons-material";
 
 const menuItems = [
@@ -24,6 +25,11 @@ const menuItems = [
   //   Icon: InitiativesIcon,
   //   label: "Initiatives",
   // },
+  {
+    to: "/feedback",
+    Icon: ContactIcon,
+    label: "Contact",
+  },
 ];
 
 const NavLink = ({ Icon, label, to }) => {
