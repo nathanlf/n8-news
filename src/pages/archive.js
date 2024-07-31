@@ -14,7 +14,7 @@ const ArchivePage = () => {
 export const Head = () => (
   <>
     <html lang="en" />
-    <title>Newsletter Archive</title>
+    <title>Archive</title>
   </>
 );
 
