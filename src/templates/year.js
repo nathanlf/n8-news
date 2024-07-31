@@ -86,4 +86,6 @@ export const query = graphql`
   }
 `;
 
+export const Head = () => <title>Archive Year</title>;
+
 export default ArchiveYear;

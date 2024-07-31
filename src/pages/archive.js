@@ -11,4 +11,6 @@ const ArchivePage = () => {
   );
 };
 
+export const Head = () => <title>Newsletter Archive</title>;
+
 export default ArchivePage;

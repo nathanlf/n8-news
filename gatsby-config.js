@@ -4,8 +4,8 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Internal Newsletter`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `RENCI Internal Newsletter`,
+    siteUrl: `https://newsletter.apps.renci.org`,
   },
   plugins: [
     `gatsby-plugin-image`,
