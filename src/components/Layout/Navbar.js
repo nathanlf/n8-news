@@ -49,7 +49,7 @@ const NavLink = ({ Icon, label, to }) => {
         py: 1,
         "&:hover": {
           textDecoration: "none",
-          backgroundColor: "#ececec",
+          backgroundColor: "var(--joy-palette-primary-100)",
           transition: "background-color 250ms",
           border: "1px",
         },
