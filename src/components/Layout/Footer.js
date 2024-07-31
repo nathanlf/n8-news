@@ -128,11 +128,12 @@ export const Footer = () => {
             >
               <FacebookIcon sx={{ fontSize: 40 }} />
             </Link>
-            <Link to="https://x.com/renci">
-              <XIcon
-                sx={{ fontSize: 40 }}
-                aria-label="Navigate to the RENCI X (Twitter) page"
-              />
+
+            <Link
+              to="https://x.com/renci"
+              aria-label="Navigate to the RENCI X (Twitter) page"
+            >
+              <XIcon sx={{ fontSize: 40 }} />
             </Link>
           </Stack>
           <Link to="/feedback">Contact Us</Link>
