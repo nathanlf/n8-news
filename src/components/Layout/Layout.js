@@ -6,7 +6,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { styled } from "@mui/joy/styles";
 import { Container } from "./Container";
-import renciLinesSvg from "../../images/renci-lines.svg";
+import renciLinesSvg from "../../images/renci-lines-sideways.svg";
 import { Divider } from "@mui/joy";
 
 const FancyBackground = styled("div")(() => ({
@@ -14,6 +14,7 @@ const FancyBackground = styled("div")(() => ({
   backgroundRepeat: "no-repeat",
   backgroundPosition: "0 0",
   backgroundSize: "contain",
+  backgroundAttachment: "fixed",
   flexGrow: 1,
   display: "flex",
   flexDirection: "column",
