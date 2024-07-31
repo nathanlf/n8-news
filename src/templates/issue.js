@@ -23,6 +23,11 @@ export const query = graphql`
   }
 `;
 
-export const Head = () => <title>Internal Newsletter Issue</title>;
+export const Head = () => (
+  <>
+    <html lang="en" />
+    <title>Internal Newsletter Issue</title>
+  </>
+);
 
 export default NewsletterIssue;

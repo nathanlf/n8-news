@@ -15,6 +15,7 @@ const InitiativesPage = () => {
 
 export const Head = () => (
   <>
+    <html lang="en" />
     <title>Initiatives</title>
   </>
 );
