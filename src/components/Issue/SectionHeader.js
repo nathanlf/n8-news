@@ -21,13 +21,12 @@ export const SectionHeader = ({ title }) => {
       justifyContent="space-between"
       alignItems="center"
       sx={{
-        my: 5,
+        my: 4,
         px: 1.5,
         py: 1,
         backgroundColor: "#02aac6",
         display: "flex",
         flexGrow: 1,
-        borderRadius: 8,
         position: "sticky",
         top: 0,
         zIndex: 9,
