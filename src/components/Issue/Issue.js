@@ -8,6 +8,7 @@ import { Box, Divider, Typography } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { CoverHeader } from "./CoverHeader";
+import { EndSign } from "./EndSign";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -78,6 +79,7 @@ export const Issue = ({ vol, iss }) => {
       </Typography>
       {isCompact && <CompactTableOfContents headers={headers} />}
       <Markdown src={rawMarkdownBody} />
+      <EndSign />
     </>
   );
 };
