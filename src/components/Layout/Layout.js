@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useStaticQuery, graphql } from "gatsby";
 import PropTypes from "prop-types";
 import "/src/styles/global.css";
 import { Header } from "./Header";
@@ -21,20 +20,10 @@ const FancyBackground = styled("div")(() => ({
 }));
 
 export const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query Title {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
   return (
     <FancyBackground>
       <Container>
-        <Header title={data.site.siteMetadata.title} />
+        <Header title="Internal Newsletter" />
         <Divider
           orientation="horizontal"
           role="presentation"
