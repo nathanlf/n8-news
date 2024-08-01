@@ -28,9 +28,7 @@ export const Head = ({ data }) => {
   return (
     <>
       <html lang="en" />
-      <title>
-        `Volume ${volume} Issue ${issue}`
-      </title>
+      <title>{`Volume ${volume} Issue ${issue}`}</title>
     </>
   );
 };
