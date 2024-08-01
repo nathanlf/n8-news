@@ -136,7 +136,7 @@ export const Footer = () => {
               <XIcon sx={{ fontSize: 40 }} />
             </Link>
           </Stack>
-          <Link to="/feedback">Contact Us</Link>
+          <Link to="/contact">Contact Us</Link>
         </Grid>
       </Grid>
     </Box>
