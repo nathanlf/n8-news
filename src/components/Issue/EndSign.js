@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Typography, Box, Divider } from "@mui/joy";
+import { Stack, Typography, Divider } from "@mui/joy";
 import { Link } from "../Link";
 import {
   AllInclusive as InfinityIcon,
