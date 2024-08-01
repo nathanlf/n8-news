@@ -5,7 +5,7 @@ import {
   LibraryBooks as ArchiveIcon,
   Article as NewestEditionIcon,
   // Event as InitiativesIcon,
-  ContactMail as ContactIcon,
+  Chat as ContactIcon,
 } from "@mui/icons-material";
 import { useLocation } from "@reach/router";
 
