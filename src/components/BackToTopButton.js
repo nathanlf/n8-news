@@ -20,6 +20,7 @@ export const BackToTopButton = ({ children }) => {
         color="primary"
         endDecorator={<BackToTopIcon sx={{ fontSize: 24, mx: -1.5 }} />}
         sx={{ mt: 2 }}
+        aria-label="Back to Top Button"
       >
         <Typography
           level="h5"
@@ -42,6 +43,7 @@ export const BackToTopButton = ({ children }) => {
         scrollToTop();
       }}
       color="neutral"
+      aria-label="Back to Top Button"
     >
       <BackToTopIcon />
     </IconButton>

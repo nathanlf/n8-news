@@ -110,16 +110,29 @@ export const Footer = () => {
             spacing={3}
             direction="row"
           >
-            <Link to="https://www.linkedin.com/company/renaissance-computing-institute/">
+            <Link
+              to="https://www.linkedin.com/company/renaissance-computing-institute/"
+              aria-label="Navigate to the RENCI LinkedIn page"
+            >
               <LinkedInIcon sx={{ fontSize: 40 }} />
             </Link>
-            <Link to="https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA">
+            <Link
+              to="https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA"
+              aria-label="Navigate to the RENCI YouTube channel"
+            >
               <YouTubeIcon sx={{ fontSize: 40 }} />
             </Link>
-            <Link to="https://www.facebook.com/renci.org">
+            <Link
+              to="https://www.facebook.com/renci.org"
+              aria-label="Navigate to the RENCI Meta (Facebook) page"
+            >
               <FacebookIcon sx={{ fontSize: 40 }} />
             </Link>
-            <Link to="https://x.com/renci">
+
+            <Link
+              to="https://x.com/renci"
+              aria-label="Navigate to the RENCI X (Twitter) page"
+            >
               <XIcon sx={{ fontSize: 40 }} />
             </Link>
           </Stack>

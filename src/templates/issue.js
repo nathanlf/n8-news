@@ -23,4 +23,18 @@ export const query = graphql`
   }
 `;
 
+// get volume and issue from url (or something) and then use it in head title
+
+export const Head = ({ data }) => {
+  const { volume, issue } = data.frontmatter;
+  return (
+    <>
+      <html lang="en" />
+      <title>
+        `Volume ${volume} Issue ${issue}`
+      </title>
+    </>
+  );
+};
+
 export default NewsletterIssue;

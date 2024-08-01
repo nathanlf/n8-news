@@ -13,6 +13,7 @@ const ContactPage = () => {
 
 export const Head = () => (
   <>
+    <html lang="en" />
     <title>Contact</title>
   </>
 );
