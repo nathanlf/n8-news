@@ -63,6 +63,7 @@ const DynamicBackToTop = ({ visible, children }) => {
     <Box
       sx={{
         alignSelf: "flex-end",
+        transition: "background-color 250ms",
         ...dynamicStyles,
       }}
     >
@@ -146,6 +147,9 @@ export const TableOfContents = ({ headers }) => {
             size="sm"
             color="primary"
             onClick={() => setOpen(!open)}
+            sx={{
+              transition: "background-color 250ms",
+            }}
           >
             {open && (
               <Typography
@@ -204,7 +208,7 @@ export const TableOfContents = ({ headers }) => {
                         slug === activeSection?.slug
                           ? "4px solid var(--joy-palette-primary-main)"
                           : "4px solid #0001",
-                      transition: "border-color 250ms",
+                      transition: "border-color 250ms, background-color 250ms",
                     }}
                   >
                     <Typography sx={{ fontWeight: 550, fontSize: 13 }}>

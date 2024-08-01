@@ -19,7 +19,7 @@ export const BackToTopButton = ({ children }) => {
         variant="plain"
         color="primary"
         endDecorator={<BackToTopIcon sx={{ fontSize: 24, mx: -1.5 }} />}
-        sx={{ mt: 2 }}
+        sx={{ mt: 2, transition: "background-color 250ms" }}
         aria-label="Back to Top Button"
       >
         <Typography
@@ -44,6 +44,9 @@ export const BackToTopButton = ({ children }) => {
       }}
       color="neutral"
       aria-label="Back to Top Button"
+      sx={{
+        transition: "background-color 250ms",
+      }}
     >
       <BackToTopIcon />
     </IconButton>

@@ -35,6 +35,7 @@ export const CopyButton = ({
         onClick={handleClick}
         variant="plain"
         color={copied ? "success" : "neutral"}
+        sx={{ transition: "background-color 250ms" }}
       >
         {copied ? <CopiedIcon /> : icon}
       </IconButton>
