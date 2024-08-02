@@ -1,6 +1,6 @@
 import React from "react";
 import { StaticImage } from "gatsby-plugin-image";
-import { Typography, Box, Grid, Stack } from "@mui/joy";
+import { Typography, Box, Grid, Stack, IconButton } from "@mui/joy";
 import { Link } from "../Link";
 import {
   Info as AboutIcon,
@@ -36,7 +36,7 @@ export const Footer = () => {
         }}
       >
         <Grid xs={12} sm={12} md={4}>
-          <Stack alignItems="center">
+          <Stack alignItems="center" sx={{ py: 1 }}>
             <Stack direction="row" justifyContent="center">
               <AboutIcon
                 sx={{ fontSize: 22, mr: 0.5, filter: "opacity(0.9)" }}
@@ -58,7 +58,7 @@ export const Footer = () => {
           </Stack>
         </Grid>
         <Grid
-          xs={4}
+          xs={12}
           sm={6}
           md={4}
           sx={{
@@ -82,7 +82,7 @@ export const Footer = () => {
           </Stack>
         </Grid>
         <Grid
-          xs={8}
+          xs={12}
           sm={6}
           md={4}
           gap={2}
@@ -93,13 +93,12 @@ export const Footer = () => {
             alignItems: "center",
           }}
         >
-          <Stack direction="row" justifyContent="center">
+          <Stack direction="row" justifyContent="center" sx={{ py: 1 }}>
             <HubIcon sx={{ fontSize: 22, mr: 0.8 }} />
             <Typography
               level="title-lg"
               align="center"
               sx={{ fontWeight: 700 }}
-              gutterBottom
             >
               Get Connected
             </Typography>
@@ -107,34 +106,41 @@ export const Footer = () => {
           <Stack
             alignItems="center"
             justifyContent="center"
-            spacing={3}
+            spacing={2}
             direction="row"
           >
-            <Link
-              to="https://www.linkedin.com/company/renaissance-computing-institute/"
+            <IconButton
+              href="https://www.linkedin.com/company/renaissance-computing-institute/"
               aria-label="Navigate to the RENCI LinkedIn page"
+              color="primary"
+              size="lg"
             >
-              <LinkedInIcon sx={{ fontSize: 40 }} />
-            </Link>
-            <Link
-              to="https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA"
-              aria-label="Navigate to the RENCI YouTube channel"
+              <LinkedInIcon />
+            </IconButton>
+            <IconButton
+              href="https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA"
+              aria-label="Navigate to the RENCI YouTube Channel"
+              color="primary"
+              size="lg"
             >
-              <YouTubeIcon sx={{ fontSize: 40 }} />
-            </Link>
-            <Link
-              to="https://www.facebook.com/renci.org"
+              <YouTubeIcon />
+            </IconButton>
+            <IconButton
+              href="https://www.facebook.com/renci.org"
               aria-label="Navigate to the RENCI Meta (Facebook) page"
+              color="primary"
+              size="lg"
             >
-              <FacebookIcon sx={{ fontSize: 40 }} />
-            </Link>
-
-            <Link
-              to="https://x.com/renci"
+              <FacebookIcon />
+            </IconButton>
+            <IconButton
+              href="https://x.com/renci"
               aria-label="Navigate to the RENCI X (Twitter) page"
+              color="primary"
+              size="lg"
             >
-              <XIcon sx={{ fontSize: 40 }} />
-            </Link>
+              <LinkedInIcon />
+            </IconButton>
           </Stack>
           <Link to="/contact">Contact Us</Link>
         </Grid>
