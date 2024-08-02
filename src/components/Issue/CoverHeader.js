@@ -17,18 +17,22 @@ export const CoverHeader = ({ vol, iss, month, year }) => {
       sx={{
         display: "flex",
         flexGrow: 1,
-        backgroundColor: "var(--joy-palette-primary-main)",
+        border: "2px solid var(--joy-palette-secondary-main)",
+        borderWidth: "0 1px 1px 1px",
+        background:
+          "linear-gradient(90deg, rgba(2,120,141,1) 33%, rgba(2,162,189,1) 85%, rgba(2,170,192,1) 100%)",
       }}
     >
       <Stack direction="row" gap={1}>
-        <Box sx={{ pl: 6, pr: 3, pt: 4, pb: 2 }}>
+        <Box sx={{ pl: 4, pr: 2, pt: 4, pb: 2 }}>
           <StaticImage
             width={110}
             src="../../images/renci-logo-white-simple.png"
             alt="RENCI Logo"
+            placeholder="blurred"
           />
         </Box>
-        <Divider orientation="vertical" />
+        <Divider orientation="vertical" sx={{ pr: "1px" }} />
         <Typography
           level="h2"
           style={{ whiteSpace: "pre-line" }}
