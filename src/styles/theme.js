@@ -37,6 +37,9 @@ export const theme = extendTheme({
           plainColor: "var(--joy-palette-primary-500, #02aac6)",
           plainHoverBg: "var(--joy-palette-primary-50, #DFFAFF)",
         },
+        secondary: {
+          500: "#747474",
+        },
       },
     },
   },

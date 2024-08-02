@@ -6,6 +6,7 @@ import { createSlug } from "../../util/createSlug";
 import { CopyButton } from "../CopyButton";
 import { BackToTopButton } from "../BackToTopButton";
 import { Link as LinkCopyIcon } from "@mui/icons-material";
+import { Window as DiamondIcon } from "@mui/icons-material";
 
 export const SectionHeader = ({ title }) => {
   const slug = createSlug(title);
@@ -24,17 +25,24 @@ export const SectionHeader = ({ title }) => {
         my: 4,
         px: 1.5,
         py: 1,
-        backgroundColor: "#02aac6",
+        background:
+          "linear-gradient(90deg, rgba(2,120,141,1) 22%, rgba(2,162,189,1) 77%, rgba(2,170,192,1) 100%)",
         display: "flex",
         flexGrow: 1,
         position: "sticky",
         top: 0,
         zIndex: 9,
+        boxShadow: "2px 4px 3px #74747460",
       }}
     >
-      <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
-        {title}
-      </Typography>
+      <Stack direction="row" alignItems="center" gap={1.5}>
+        <DiamondIcon
+          sx={{ transform: "rotate(45deg)", fontSize: 20, color: "#ffffff" }}
+        />
+        <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
+          {title}
+        </Typography>
+      </Stack>
       <Stack direction="row" gap={1}>
         <CopyButton copyText={copyText} icon={<LinkCopyIcon />} />
         <BackToTopButton />
