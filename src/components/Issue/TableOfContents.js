@@ -71,7 +71,7 @@ const DynamicBackToTop = ({ visible, children }) => {
   );
 };
 
-export const TableOfContents = ({ headers, ...props }) => {
+export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
   const [activeSection, setActiveSection] = useState(headers[0]);
   const { scrollPosition } = useScrollPosition();
@@ -127,9 +127,8 @@ export const TableOfContents = ({ headers, ...props }) => {
   return (
     <Sheet
       sx={{
-        position: "sticky",
         backgroundColor: "transparent",
-        top: "1rem",
+        mr: "1.5rem",
         ".toc-toggler": {
           justifyContent: "flex-end",
         },
@@ -137,7 +136,6 @@ export const TableOfContents = ({ headers, ...props }) => {
           justifyContent: "flex-end",
         },
       }}
-      {...props}
     >
       <DynamicMiniLogo visible={showOnScroll} />
       <List size="sm">

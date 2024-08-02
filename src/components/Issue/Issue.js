@@ -44,9 +44,8 @@ export const Issue = ({ vol, iss }) => {
       direction="row"
       sx={{
         ".side-toc": {
-          flex: "0 0 225px",
-          maxWidth: isCompact ? 0 : "225px",
-          mr: isCompact ? 0 : 1,
+          flex: "0 0 250px",
+          maxWidth: isCompact ? 0 : "250px",
           transition: "max-width 400ms ease",
           overflow: "hidden",
         },
@@ -56,7 +55,17 @@ export const Issue = ({ vol, iss }) => {
         },
       }}
     >
-      <TableOfContents className="side-toc" xs={4} headers={headers} />
+      <Box
+        className="side-toc"
+        xs={4}
+        sx={{
+          height: "100%",
+          position: "sticky",
+          top: "0.5rem",
+        }}
+      >
+        <TableOfContents headers={headers} />
+      </Box>
       <Box className="main-content">
         <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
         <CoverHeader vol={vol} iss={iss} month={month} year={year} />
