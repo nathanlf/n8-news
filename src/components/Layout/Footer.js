@@ -85,7 +85,7 @@ export const Footer = () => {
           xs={12}
           sm={6}
           md={4}
-          gap={2}
+          gap={2.5}
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -93,7 +93,7 @@ export const Footer = () => {
             alignItems: "center",
           }}
         >
-          <Stack direction="row" justifyContent="center" sx={{ py: 1 }}>
+          <Stack direction="row" justifyContent="center" sx={{ pt: 1 }}>
             <HubIcon sx={{ fontSize: 22, mr: 0.8 }} />
             <Typography
               level="title-lg"
@@ -114,6 +114,9 @@ export const Footer = () => {
               aria-label="Navigate to the RENCI LinkedIn page"
               color="primary"
               size="lg"
+              sx={{
+                transition: "background-color 250ms",
+              }}
             >
               <LinkedInIcon />
             </IconButton>
@@ -122,6 +125,9 @@ export const Footer = () => {
               aria-label="Navigate to the RENCI YouTube Channel"
               color="primary"
               size="lg"
+              sx={{
+                transition: "background-color 250ms",
+              }}
             >
               <YouTubeIcon />
             </IconButton>
@@ -130,6 +136,9 @@ export const Footer = () => {
               aria-label="Navigate to the RENCI Meta (Facebook) page"
               color="primary"
               size="lg"
+              sx={{
+                transition: "background-color 250ms",
+              }}
             >
               <FacebookIcon />
             </IconButton>
@@ -138,8 +147,11 @@ export const Footer = () => {
               aria-label="Navigate to the RENCI X (Twitter) page"
               color="primary"
               size="lg"
+              sx={{
+                transition: "background-color 250ms",
+              }}
             >
-              <LinkedInIcon />
+              <XIcon />
             </IconButton>
           </Stack>
           <Link to="/contact">Contact Us</Link>
