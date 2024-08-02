@@ -8,7 +8,7 @@ export const Container = ({ children }) => {
       sx={{
         flexGrow: 1,
         margin: "0 auto",
-        maxWidth: "800px",
+        maxWidth: "1050px", // 800 px for main content, 250 for side-toc
         width: "100%",
         position: "relative",
       }}

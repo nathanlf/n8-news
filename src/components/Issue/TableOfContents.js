@@ -63,7 +63,6 @@ const DynamicBackToTop = ({ visible, children }) => {
     <Box
       sx={{
         alignSelf: "flex-end",
-        transition: "background-color 250ms",
         ...dynamicStyles,
       }}
     >
@@ -128,9 +127,8 @@ export const TableOfContents = ({ headers }) => {
   return (
     <Sheet
       sx={{
-        position: "sticky",
         backgroundColor: "transparent",
-        top: "1rem",
+        mr: "1.5rem",
         ".toc-toggler": {
           justifyContent: "flex-end",
         },

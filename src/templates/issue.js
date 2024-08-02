@@ -5,11 +5,7 @@ import { Issue } from "../components/Issue/Issue";
 const NewsletterIssue = ({ data }) => {
   const { volume, issue } = data.markdownRemark.frontmatter;
 
-  return (
-    <>
-      <Issue vol={volume} iss={issue} />
-    </>
-  );
+  return <Issue vol={volume} iss={issue} />;
 };
 
 export const query = graphql`

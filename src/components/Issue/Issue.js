@@ -4,7 +4,7 @@ import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
-import { Box, Divider, Typography } from "@mui/joy";
+import { Box, Divider, Stack, Typography } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { CoverHeader } from "./CoverHeader";
@@ -40,47 +40,63 @@ export const Issue = ({ vol, iss }) => {
   });
 
   return (
-    <>
-      {!isCompact && (
-        <Box
+    <Stack
+      direction="row"
+      sx={{
+        ".side-toc": {
+          flex: "0 0 250px",
+          maxWidth: isCompact ? 0 : "250px",
+          transition: "max-width 400ms ease",
+          overflow: "hidden",
+        },
+        ".main-content": {
+          flex: 1,
+          justifySelf: "stretch",
+        },
+      }}
+    >
+      <Box
+        className="side-toc"
+        xs={4}
+        sx={{
+          height: "100%",
+          position: "sticky",
+          top: "0.5rem",
+        }}
+      >
+        <TableOfContents headers={headers} />
+      </Box>
+      <Box className="main-content">
+        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
+        <CoverHeader vol={vol} iss={iss} month={month} year={year} />
+        <Typography
+          textAlign="center"
           sx={{
-            position: "absolute",
-            right: "100%",
-            width: "250px",
-            mr: 5,
-            height: "100%",
+            fontStyle: "italic",
+            px: 1,
+            py: 1.5,
           }}
         >
-          <TableOfContents headers={headers} />
-        </Box>
-      )}
-      <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-      <CoverHeader vol={vol} iss={iss} month={month} year={year} />
-      <Typography
-        textAlign="center"
-        sx={{
-          fontStyle: "italic",
-          px: 1,
-          py: 1.5,
-        }}
-      >
-        <Markdown src={caption} />
-      </Typography>
-      <Divider />
-      <Typography
-        level="body-lg"
-        sx={{
-          fontStyle: "italic",
-          fontWeight: 500,
-          pt: 1.5,
-        }}
-      >
-        {blurb}
-      </Typography>
-      {isCompact && <CompactTableOfContents headers={headers} />}
-      <Markdown src={rawMarkdownBody} />
-      <EndSign />
-    </>
+          <Markdown src={caption} />
+        </Typography>
+        <Divider />
+        <Typography
+          level="body-lg"
+          sx={{
+            fontStyle: "italic",
+            fontWeight: 500,
+            pt: 1.5,
+          }}
+        >
+          {blurb}
+        </Typography>
+        {isCompact && (
+          <CompactTableOfContents classname="compact-toc" headers={headers} />
+        )}
+        <Markdown src={rawMarkdownBody} />
+        <EndSign />
+      </Box>
+    </Stack>
   );
 };
 

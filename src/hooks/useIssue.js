@@ -25,7 +25,7 @@ export const useIssue = (vol, iss) => {
             coverImage {
               path {
                 childImageSharp {
-                  gatsbyImageData(width: 800, placeholder: BLURRED)
+                  gatsbyImageData(width: 1000, placeholder: BLURRED)
                 }
               }
               caption
