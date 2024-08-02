@@ -47,7 +47,7 @@ export const Issue = ({ vol, iss }) => {
           flex: "0 0 225px",
           maxWidth: isCompact ? 0 : "225px",
           mr: isCompact ? 0 : 1,
-          transition: "max-width 500ms",
+          transition: "max-width 400ms ease",
           overflow: "hidden",
         },
         ".main-content": {
