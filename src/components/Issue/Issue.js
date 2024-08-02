@@ -4,7 +4,7 @@ import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
-import { Box, Divider, Typography } from "@mui/joy";
+import { Box, Divider, Stack, Typography } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { CoverHeader } from "./CoverHeader";
@@ -40,47 +40,54 @@ export const Issue = ({ vol, iss }) => {
   });
 
   return (
-    <>
-      {!isCompact && (
-        <Box
+    <Stack
+      direction="row"
+      sx={{
+        ".side-toc": {
+          flex: "0 0 225px",
+          maxWidth: isCompact ? 0 : "225px",
+          mr: isCompact ? 0 : 1,
+          transition: "max-width 500ms",
+          overflow: "hidden",
+        },
+        ".main-content": {
+          flex: 1,
+          justifySelf: "stretch",
+        },
+      }}
+    >
+      <TableOfContents className="side-toc" xs={4} headers={headers} />
+      <Box className="main-content">
+        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
+        <CoverHeader vol={vol} iss={iss} month={month} year={year} />
+        <Typography
+          textAlign="center"
           sx={{
-            position: "absolute",
-            right: "100%",
-            width: "250px",
-            mr: 5,
-            height: "100%",
+            fontStyle: "italic",
+            px: 1,
+            py: 1.5,
           }}
         >
-          <TableOfContents headers={headers} />
-        </Box>
-      )}
-      <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-      <CoverHeader vol={vol} iss={iss} month={month} year={year} />
-      <Typography
-        textAlign="center"
-        sx={{
-          fontStyle: "italic",
-          px: 1,
-          py: 1.5,
-        }}
-      >
-        <Markdown src={caption} />
-      </Typography>
-      <Divider />
-      <Typography
-        level="body-lg"
-        sx={{
-          fontStyle: "italic",
-          fontWeight: 500,
-          pt: 1.5,
-        }}
-      >
-        {blurb}
-      </Typography>
-      {isCompact && <CompactTableOfContents headers={headers} />}
-      <Markdown src={rawMarkdownBody} />
-      <EndSign />
-    </>
+          <Markdown src={caption} />
+        </Typography>
+        <Divider />
+        <Typography
+          level="body-lg"
+          sx={{
+            fontStyle: "italic",
+            fontWeight: 500,
+            pt: 1.5,
+          }}
+        >
+          {blurb}
+        </Typography>
+        {isCompact && (
+          <CompactTableOfContents classname="compact-toc" headers={headers} />
+        )}
+        <Markdown src={rawMarkdownBody} />
+        <EndSign />
+      </Box>
+    </Stack>
   );
 };
 

@@ -63,7 +63,6 @@ const DynamicBackToTop = ({ visible, children }) => {
     <Box
       sx={{
         alignSelf: "flex-end",
-        transition: "background-color 250ms",
         ...dynamicStyles,
       }}
     >
@@ -72,7 +71,7 @@ const DynamicBackToTop = ({ visible, children }) => {
   );
 };
 
-export const TableOfContents = ({ headers }) => {
+export const TableOfContents = ({ headers, ...props }) => {
   const [open, setOpen] = useState(true);
   const [activeSection, setActiveSection] = useState(headers[0]);
   const { scrollPosition } = useScrollPosition();
@@ -138,6 +137,7 @@ export const TableOfContents = ({ headers }) => {
           justifyContent: "flex-end",
         },
       }}
+      {...props}
     >
       <DynamicMiniLogo visible={showOnScroll} />
       <List size="sm">
