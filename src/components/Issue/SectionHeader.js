@@ -33,6 +33,15 @@ export const SectionHeader = ({ title }) => {
         top: 0,
         zIndex: 9,
         boxShadow: "2px 4px 3px #74747460",
+        ".MuiIconButton-root": {
+          color: "var(--joy-palette-secondary-main)",
+          background: "transparent",
+          transition: "filter 250ms",
+          filter: "opacity(0.5)",
+        },
+        "&:hover .MuiIconButton-root": {
+          filter: "opacity(1.0)",
+        },
       }}
     >
       <Stack direction="row" alignItems="center" gap={1.5}>
