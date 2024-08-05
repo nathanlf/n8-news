@@ -18,7 +18,7 @@ spec:
         - name: regcred
       containers:
         - name: {{ .Chart.Name }}
-          image: {{ printf "%s:%s" .Values.image.repository .Values.image.tag }}
+          image: {{ printf "%s:%s" .Values.image.repository .Values.image.version }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           ports:
