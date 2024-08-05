@@ -209,7 +209,12 @@ export const TableOfContents = ({ headers }) => {
                       transition: "border-color 250ms, background-color 250ms",
                     }}
                   >
-                    <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
+                    <Typography
+                      color={
+                        slug === activeSection?.slug ? "primary" : "secondary"
+                      }
+                      sx={{ fontWeight: 550, fontSize: 13 }}
+                    >
                       {header}
                     </Typography>
                   </ListItemButton>
