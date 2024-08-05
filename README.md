@@ -125,15 +125,13 @@ kubectl get pods -n comms -o jsonpath="{.items[*].spec.containers[*].image}" -l 
 
 To build the image, draft a new release in GitHub, give it a version, then publish it. Github Actions will be triggered on the publishing of a new release. You can view the details of the build under the Actions tab in the repo.
 
-Once the image has been successfully built, update the deployment tag in the [kubernetes/values.yaml](https://github.com/RENCI/renci-newsletter/blob/main/kubernetes/values.yaml) file.
+Once the image has been successfully built, update the deployment version in the [kubernetes/values.yaml](https://github.com/RENCI/renci-newsletter/blob/main/kubernetes/values.yaml) file.
 
-After the tag has been updated, run this command to perform the upgrade in the kubernetes cluster:
+After the image version has been updated (don't forget to commit and push), run this command to perform the upgrade in the kubernetes cluster:
 
 ```bash
 helm upgrade renci-newsletter ./kubernetes -n comms
 ```
-
-Be sure to commit and push the image tag change made to `values.yaml`.
 
 ### Tech Stack
 
