@@ -32,7 +32,6 @@ export const SectionHeader = ({ title }) => {
         position: "sticky",
         top: 0,
         zIndex: 9,
-        boxShadow: "2px 4px 3px #74747460",
         ".MuiIconButton-root": {
           color: "var(--joy-palette-secondary-main)",
           transition: "filter 250ms, background-color 250ms",
