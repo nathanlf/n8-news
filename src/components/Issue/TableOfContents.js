@@ -213,7 +213,11 @@ export const TableOfContents = ({ headers }) => {
                       color={
                         slug === activeSection?.slug ? "primary" : "secondary"
                       }
-                      sx={{ fontWeight: 550, fontSize: 13 }}
+                      sx={{
+                        fontWeight: 550,
+                        fontSize: 13,
+                        transition: "color 250ms",
+                      }}
                     >
                       {header}
                     </Typography>
