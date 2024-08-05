@@ -9,6 +9,7 @@ import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { CoverHeader } from "./CoverHeader";
 import { EndSign } from "./EndSign";
+import { useHeaders } from "../../hooks/useHeaders";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -18,9 +19,10 @@ import { EndSign } from "./EndSign";
 export const Issue = ({ vol, iss }) => {
   const issueObj = useIssue(vol, iss);
   const { isCompact } = useWindowWidth();
+  const headers = useHeaders(issueObj);
 
   const { blurb } = issueObj.frontmatter;
-  const { rawMarkdownBody, htmlAst } = issueObj;
+  const { rawMarkdownBody } = issueObj;
   let coverImg = getImage(
     issueObj.frontmatter.coverImage?.path.childImageSharp?.gatsbyImageData
   );
@@ -28,16 +30,6 @@ export const Issue = ({ vol, iss }) => {
   const date = new Date(`${2020 + vol}-${iss}-01`);
   const year = date.getFullYear();
   const month = date.toLocaleString("en-US", { month: "long" });
-  const headers = [];
-
-  // Traverse htmlAst to find h1 elements
-  htmlAst.children.forEach((child) => {
-    if (child.tagName === "h1") {
-      // Extract text value of header
-      const headerName = child.children.find((el) => el.type === "text").value;
-      headers.push(headerName);
-    }
-  });
 
   return (
     <Stack
