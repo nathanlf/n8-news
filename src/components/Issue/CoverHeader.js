@@ -20,7 +20,7 @@ export const CoverHeader = ({ vol, iss, month, year }) => {
         border: "2px solid var(--joy-palette-secondary-main)",
         borderWidth: "0 1px 1px 1px",
         background:
-          "linear-gradient(90deg, rgba(2,120,141,1) 33%, rgba(2,162,189,1) 85%, rgba(2,170,192,1) 100%)",
+          "linear-gradient(90deg, rgba(2,120,141,1) 33%, rgba(2,162,189,1) 65%, rgba(2,170,192,1) 100%)",
       }}
     >
       <Stack direction="row" gap={1}>

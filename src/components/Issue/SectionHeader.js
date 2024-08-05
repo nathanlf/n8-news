@@ -26,7 +26,7 @@ export const SectionHeader = ({ title }) => {
         px: 1.5,
         py: 1,
         background:
-          "linear-gradient(90deg, rgba(2,120,141,1) 22%, rgba(2,162,189,1) 77%, rgba(2,170,192,1) 100%)",
+          "linear-gradient(90deg, rgba(2,120,141,1) 22%, rgba(2,162,189,1) 65%, rgba(2,170,192,1) 100%)",
         display: "flex",
         flexGrow: 1,
         position: "sticky",
@@ -35,8 +35,7 @@ export const SectionHeader = ({ title }) => {
         boxShadow: "2px 4px 3px #74747460",
         ".MuiIconButton-root": {
           color: "var(--joy-palette-secondary-main)",
-          background: "transparent",
-          transition: "filter 250ms",
+          transition: "filter 250ms, background-color 250ms",
           filter: "opacity(0.5)",
         },
         "&:hover .MuiIconButton-root": {
