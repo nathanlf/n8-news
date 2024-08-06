@@ -11,6 +11,7 @@ export const Input = ({ label, register, required, type, validate }) => {
         width: "100%",
         "& label": {
           textTransform: "uppercase",
+          fontWeight: 600,
         },
         "& input, & select, & textarea": {
           border: "1px solid #ccc",
