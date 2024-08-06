@@ -86,7 +86,7 @@ export const Issue = ({ vol, iss }) => {
         {isCompact && (
           <CompactTableOfContents classname="compact-toc" headers={headers} />
         )}
-        <Markdown src={rawMarkdownBody} />
+        <Markdown src={rawMarkdownBody} vol={vol} iss={iss} />
         <EndSign />
       </Box>
     </Stack>

@@ -13,7 +13,7 @@ import {
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 
 export const CompactTableOfContents = ({ headers }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <Sheet
@@ -38,18 +38,6 @@ export const CompactTableOfContents = ({ headers }) => {
             onClick={() => setOpen(!open)}
           >
             <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
-            {open && (
-              <Typography
-                level="h5"
-                sx={{
-                  fontWeight: "bold",
-                  fontSize: 16,
-                  ml: 1.25,
-                }}
-              >
-                Table of Contents
-              </Typography>
-            )}
           </Button>
         </Stack>
         <ListItem nested>
