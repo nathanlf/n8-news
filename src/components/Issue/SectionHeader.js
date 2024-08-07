@@ -7,14 +7,19 @@ import { CopyButton } from "../CopyButton";
 import { BackToTopButton } from "../BackToTopButton";
 import { Link as LinkCopyIcon } from "@mui/icons-material";
 import { Window as DiamondIcon } from "@mui/icons-material";
+import { CompactTableOfContents } from "./CompactTableOfContents";
+import { useIssue } from "../../hooks/useIssue";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
-export const SectionHeader = ({ title }) => {
+export const SectionHeader = ({ title, vol, iss }) => {
   const slug = createSlug(title);
   const location = useLocation();
   const copyText = useMemo(
     () => `${location.origin}${location.pathname}#${slug}`,
     [location.origin, location.pathname, slug]
   );
+  const { headers } = useIssue(vol, iss);
+  const { isCompact } = useWindowWidth();
 
   return (
     <Box
@@ -51,6 +56,7 @@ export const SectionHeader = ({ title }) => {
         </Typography>
       </Stack>
       <Stack direction="row" gap={1}>
+        {isCompact && <CompactTableOfContents headers={headers} />}
         <CopyButton copyText={copyText} icon={<LinkCopyIcon />} />
         <BackToTopButton />
       </Stack>

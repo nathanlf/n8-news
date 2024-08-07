@@ -6,13 +6,15 @@ import { SectionHeader } from "./Issue/SectionHeader";
 import { List, ListItem, Typography, Table } from "@mui/joy";
 import { Link } from "./Link";
 
-export const Markdown = ({ src }) => {
+export const Markdown = ({ src, vol, iss }) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
       children={src}
       components={{
-        h1: ({ children }) => <SectionHeader title={children} />,
+        h1: ({ children }) => (
+          <SectionHeader title={children} vol={vol} iss={iss} />
+        ),
         p: ({ children }) => (
           <Typography level="body-md">{children}</Typography>
         ),
