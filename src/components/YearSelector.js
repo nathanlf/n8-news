@@ -4,7 +4,7 @@ import { Link } from "./Link";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import { KeyboardArrowDown } from "@mui/icons-material";
-import { useVolumes } from "../hooks/useVolumes";
+import { useVolumes } from "../hooks";
 
 export const YearSelector = ({ defaultYear }) => {
   const volumes = useVolumes();

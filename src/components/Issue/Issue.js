@@ -1,11 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
 import { Box, Divider, Stack, Typography } from "@mui/joy";
-import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { useIssue, useWindowWidth } from "../../hooks";
 import { CoverHeader } from "./CoverHeader";
 import { EndSign } from "./EndSign";
 
