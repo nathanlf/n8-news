@@ -6,7 +6,6 @@ import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
 import { Box, Divider, Stack, Typography } from "@mui/joy";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
-import { CompactTableOfContents } from "./CompactTableOfContents";
 import { CoverHeader } from "./CoverHeader";
 import { EndSign } from "./EndSign";
 

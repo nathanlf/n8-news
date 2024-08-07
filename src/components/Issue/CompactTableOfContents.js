@@ -8,8 +8,9 @@ import {
   MenuButton,
   Dropdown,
   IconButton,
+  Stack,
 } from "@mui/joy";
-import { Menu as MenuIcon } from "@mui/icons-material";
+import { Menu as MenuIcon, Window as DiamondIcon } from "@mui/icons-material";
 
 export const CompactTableOfContents = ({ headers }) => {
   return (
@@ -21,6 +22,21 @@ export const CompactTableOfContents = ({ headers }) => {
         <MenuIcon />
       </MenuButton>
       <Menu placement="bottom-end">
+        <Stack
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="center"
+          gap={0.75}
+          sx={{ mx: 1, my: 0.5 }}
+        >
+          <Typography color="primary" fontSize={14} fontWeight={700}>
+            Table of Contents
+          </Typography>
+          <DiamondIcon
+            color="primary"
+            sx={{ transform: "rotate(45deg)", fontSize: 16 }}
+          />
+        </Stack>
         {headers.map((header) => {
           const slug = createSlug(header);
           return (
