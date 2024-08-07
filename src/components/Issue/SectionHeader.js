@@ -9,7 +9,7 @@ import { Link as LinkCopyIcon } from "@mui/icons-material";
 import { Window as DiamondIcon } from "@mui/icons-material";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { useIssue } from "../../hooks/useIssue";
-import { useHeaders } from "../../hooks/useHeaders";
+import { useWindowWidth } from "../../hooks/useWindowWidth";
 
 export const SectionHeader = ({ title, vol, iss }) => {
   const slug = createSlug(title);
@@ -18,8 +18,8 @@ export const SectionHeader = ({ title, vol, iss }) => {
     () => `${location.origin}${location.pathname}#${slug}`,
     [location.origin, location.pathname, slug]
   );
-  const issueObj = useIssue(vol, iss);
-  const headers = useHeaders(issueObj);
+  const { headers } = useIssue(vol, iss);
+  const { isCompact } = useWindowWidth();
 
   return (
     <Box
@@ -56,7 +56,7 @@ export const SectionHeader = ({ title, vol, iss }) => {
         </Typography>
       </Stack>
       <Stack direction="row" gap={1}>
-        <CompactTableOfContents headers={headers} />
+        {isCompact && <CompactTableOfContents headers={headers} />}
         <CopyButton copyText={copyText} icon={<LinkCopyIcon />} />
         <BackToTopButton />
       </Stack>

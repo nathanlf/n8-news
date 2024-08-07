@@ -12,6 +12,8 @@ import {
 } from "@mui/joy";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 
+// todo: complete overhaul of how this component is built, use a joy menu component
+
 export const CompactTableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(false);
 

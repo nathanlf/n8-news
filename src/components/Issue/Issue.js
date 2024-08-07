@@ -9,7 +9,6 @@ import { useWindowWidth } from "../../hooks/useWindowWidth";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { CoverHeader } from "./CoverHeader";
 import { EndSign } from "./EndSign";
-import { useHeaders } from "../../hooks/useHeaders";
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -17,9 +16,8 @@ import { useHeaders } from "../../hooks/useHeaders";
  * @return    The requested edition's content to be rendered
  * */
 export const Issue = ({ vol, iss }) => {
-  const issueObj = useIssue(vol, iss);
+  const { issueObj, headers } = useIssue(vol, iss);
   const { isCompact } = useWindowWidth();
-  const headers = useHeaders(issueObj);
 
   const { blurb } = issueObj.frontmatter;
   const { rawMarkdownBody } = issueObj;
@@ -83,9 +81,6 @@ export const Issue = ({ vol, iss }) => {
         >
           {blurb}
         </Typography>
-        {isCompact && (
-          <CompactTableOfContents classname="compact-toc" headers={headers} />
-        )}
         <Markdown src={rawMarkdownBody} vol={vol} iss={iss} />
         <EndSign />
       </Box>
