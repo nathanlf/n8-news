@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "../components/Link";
 import { Grid, Stack } from "@mui/joy";
 import FolderIcon from "@mui/icons-material/Folder";
-import { useVolumes } from "../hooks/useVolumes";
+import { useVolumes } from "../hooks";
 
 export const ArchiveFolders = () => {
   const volumes = useVolumes();

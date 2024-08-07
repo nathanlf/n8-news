@@ -8,8 +8,7 @@ import { BackToTopButton } from "../BackToTopButton";
 import { Link as LinkCopyIcon } from "@mui/icons-material";
 import { Window as DiamondIcon } from "@mui/icons-material";
 import { CompactTableOfContents } from "./CompactTableOfContents";
-import { useIssue } from "../../hooks/useIssue";
-import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { useIssue, useWindowWidth } from "../../hooks";
 
 export const SectionHeader = ({ title, vol, iss }) => {
   const slug = createSlug(title);

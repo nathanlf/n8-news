@@ -13,7 +13,7 @@ import {
 } from "@mui/joy";
 import MenuIcon from "@mui/icons-material/Menu";
 import { BackToTopButton } from "../BackToTopButton";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
+import { useScrollPosition } from "../../hooks";
 import renciLogo from "../../images/renci-logo.png";
 
 const DynamicMiniLogo = ({ visible }) => {
