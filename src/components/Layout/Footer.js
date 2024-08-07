@@ -11,6 +11,33 @@ import {
   Hub as HubIcon,
 } from "@mui/icons-material";
 
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    to: "https://www.linkedin.com/company/renaissance-computing-institute/",
+    label: "Navigate to the RENCI LinkedIn page",
+    icon: <LinkedInIcon />,
+  },
+  {
+    name: "YouTube",
+    to: "https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA",
+    label: "Navigate to the RENCI YouTube Channel",
+    icon: <YouTubeIcon />,
+  },
+  {
+    name: "Meta",
+    to: "https://www.facebook.com/renci.org",
+    label: "Navigate to the RENCI Meta (Facebook) page",
+    icon: <FacebookIcon />,
+  },
+  {
+    name: "X",
+    to: "https://x.com/renci",
+    label: "Navigate to the RENCI X (Twitter) page",
+    icon: <XIcon />,
+  },
+];
+
 export const Footer = () => {
   return (
     <Box
@@ -109,50 +136,19 @@ export const Footer = () => {
             spacing={2}
             direction="row"
           >
-            <IconButton
-              href="https://www.linkedin.com/company/renaissance-computing-institute/"
-              aria-label="Navigate to the RENCI LinkedIn page"
-              color="primary"
-              size="lg"
-              sx={{
-                transition: "background-color 250ms",
-              }}
-            >
-              <LinkedInIcon />
-            </IconButton>
-            <IconButton
-              href="https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA"
-              aria-label="Navigate to the RENCI YouTube Channel"
-              color="primary"
-              size="lg"
-              sx={{
-                transition: "background-color 250ms",
-              }}
-            >
-              <YouTubeIcon />
-            </IconButton>
-            <IconButton
-              href="https://www.facebook.com/renci.org"
-              aria-label="Navigate to the RENCI Meta (Facebook) page"
-              color="primary"
-              size="lg"
-              sx={{
-                transition: "background-color 250ms",
-              }}
-            >
-              <FacebookIcon />
-            </IconButton>
-            <IconButton
-              href="https://x.com/renci"
-              aria-label="Navigate to the RENCI X (Twitter) page"
-              color="primary"
-              size="lg"
-              sx={{
-                transition: "background-color 250ms",
-              }}
-            >
-              <XIcon />
-            </IconButton>
+            {socialLinks.map((item) => (
+              <Link to={item.to}>
+                <IconButton
+                  key={item.name}
+                  aria-label={item.label}
+                  color="primary"
+                  size="lg"
+                  sx={{ transition: "background-color 250ms" }}
+                >
+                  {item.icon}
+                </IconButton>
+              </Link>
+            ))}
           </Stack>
           <Link to="/contact">Contact Us</Link>
         </Grid>
