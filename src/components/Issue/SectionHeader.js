@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useLocation } from "@reach/router";
 import { Stack, Typography, Box } from "@mui/joy";
@@ -10,6 +10,7 @@ import { Window as DiamondIcon } from "@mui/icons-material";
 import { CompactTableOfContents } from "./CompactTableOfContents";
 import { useIssue } from "../../hooks/useIssue";
 import { useWindowWidth } from "../../hooks/useWindowWidth";
+import { useScrollPosition } from "../../hooks/useScrollPosition";
 
 export const SectionHeader = ({ title, vol, iss }) => {
   const slug = createSlug(title);
@@ -20,6 +21,24 @@ export const SectionHeader = ({ title, vol, iss }) => {
   );
   const { headers } = useIssue(vol, iss);
   const { isCompact } = useWindowWidth();
+  const [activeSection, setActiveSection] = useState(headers[0]);
+  const { scrollPosition } = useScrollPosition();
+
+  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
+  useEffect(() => {
+    const headingTops = headers.map((header) => {
+      const slug = createSlug(header);
+      const el = document.querySelector(`#${slug}`);
+      const { top } = el.getBoundingClientRect();
+      return { slug, top };
+    });
+
+    const activeHeading = headingTops
+      .reverse()
+      .find((header) => header.top === 0);
+
+    if (activeHeading) setActiveSection(activeHeading);
+  }, [headers, scrollPosition]);
 
   return (
     <Box
@@ -47,7 +66,7 @@ export const SectionHeader = ({ title, vol, iss }) => {
         },
       }}
     >
-      {isCompact ? (
+      {isCompact && slug === activeSection?.slug ? (
         <CompactTableOfContents headers={headers} title={title} />
       ) : (
         <Stack direction="row" alignItems="center" gap={1.5}>

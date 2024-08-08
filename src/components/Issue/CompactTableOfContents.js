@@ -7,10 +7,12 @@ import {
   Menu,
   MenuButton,
   Dropdown,
-  IconButton,
   Stack,
 } from "@mui/joy";
-import { Window as DiamondIcon } from "@mui/icons-material";
+import {
+  Window as DiamondIcon,
+  KeyboardArrowDown as DownArrowIcon,
+} from "@mui/icons-material";
 
 export const CompactTableOfContents = ({ headers, title }) => {
   return (
@@ -21,10 +23,14 @@ export const CompactTableOfContents = ({ headers, title }) => {
           root: { sx: { backgroundColor: "transparent", px: 1, mx: -1 } },
         }}
       >
-        <DiamondIcon sx={{ transform: "rotate(45deg)", mr: 1 }} />
-        <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
+        <DiamondIcon sx={{ transform: "rotate(45deg)" }} />
+        <Typography
+          level="h1"
+          sx={{ fontSize: "large", color: "#ffffff", ml: 1.5, mr: 0.5 }}
+        >
           {title}
         </Typography>
+        <DownArrowIcon />
       </MenuButton>
       <Menu placement="bottom-end">
         <Stack
