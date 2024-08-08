@@ -137,17 +137,17 @@ export const Footer = () => {
             direction="row"
           >
             {socialLinks.map((item) => (
-              <Link to={item.to}>
-                <IconButton
-                  key={item.name}
-                  aria-label={item.label}
-                  color="primary"
-                  size="lg"
-                  sx={{ transition: "background-color 250ms" }}
-                >
-                  {item.icon}
-                </IconButton>
-              </Link>
+              <IconButton
+                component={Link}
+                to={item.to}
+                key={item.name}
+                aria-label={item.label}
+                color="primary"
+                size="lg"
+                sx={{ transition: "background-color 250ms" }}
+              >
+                {item.icon}
+              </IconButton>
             ))}
           </Stack>
           <Link to="/contact">Contact Us</Link>

@@ -30,17 +30,18 @@ export const ArchiveFolders = () => {
                 paddingBottom: 3,
               }}
             >
-              <Link
+              <Stack
+                component={Link}
                 to={`/archive/${year}`}
                 sx={{
                   fontWeight: 550,
                 }}
+                direction="column"
+                justifyContent="space-between"
               >
-                <Stack direction="column" justifyContent="space-between">
-                  <FolderIcon color="secondary" sx={{ py: 3, fontSize: 90 }} />
-                  {year}
-                </Stack>
-              </Link>
+                <FolderIcon color="secondary" sx={{ py: 3, fontSize: 90 }} />
+                {year}
+              </Stack>
             </Grid>
           );
         })}
