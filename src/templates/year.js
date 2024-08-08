@@ -38,13 +38,8 @@ const ArchiveYear = ({ data }) => {
           return (
             <Grid key={node.id} xs={12} lg={6}>
               <Card sx={{ boxShadow: "5px 5px 5px #74747430" }}>
-                <Link to={path}>
-                  <Typography
-                    level="h4"
-                    textColor="var(--joy-palette-primary-main)"
-                  >
-                    {date.toLocaleString("en-US", { month: "long" })}
-                  </Typography>
+                <Link to={path} level="h4">
+                  {date.toLocaleString("en-US", { month: "long" })}
                 </Link>
                 <Typography
                   level="body-md"

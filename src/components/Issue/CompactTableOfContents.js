@@ -42,7 +42,7 @@ export const CompactTableOfContents = ({ headers }) => {
           return (
             <Button
               className="section-btn"
-              key={slug}
+              key={header}
               size="sm"
               variant="plain"
               sx={{
