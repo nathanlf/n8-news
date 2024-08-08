@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Button, Box, Typography } from "@mui/joy";
+import { Button, Box, Typography, Stack } from "@mui/joy";
 import { Send as SendIcon } from "@mui/icons-material";
 import { useForm } from "react-hook-form";
 import { Input } from "./Input";
 import { TextArea } from "./TextArea";
+import { Window as DiamondIcon } from "@mui/icons-material";
 
 const GOOGLE_APPS_SCRIPT_LINK =
   "https://script.google.com/macros/s/AKfycbxeB6s-NsD6jcs98qAamRziXyMg_Gt7g6uK8cdMqpmlPQZBYXVxWFJnRUkgH25LD_Ex/exec";
@@ -43,24 +44,39 @@ export const ContactForm = () => {
   };
 
   return (
-    <>
+    <Stack
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      sx={{
+        display: "flex",
+        flex: 1,
+        pt: 1,
+        mt: 1,
+        backgroundColor: "#7474740F",
+        borderRadius: "12px 12px 0 0",
+      }}
+    >
       {response !== "" && (
-        <Typography
-          sx={{
-            mt: 1,
-            px: 2,
-            py: 2,
-            borderLeft: "3px solid var(--joy-palette-secondary-main)",
-            borderRadius: "0 10px 10px 0",
-          }}
-        >
-          {response}
-        </Typography>
+        <Stack direction="row" alignItems="center">
+          <DiamondIcon sx={{ transform: "rotate(45deg)" }} />
+          <Typography
+            sx={{
+              my: 1,
+              px: 2,
+              py: 2,
+              fontWeight: 700,
+            }}
+          >
+            {response}
+          </Typography>
+          <DiamondIcon sx={{ transform: "rotate(45deg)" }} />
+        </Stack>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <Box
           className="nameEmailGroup"
-          gap={5}
+          gap={4}
           sx={{ flex: 1, display: "flex" }}
         >
           <Input label="Your Name" required type="text" register={register} />
@@ -81,6 +97,6 @@ export const ContactForm = () => {
           </Button>
         </Box>
       </form>
-    </>
+    </Stack>
   );
 };

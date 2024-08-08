@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from "gatsby";
  *
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
  * @param     {number}    iss      The edition issue identifier, corresponds to the month
- * @return    {object}    The requested newsletter issue content, represented by edition {volume.issue}
+ * @return    {object}    The requested newsletter issue content and an array of h1 header strings for that issue
  * */
 
 export const useIssue = (vol, iss) => {
@@ -51,5 +51,22 @@ export const useIssue = (vol, iss) => {
 
     return acc;
   }, {});
-  return issuesByVolume[vol]?.[iss];
+
+  const issueObj = issuesByVolume[vol]?.[iss];
+
+  const headers = [];
+  const { htmlAst } = issueObj;
+  // traverse htmlAst to find h1 elements
+  htmlAst.children.forEach((child) => {
+    if (child.tagName === "h1") {
+      // extract text value of header
+      const headerName = child.children.find((el) => el.type === "text").value;
+      headers.push(headerName);
+    }
+  });
+
+  return {
+    issueObj: issueObj,
+    headers: headers,
+  };
 };

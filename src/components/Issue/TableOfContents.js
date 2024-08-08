@@ -11,9 +11,9 @@ import {
   Sheet,
   Box,
 } from "@mui/joy";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import MenuIcon from "@mui/icons-material/Menu";
 import { BackToTopButton } from "../BackToTopButton";
-import { useScrollPosition } from "../../hooks/useScrollPosition";
+import { useScrollPosition } from "../../hooks";
 import renciLogo from "../../images/renci-logo.png";
 
 const DynamicMiniLogo = ({ visible }) => {
@@ -162,7 +162,7 @@ export const TableOfContents = ({ headers }) => {
                 Table of Contents
               </Typography>
             )}
-            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
+            <MenuIcon sx={{ fontSize: 24, mx: -0.5 }} />
           </Button>
         </Stack>
         <ListItem nested>
@@ -209,7 +209,16 @@ export const TableOfContents = ({ headers }) => {
                       transition: "border-color 250ms, background-color 250ms",
                     }}
                   >
-                    <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
+                    <Typography
+                      color={
+                        slug === activeSection?.slug ? "primary" : "secondary"
+                      }
+                      sx={{
+                        fontWeight: 550,
+                        fontSize: 13,
+                        transition: "color 250ms",
+                      }}
+                    >
                       {header}
                     </Typography>
                   </ListItemButton>

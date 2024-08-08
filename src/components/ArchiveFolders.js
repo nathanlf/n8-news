@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "../components/Link";
 import { Grid, Stack } from "@mui/joy";
 import FolderIcon from "@mui/icons-material/Folder";
-import { useVolumes } from "../hooks/useVolumes";
+import { useVolumes } from "../hooks";
 
 export const ArchiveFolders = () => {
   const volumes = useVolumes();
@@ -17,6 +17,7 @@ export const ArchiveFolders = () => {
       >
         {volumes.map((volumeNum) => {
           const year = 2020 + volumeNum;
+          const to = `/archive/${year}`;
           return (
             <Grid
               xs={12}
@@ -24,23 +25,24 @@ export const ArchiveFolders = () => {
               md={4}
               lg={3}
               columnSpacing={4}
-              key={year}
+              key={to}
               id={volumeNum}
               sx={{
                 paddingBottom: 3,
               }}
             >
-              <Link
-                to={`/archive/${year}`}
+              <Stack
+                component={Link}
+                to={to}
                 sx={{
                   fontWeight: 550,
                 }}
+                direction="column"
+                justifyContent="space-between"
               >
-                <Stack direction="column" justifyContent="space-between">
-                  <FolderIcon color="secondary" sx={{ py: 3, fontSize: 90 }} />
-                  {year}
-                </Stack>
-              </Link>
+                <FolderIcon color="secondary" sx={{ py: 3, fontSize: 90 }} />
+                {year}
+              </Stack>
             </Grid>
           );
         })}

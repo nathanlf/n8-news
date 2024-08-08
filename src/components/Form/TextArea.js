@@ -9,6 +9,7 @@ export const TextArea = ({ label, register, required, validate, rows }) => {
         pt: 1,
         "& label": {
           textTransform: "uppercase",
+          fontWeight: 600,
         },
         "& textarea": {
           border: "1px solid #ccc",

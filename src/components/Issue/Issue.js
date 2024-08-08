@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useIssue } from "../../hooks/useIssue";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
 import { Box, Divider, Stack, Typography } from "@mui/joy";
-import { useWindowWidth } from "../../hooks/useWindowWidth";
-import { CompactTableOfContents } from "./CompactTableOfContents";
+import { useIssue, useWindowWidth } from "../../hooks";
 import { CoverHeader } from "./CoverHeader";
 import { EndSign } from "./EndSign";
 
@@ -16,11 +14,11 @@ import { EndSign } from "./EndSign";
  * @return    The requested edition's content to be rendered
  * */
 export const Issue = ({ vol, iss }) => {
-  const issueObj = useIssue(vol, iss);
+  const { issueObj, headers } = useIssue(vol, iss);
   const { isCompact } = useWindowWidth();
 
   const { blurb } = issueObj.frontmatter;
-  const { rawMarkdownBody, htmlAst } = issueObj;
+  const { rawMarkdownBody } = issueObj;
   let coverImg = getImage(
     issueObj.frontmatter.coverImage?.path.childImageSharp?.gatsbyImageData
   );
@@ -28,16 +26,6 @@ export const Issue = ({ vol, iss }) => {
   const date = new Date(`${2020 + vol}-${iss}-01`);
   const year = date.getFullYear();
   const month = date.toLocaleString("en-US", { month: "long" });
-  const headers = [];
-
-  // Traverse htmlAst to find h1 elements
-  htmlAst.children.forEach((child) => {
-    if (child.tagName === "h1") {
-      // Extract text value of header
-      const headerName = child.children.find((el) => el.type === "text").value;
-      headers.push(headerName);
-    }
-  });
 
   return (
     <Stack
@@ -91,10 +79,7 @@ export const Issue = ({ vol, iss }) => {
         >
           {blurb}
         </Typography>
-        {isCompact && (
-          <CompactTableOfContents classname="compact-toc" headers={headers} />
-        )}
-        <Markdown src={rawMarkdownBody} />
+        <Markdown src={rawMarkdownBody} vol={vol} iss={iss} />
         <EndSign />
       </Box>
     </Stack>

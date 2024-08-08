@@ -1,97 +1,79 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
-  List,
-  Stack,
-  ListItem,
   Typography,
-  ListItemButton,
   Button,
-  Sheet,
+  Menu,
+  MenuButton,
+  Dropdown,
+  IconButton,
+  Stack,
 } from "@mui/joy";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
+import { Menu as MenuIcon, Window as DiamondIcon } from "@mui/icons-material";
 
 export const CompactTableOfContents = ({ headers }) => {
-  const [open, setOpen] = useState(true);
-
   return (
-    <Sheet
-      sx={{
-        position: "static",
-        backgroundColor: "transparent",
-        pt: 2,
-        ".toc-toggler": {
-          justifyContent: "flex-start",
-        },
-        ".section-btn": {
-          justifyContent: "flex-start",
-        },
-      }}
-    >
-      <List size="sm">
-        <Stack className="toc-toggler" direction="row">
-          <Button
-            variant="plain"
-            size="sm"
+    <Dropdown>
+      <MenuButton
+        slots={{ root: IconButton }}
+        slotProps={{ root: { color: "neutral" } }}
+      >
+        <MenuIcon />
+      </MenuButton>
+      <Menu placement="bottom-end">
+        <Stack
+          direction="row"
+          justifyContent="flex-end"
+          alignItems="center"
+          gap={0.75}
+          sx={{ mx: 1, my: 0.5 }}
+        >
+          <Typography color="primary" fontSize={14} fontWeight={700}>
+            Table of Contents
+          </Typography>
+          <DiamondIcon
             color="primary"
-            onClick={() => setOpen(!open)}
-          >
-            <FormatListBulletedIcon sx={{ fontSize: 20, mx: -0.5 }} />
-            {open && (
-              <Typography
-                level="h5"
-                sx={{
-                  fontWeight: "bold",
-                  fontSize: 16,
-                  ml: 1.25,
-                }}
-              >
-                Table of Contents
-              </Typography>
-            )}
-          </Button>
+            sx={{ transform: "rotate(45deg)", fontSize: 16 }}
+          />
         </Stack>
-        <ListItem nested>
-          {open && (
-            <List sx={{ alignItems: "flex-end" }}>
-              {headers.map((header) => {
-                const slug = createSlug(header);
-                return (
-                  <ListItemButton
-                    className="section-btn"
-                    key={slug}
-                    size="sm"
-                    variant="plain"
-                    onClick={() => {
-                      // scroll to heading's immediate sibling, since heading is sticky
-                      const headingSibling = document.querySelector(
-                        `#${slug} + *`
-                      );
-                      // calculate where to scroll,
-                      // offset of -70 chosen to maintain active section state
-                      // & to uncover the start of section
-                      const scrollTop =
-                        headingSibling.getBoundingClientRect().top +
-                        window.scrollY -
-                        70;
-                      window.scrollTo({
-                        top: scrollTop,
-                        behavior: "smooth",
-                      });
-                    }}
-                  >
-                    <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
-                      {header}
-                    </Typography>
-                  </ListItemButton>
-                );
-              })}
-            </List>
-          )}
-        </ListItem>
-      </List>
-    </Sheet>
+        {headers.map((header) => {
+          const slug = createSlug(header);
+          return (
+            <Button
+              className="section-btn"
+              key={header}
+              size="sm"
+              variant="plain"
+              sx={{
+                transition: "background-color 250ms",
+                borderRadius: 0,
+                justifyContent: "flex-end",
+              }}
+              onClick={() => {
+                // scroll to heading's immediate sibling, since heading is sticky
+                const headingSibling = document.querySelector(`#${slug} + *`);
+                // calculate where to scroll,
+                // offset of -70 chosen to maintain active section state
+                // & to uncover the start of section
+                const scrollTop =
+                  headingSibling.getBoundingClientRect().top +
+                  window.scrollY -
+                  70;
+                window.scrollTo({
+                  top: scrollTop,
+                  behavior: "smooth",
+                });
+              }}
+            >
+              <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
+                {header}
+              </Typography>
+            </Button>
+          );
+        })}
+      </Menu>
+    </Dropdown>
   );
 };
 
