@@ -17,6 +17,7 @@ export const ArchiveFolders = () => {
       >
         {volumes.map((volumeNum) => {
           const year = 2020 + volumeNum;
+          const to = `/archive/${year}`;
           return (
             <Grid
               xs={12}
@@ -24,7 +25,7 @@ export const ArchiveFolders = () => {
               md={4}
               lg={3}
               columnSpacing={4}
-              key={year}
+              key={to}
               id={volumeNum}
               sx={{
                 paddingBottom: 3,
@@ -32,7 +33,7 @@ export const ArchiveFolders = () => {
             >
               <Stack
                 component={Link}
-                to={`/archive/${year}`}
+                to={to}
                 sx={{
                   fontWeight: 550,
                 }}
