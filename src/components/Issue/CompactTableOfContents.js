@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -8,6 +8,7 @@ import {
   MenuButton,
   Dropdown,
   Stack,
+  //   ClickAwayListener,
 } from "@mui/joy";
 import {
   Window as DiamondIcon,
@@ -15,8 +16,20 @@ import {
 } from "@mui/icons-material";
 
 export const CompactTableOfContents = ({ headers, title }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpenChange = useCallback((event, isOpen) => {
+    setOpen(isOpen);
+  }, []);
+
+  //   const handleClickAway = useCallback(() => {
+  //     setOpen(false);
+  //   }, []);
+
   return (
-    <Dropdown>
+    // <ClickAwayListener onClickAway={handleClickAway}>
+    <Dropdown open={open} onOpenChange={handleOpenChange}>
+      {/* <Dropdown> */}
       <MenuButton
         slots={{ root: Button }}
         slotProps={{
@@ -85,6 +98,7 @@ export const CompactTableOfContents = ({ headers, title }) => {
         })}
       </Menu>
     </Dropdown>
+    // </ClickAwayListener>
   );
 };
 
