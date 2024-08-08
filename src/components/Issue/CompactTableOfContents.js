@@ -10,32 +10,37 @@ import {
   IconButton,
   Stack,
 } from "@mui/joy";
-import { Menu as MenuIcon, Window as DiamondIcon } from "@mui/icons-material";
+import { Window as DiamondIcon } from "@mui/icons-material";
 
-export const CompactTableOfContents = ({ headers }) => {
+export const CompactTableOfContents = ({ headers, title }) => {
   return (
     <Dropdown>
       <MenuButton
-        slots={{ root: IconButton }}
-        slotProps={{ root: { color: "neutral" } }}
+        slots={{ root: Button }}
+        slotProps={{
+          root: { sx: { backgroundColor: "transparent", px: 1, mx: -1 } },
+        }}
       >
-        <MenuIcon />
+        <DiamondIcon sx={{ transform: "rotate(45deg)", mr: 1 }} />
+        <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
+          {title}
+        </Typography>
       </MenuButton>
       <Menu placement="bottom-end">
         <Stack
           direction="row"
-          justifyContent="flex-end"
+          justifyContent="flex-start"
           alignItems="center"
           gap={0.75}
           sx={{ mx: 1, my: 0.5 }}
         >
-          <Typography color="primary" fontSize={14} fontWeight={700}>
-            Table of Contents
-          </Typography>
           <DiamondIcon
             color="primary"
             sx={{ transform: "rotate(45deg)", fontSize: 16 }}
           />
+          <Typography color="primary" fontSize={14} fontWeight={700}>
+            Table of Contents
+          </Typography>
         </Stack>
         {headers.map((header) => {
           const slug = createSlug(header);
@@ -48,7 +53,7 @@ export const CompactTableOfContents = ({ headers }) => {
               sx={{
                 transition: "background-color 250ms",
                 borderRadius: 0,
-                justifyContent: "flex-end",
+                justifyContent: "flex-start",
               }}
               onClick={() => {
                 // scroll to heading's immediate sibling, since heading is sticky

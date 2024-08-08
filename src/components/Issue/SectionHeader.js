@@ -47,16 +47,19 @@ export const SectionHeader = ({ title, vol, iss }) => {
         },
       }}
     >
-      <Stack direction="row" alignItems="center" gap={1.5}>
-        <DiamondIcon
-          sx={{ transform: "rotate(45deg)", fontSize: 20, color: "#ffffff" }}
-        />
-        <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
-          {title}
-        </Typography>
-      </Stack>
+      {isCompact ? (
+        <CompactTableOfContents headers={headers} title={title} />
+      ) : (
+        <Stack direction="row" alignItems="center" gap={1.5}>
+          <DiamondIcon
+            sx={{ transform: "rotate(45deg)", fontSize: 20, color: "#ffffff" }}
+          />
+          <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
+            {title}
+          </Typography>
+        </Stack>
+      )}
       <Stack direction="row" gap={1}>
-        {isCompact && <CompactTableOfContents headers={headers} />}
         <CopyButton copyText={copyText} icon={<LinkCopyIcon />} />
         <BackToTopButton />
       </Stack>
