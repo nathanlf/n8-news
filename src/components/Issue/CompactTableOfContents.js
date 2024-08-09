@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -10,6 +10,8 @@ import {
   Stack,
   //   ClickAwayListener,
 } from "@mui/joy";
+import { ClickAwayListener } from "@mui/base";
+// https://codesandbox.io/s/2rc4wf?file=/Demo.js
 import {
   Window as DiamondIcon,
   KeyboardArrowDown as DownArrowIcon,
@@ -22,83 +24,83 @@ export const CompactTableOfContents = ({ headers, title }) => {
     setOpen(isOpen);
   }, []);
 
-  //   const handleClickAway = useCallback(() => {
-  //     setOpen(false);
-  //   }, []);
+  const handleClickAway = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  const handleMenuItemClick = useCallback((slug) => {
+    setOpen(false);
+    const headingSibling = document.querySelector(`#${slug} + *`);
+    const scrollTop =
+      headingSibling.getBoundingClientRect().top + window.scrollY - 70;
+    window.scrollTo({
+      top: scrollTop,
+      behavior: "smooth",
+    });
+  }, []);
+
+  const memoizedSectionButtons = useMemo(() => {
+    return headers.map((header) => {
+      const slug = createSlug(header);
+      return (
+        <Button
+          className="section-btn"
+          key={slug}
+          size="sm"
+          variant="plain"
+          sx={{
+            transition: "background-color 250ms",
+            borderRadius: 0,
+            justifyContent: "flex-start",
+          }}
+          onClick={() => handleMenuItemClick(slug)}
+        >
+          <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
+            {header}
+          </Typography>
+        </Button>
+      );
+    });
+  }, [headers, handleMenuItemClick]);
 
   return (
-    // <ClickAwayListener onClickAway={handleClickAway}>
-    <Dropdown open={open} onOpenChange={handleOpenChange}>
-      {/* <Dropdown> */}
-      <MenuButton
-        slots={{ root: Button }}
-        slotProps={{
-          root: { sx: { backgroundColor: "transparent", px: 1, mx: -1 } },
-        }}
-      >
-        <DiamondIcon sx={{ transform: "rotate(45deg)" }} />
-        <Typography
-          level="h1"
-          sx={{ fontSize: "large", color: "#ffffff", ml: 1.5, mr: 0.5 }}
+    <ClickAwayListener onClickAway={handleClickAway}>
+      <Dropdown open={open} onOpenChange={handleOpenChange}>
+        <MenuButton
+          slots={{ root: Button }}
+          slotProps={{
+            root: { sx: { backgroundColor: "transparent", px: 1, mx: -1 } },
+          }}
         >
-          {title}
-        </Typography>
-        <DownArrowIcon />
-      </MenuButton>
-      <Menu placement="bottom-end">
-        <Stack
-          direction="row"
-          justifyContent="flex-start"
-          alignItems="center"
-          gap={0.75}
-          sx={{ mx: 1, my: 0.5 }}
-        >
-          <DiamondIcon
-            color="primary"
-            sx={{ transform: "rotate(45deg)", fontSize: 16 }}
-          />
-          <Typography color="primary" fontSize={14} fontWeight={700}>
-            Table of Contents
+          <DiamondIcon sx={{ transform: "rotate(45deg)" }} />
+          <Typography
+            level="h1"
+            sx={{ fontSize: "large", color: "#ffffff", ml: 1.5, mr: 0.5 }}
+          >
+            {title}
           </Typography>
-        </Stack>
-        {headers.map((header) => {
-          const slug = createSlug(header);
-          return (
-            <Button
-              className="section-btn"
-              key={slug}
-              size="sm"
-              variant="plain"
-              sx={{
-                transition: "background-color 250ms",
-                borderRadius: 0,
-                justifyContent: "flex-start",
-              }}
-              onClick={() => {
-                // scroll to heading's immediate sibling, since heading is sticky
-                const headingSibling = document.querySelector(`#${slug} + *`);
-                // calculate where to scroll,
-                // offset of -70 chosen to maintain active section state
-                // & to uncover the start of section
-                const scrollTop =
-                  headingSibling.getBoundingClientRect().top +
-                  window.scrollY -
-                  70;
-                window.scrollTo({
-                  top: scrollTop,
-                  behavior: "smooth",
-                });
-              }}
-            >
-              <Typography sx={{ fontWeight: 550, fontSize: 13 }}>
-                {header}
-              </Typography>
-            </Button>
-          );
-        })}
-      </Menu>
-    </Dropdown>
-    // </ClickAwayListener>
+          <DownArrowIcon />
+        </MenuButton>
+        <Menu placement="bottom-end">
+          <Stack
+            direction="row"
+            justifyContent="flex-start"
+            alignItems="center"
+            gap={0.75}
+            sx={{ mx: 1, my: 0.5 }}
+          >
+            <DiamondIcon
+              color="primary"
+              sx={{ transform: "rotate(45deg)", fontSize: 16 }}
+            />
+            <Typography color="primary" fontSize={14} fontWeight={700}>
+              Table of Contents
+            </Typography>
+          </Stack>
+          {memoizedSectionButtons}
+        </Menu>
+      </Dropdown>
+    </ClickAwayListener>
   );
 };
 
