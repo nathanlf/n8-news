@@ -11,7 +11,7 @@ import {
   //   ClickAwayListener,
 } from "@mui/joy";
 import { ClickAwayListener } from "@mui/base";
-// https://codesandbox.io/s/2rc4wf?file=/Demo.js
+
 import {
   Window as DiamondIcon,
   KeyboardArrowDown as DownArrowIcon,
@@ -28,7 +28,7 @@ export const CompactTableOfContents = ({ headers, title }) => {
     setOpen(false);
   }, []);
 
-  const handleMenuItemClick = useCallback((slug) => {
+  const handleMenuItemClick = useCallback((slug = "") => {
     setOpen(false);
     const headingSibling = document.querySelector(`#${slug} + *`);
     const scrollTop =
