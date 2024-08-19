@@ -3,7 +3,11 @@ import Typography from "@mui/joy/Typography";
 import PropTypes from "prop-types";
 
 export const PageTitle = ({ title }) => {
-  return <Typography level="h2">{title}</Typography>;
+  return (
+    <Typography level="h2" sx={{ px: 1 }}>
+      {title}
+    </Typography>
+  );
 };
 
 PageTitle.propTypes = {
