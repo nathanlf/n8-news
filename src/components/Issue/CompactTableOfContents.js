@@ -9,12 +9,12 @@ import {
   Dropdown,
   Stack,
 } from "@mui/joy";
-// import { ClickAwayListener } from "@mui/base";
 
 import {
   Window as DiamondIcon,
   KeyboardArrowDown as DownArrowIcon,
 } from "@mui/icons-material";
+import { useClickAway } from "../../hooks";
 
 export const CompactTableOfContents = ({ headers, title }) => {
   const [open, setOpen] = useState(false);
@@ -39,9 +39,10 @@ export const CompactTableOfContents = ({ headers, title }) => {
     });
   }, []);
 
+  // allows the menu to close on click away
   useClickAway(menuRef, handleClickAway);
 
-  const memoizedSectionButtons = useMemo(() => {
+  const sectionButtons = useMemo(() => {
     return headers.map((header) => {
       const slug = createSlug(header);
       return (
@@ -66,7 +67,6 @@ export const CompactTableOfContents = ({ headers, title }) => {
   }, [headers, handleMenuItemClick]);
 
   return (
-    // <ClickAwayListener onClickAway={handleClickAway}>
     <Dropdown open={open} onOpenChange={handleOpenChange}>
       <MenuButton
         slots={{ root: Button }}
@@ -99,10 +99,9 @@ export const CompactTableOfContents = ({ headers, title }) => {
             Table of Contents
           </Typography>
         </Stack>
-        {memoizedSectionButtons}
+        {sectionButtons}
       </Menu>
     </Dropdown>
-    // </ClickAwayListener>
   );
 };
 
