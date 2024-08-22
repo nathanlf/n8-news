@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useRef } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -8,9 +8,8 @@ import {
   MenuButton,
   Dropdown,
   Stack,
-  //   ClickAwayListener,
 } from "@mui/joy";
-import { ClickAwayListener } from "@mui/base";
+// import { ClickAwayListener } from "@mui/base";
 
 import {
   Window as DiamondIcon,
@@ -19,6 +18,7 @@ import {
 
 export const CompactTableOfContents = ({ headers, title }) => {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef();
 
   const handleOpenChange = useCallback((event, isOpen) => {
     setOpen(isOpen);
@@ -38,6 +38,8 @@ export const CompactTableOfContents = ({ headers, title }) => {
       behavior: "smooth",
     });
   }, []);
+
+  useClickAway(menuRef, handleClickAway);
 
   const memoizedSectionButtons = useMemo(() => {
     return headers.map((header) => {
@@ -64,43 +66,43 @@ export const CompactTableOfContents = ({ headers, title }) => {
   }, [headers, handleMenuItemClick]);
 
   return (
-    <ClickAwayListener onClickAway={handleClickAway}>
-      <Dropdown open={open} onOpenChange={handleOpenChange}>
-        <MenuButton
-          slots={{ root: Button }}
-          slotProps={{
-            root: { sx: { backgroundColor: "transparent", px: 1, mx: -1 } },
-          }}
+    // <ClickAwayListener onClickAway={handleClickAway}>
+    <Dropdown open={open} onOpenChange={handleOpenChange}>
+      <MenuButton
+        slots={{ root: Button }}
+        slotProps={{
+          root: { sx: { backgroundColor: "transparent", px: 1, mx: -1 } },
+        }}
+      >
+        <DiamondIcon sx={{ transform: "rotate(45deg)" }} />
+        <Typography
+          level="h1"
+          sx={{ fontSize: "large", color: "#ffffff", ml: 1.5, mr: 0.5 }}
         >
-          <DiamondIcon sx={{ transform: "rotate(45deg)" }} />
-          <Typography
-            level="h1"
-            sx={{ fontSize: "large", color: "#ffffff", ml: 1.5, mr: 0.5 }}
-          >
-            {title}
+          {title}
+        </Typography>
+        <DownArrowIcon />
+      </MenuButton>
+      <Menu placement="bottom-end" ref={menuRef}>
+        <Stack
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="center"
+          gap={0.75}
+          sx={{ mx: 1, my: 0.5 }}
+        >
+          <DiamondIcon
+            color="primary"
+            sx={{ transform: "rotate(45deg)", fontSize: 16 }}
+          />
+          <Typography color="primary" fontSize={14} fontWeight={700}>
+            Table of Contents
           </Typography>
-          <DownArrowIcon />
-        </MenuButton>
-        <Menu placement="bottom-end">
-          <Stack
-            direction="row"
-            justifyContent="flex-start"
-            alignItems="center"
-            gap={0.75}
-            sx={{ mx: 1, my: 0.5 }}
-          >
-            <DiamondIcon
-              color="primary"
-              sx={{ transform: "rotate(45deg)", fontSize: 16 }}
-            />
-            <Typography color="primary" fontSize={14} fontWeight={700}>
-              Table of Contents
-            </Typography>
-          </Stack>
-          {memoizedSectionButtons}
-        </Menu>
-      </Dropdown>
-    </ClickAwayListener>
+        </Stack>
+        {memoizedSectionButtons}
+      </Menu>
+    </Dropdown>
+    // </ClickAwayListener>
   );
 };
 
