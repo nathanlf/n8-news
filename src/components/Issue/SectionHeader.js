@@ -35,7 +35,9 @@ export const SectionHeader = ({ title, vol, iss }) => {
       .reverse()
       .find((header) => header.top === 0);
 
-    if (activeHeading) setActiveSection(activeHeading);
+    if (activeHeading && activeHeading.slug !== activeSection?.slug) {
+      setActiveSection(activeHeading);
+    }
   }, [headers, scrollPosition]);
 
   return (
