@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import { useLocation } from "@reach/router";
 import { Stack, Typography, Box } from "@mui/joy";
@@ -8,7 +8,7 @@ import { BackToTopButton } from "../BackToTopButton";
 import { Link as LinkCopyIcon } from "@mui/icons-material";
 import { Window as DiamondIcon } from "@mui/icons-material";
 import { CompactTableOfContents } from "./CompactTableOfContents";
-import { useIssue, useWindowWidth } from "../../hooks";
+import { useIssue, useWindowWidth, useScrollPosition } from "../../hooks";
 
 export const SectionHeader = ({ title, vol, iss }) => {
   const slug = createSlug(title);
@@ -19,6 +19,24 @@ export const SectionHeader = ({ title, vol, iss }) => {
   );
   const { headers } = useIssue(vol, iss);
   const { isCompact } = useWindowWidth();
+  const [activeSection, setActiveSection] = useState(headers[0]);
+  const { scrollPosition } = useScrollPosition();
+
+  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
+  useEffect(() => {
+    const headingTops = headers.map((header) => {
+      const slug = createSlug(header);
+      const el = document.querySelector(`#${slug}`);
+      const { top } = el.getBoundingClientRect();
+      return { slug, top };
+    });
+
+    const activeHeading = headingTops
+      .reverse()
+      .find((header) => header.top === 0);
+
+    if (activeHeading) setActiveSection(activeHeading);
+  }, [headers, scrollPosition]);
 
   return (
     <Box
@@ -46,16 +64,19 @@ export const SectionHeader = ({ title, vol, iss }) => {
         },
       }}
     >
-      <Stack direction="row" alignItems="center" gap={1.5}>
-        <DiamondIcon
-          sx={{ transform: "rotate(45deg)", fontSize: 20, color: "#ffffff" }}
-        />
-        <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
-          {title}
-        </Typography>
-      </Stack>
+      {isCompact && slug === activeSection?.slug ? (
+        <CompactTableOfContents headers={headers} title={title} />
+      ) : (
+        <Stack direction="row" alignItems="center" gap={1.5}>
+          <DiamondIcon
+            sx={{ transform: "rotate(45deg)", fontSize: 20, color: "#ffffff" }}
+          />
+          <Typography level="h1" sx={{ fontSize: "large", color: "#ffffff" }}>
+            {title}
+          </Typography>
+        </Stack>
+      )}
       <Stack direction="row" gap={1}>
-        {isCompact && <CompactTableOfContents headers={headers} />}
         <CopyButton copyText={copyText} icon={<LinkCopyIcon />} />
         <BackToTopButton />
       </Stack>

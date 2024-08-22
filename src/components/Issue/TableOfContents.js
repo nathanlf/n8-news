@@ -71,6 +71,16 @@ const DynamicBackToTop = ({ visible, children }) => {
   );
 };
 
+const handleMenuItemClick = (slug = "") => {
+  const headingSibling = document.querySelector(`#${slug} + *`);
+  const scrollTop =
+    headingSibling.getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({
+    top: scrollTop,
+    behavior: "smooth",
+  });
+};
+
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
   const [activeSection, setActiveSection] = useState(headers[0]);
@@ -183,23 +193,7 @@ export const TableOfContents = ({ headers }) => {
                     key={slug}
                     size="sm"
                     variant="plain"
-                    onClick={() => {
-                      // scroll to heading's immediate sibling, since heading is sticky
-                      const headingSibling = document.querySelector(
-                        `#${slug} + *`
-                      );
-                      // calculate where to scroll,
-                      // offset of -70 chosen to maintain active section state
-                      // & to uncover the start of section
-                      const scrollTop =
-                        headingSibling.getBoundingClientRect().top +
-                        window.scrollY -
-                        70;
-                      window.scrollTo({
-                        top: scrollTop,
-                        behavior: "smooth",
-                      });
-                    }}
+                    onClick={() => handleMenuItemClick(slug)}
                     sx={{
                       mr: 1,
                       borderRight:
