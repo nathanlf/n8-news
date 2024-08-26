@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { IconButton, Button, Typography } from "@mui/joy";
+import { IconButton, Button, Tooltip, Typography } from "@mui/joy";
 import { KeyboardDoubleArrowUp as BackToTopIcon } from "@mui/icons-material";
 
 export const BackToTopButton = ({ children }) => {
@@ -38,17 +38,19 @@ export const BackToTopButton = ({ children }) => {
   }
 
   return (
-    <IconButton
-      onClick={() => {
-        scrollToTop();
-      }}
-      color="neutral"
-      aria-label="Back to Top Button"
-      sx={{
-        transition: "background-color 250ms",
-      }}
-    >
-      <BackToTopIcon />
-    </IconButton>
+    <Tooltip title="Back to top">
+      <IconButton
+        onClick={() => {
+          scrollToTop();
+        }}
+        color="neutral"
+        aria-label="Back to Top Button"
+        sx={{
+          transition: "background-color 250ms",
+        }}
+      >
+        <BackToTopIcon />
+      </IconButton>
+    </Tooltip>
   );
 };
