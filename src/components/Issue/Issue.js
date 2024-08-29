@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import PropTypes from "prop-types";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TableOfContents } from "./TableOfContents";
@@ -10,29 +16,45 @@ import { EndSign } from "./EndSign";
 import { createSlug } from "../../util/createSlug";
 
 export const ActiveSectionContext = createContext({});
+
+const debounce = (func, delay) => {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+};
+
 const ActiveSectionProvider = ({ children, vol, iss }) => {
   const { headers } = useIssue(vol, iss);
   const { scrollPosition } = useScrollPosition();
   const [activeSection, setActiveSection] = useState(headers[0]);
   const showOnScroll = scrollPosition > 120;
 
-  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
+  // this watches the scrollPosition for any changes, then sets the active section accordingly
+  const updateActiveSection = useCallback(
+    debounce(() => {
+      const headingTops = headers.map((header) => {
+        const slug = createSlug(header);
+        const el = document.querySelector(`#${slug}`);
+        const { top } = el.getBoundingClientRect();
+        return { slug, top };
+      });
+
+      const activeHeading = headingTops
+        .reverse()
+        .find((header) => header.top <= 0); // Changed from top === 0 to top <= 0
+
+      if (activeHeading && activeHeading.slug !== activeSection?.slug) {
+        setActiveSection(activeHeading);
+      }
+    }, 100), // Adjust the delay as needed
+    [headers, activeSection?.slug]
+  );
+
   useEffect(() => {
-    const headingTops = headers.map((header) => {
-      const slug = createSlug(header);
-      const el = document.querySelector(`#${slug}`);
-      const { top } = el.getBoundingClientRect();
-      return { slug, top };
-    });
-
-    const activeHeading = headingTops
-      .reverse()
-      .find((header) => header.top === 0);
-
-    if (activeHeading && activeHeading.slug !== activeSection?.slug) {
-      setActiveSection(activeHeading);
-    }
-  }, [headers, scrollPosition, activeSection?.slug]);
+    updateActiveSection();
+  }, [scrollPosition, updateActiveSection]);
 
   return (
     <ActiveSectionContext.Provider value={{ activeSection, showOnScroll }}>
