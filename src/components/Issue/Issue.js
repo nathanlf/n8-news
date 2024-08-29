@@ -10,8 +10,8 @@ import { EndSign } from "./EndSign";
 import { createSlug } from "../../util/createSlug";
 
 export const ActiveSectionContext = createContext({});
-const ActiveSectionProvider = ({ children }) => {
-  const { headers } = useIssue();
+const ActiveSectionProvider = ({ children, vol, iss }) => {
+  const { headers } = useIssue(vol, iss);
   const { scrollPosition } = useScrollPosition();
   const [activeSection, setActiveSection] = useState(headers[0]);
   const showOnScroll = scrollPosition > 120;
@@ -63,7 +63,7 @@ export const Issue = ({ vol, iss }) => {
   const month = date.toLocaleString("en-US", { month: "long" });
 
   return (
-    <ActiveSectionProvider>
+    <ActiveSectionProvider vol={vol} iss={iss}>
       <Stack
         direction="row"
         sx={{
