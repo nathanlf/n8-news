@@ -44,7 +44,7 @@ const ArchiveYear = ({ data }) => {
                   boxShadow: "5px 5px 5px #74747425",
                   "&:hover": {
                     textDecoration: "none",
-                    backgroundColor: "#74747430",
+                    backgroundColor: "#74747415",
                     transition: "background-color 250ms",
                   },
                 }}

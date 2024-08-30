@@ -41,10 +41,10 @@ export const ArchiveFolders = () => {
                 sx={{
                   fontWeight: 550,
                   pb: 3,
-                  borderRadius: 4,
+                  borderRadius: 8,
                   "&:hover": {
                     textDecoration: "none",
-                    backgroundColor: "#74747430",
+                    backgroundColor: "#74747415",
                     transition: "background-color 250ms",
                   },
                 }}
