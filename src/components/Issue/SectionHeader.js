@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import { useLocation } from "@reach/router";
 import { Stack, Typography, Box } from "@mui/joy";
@@ -8,9 +8,11 @@ import { BackToTopButton } from "../BackToTopButton";
 import { Link as LinkCopyIcon } from "@mui/icons-material";
 import { Window as DiamondIcon } from "@mui/icons-material";
 import { CompactTableOfContents } from "./CompactTableOfContents";
-import { useIssue, useWindowWidth, useScrollPosition } from "../../hooks";
+import { useIssue, useWindowWidth } from "../../hooks";
+import { useActiveSection } from "./Issue";
 
 export const SectionHeader = ({ title, vol, iss }) => {
+  const { activeSection } = useActiveSection();
   const slug = createSlug(title);
   const location = useLocation();
   const copyText = useMemo(
@@ -19,24 +21,6 @@ export const SectionHeader = ({ title, vol, iss }) => {
   );
   const { headers } = useIssue(vol, iss);
   const { isCompact } = useWindowWidth();
-  const [activeSection, setActiveSection] = useState(headers[0]);
-  const { scrollPosition } = useScrollPosition();
-
-  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
-  useEffect(() => {
-    const headingTops = headers.map((header) => {
-      const slug = createSlug(header);
-      const el = document.querySelector(`#${slug}`);
-      const { top } = el.getBoundingClientRect();
-      return { slug, top };
-    });
-
-    const activeHeading = headingTops
-      .reverse()
-      .find((header) => header.top === 0);
-
-    if (activeHeading) setActiveSection(activeHeading);
-  }, [headers, scrollPosition]);
 
   return (
     <Box

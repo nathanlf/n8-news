@@ -1,12 +1,69 @@
-import React from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import PropTypes from "prop-types";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { TableOfContents } from "./TableOfContents";
 import { Markdown } from "../Markdown";
 import { Box, Divider, Stack, Typography } from "@mui/joy";
-import { useIssue, useWindowWidth } from "../../hooks";
+import { useIssue, useScrollPosition, useWindowWidth } from "../../hooks";
 import { CoverHeader } from "./CoverHeader";
 import { EndSign } from "./EndSign";
+import { createSlug } from "../../util/createSlug";
+
+export const ActiveSectionContext = createContext({});
+
+const debounce = (func, delay) => {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+};
+
+const ActiveSectionProvider = ({ children, vol, iss }) => {
+  const { headers } = useIssue(vol, iss);
+  const { scrollPosition } = useScrollPosition();
+  const [activeSection, setActiveSection] = useState(headers[0]);
+  const showOnScroll = scrollPosition > 120;
+
+  // this watches the scrollPosition for any changes, then sets the active section accordingly
+  const updateActiveSection = useCallback(
+    debounce(() => {
+      const headingTops = headers.map((header) => {
+        const slug = createSlug(header);
+        const el = document.querySelector(`#${slug}`);
+        const { top } = el.getBoundingClientRect();
+        return { slug, top };
+      });
+
+      const activeHeading = headingTops
+        .reverse()
+        .find((header) => header.top <= 0); // Changed from top === 0 to top <= 0
+
+      if (activeHeading && activeHeading.slug !== activeSection?.slug) {
+        setActiveSection(activeHeading);
+      }
+    }, 100), // Adjust the delay as needed
+    [headers, activeSection?.slug]
+  );
+
+  useEffect(() => {
+    updateActiveSection();
+  }, [scrollPosition, updateActiveSection]);
+
+  return (
+    <ActiveSectionContext.Provider value={{ activeSection, showOnScroll }}>
+      {children}
+    </ActiveSectionContext.Provider>
+  );
+};
+
+export const useActiveSection = () => useContext(ActiveSectionContext);
 
 /**
  * @param     {number}    vol      The edition volume identifier, corresponds to the year {2020 + volume}
@@ -28,61 +85,63 @@ export const Issue = ({ vol, iss }) => {
   const month = date.toLocaleString("en-US", { month: "long" });
 
   return (
-    <Stack
-      direction="row"
-      sx={{
-        ".side-toc": {
-          flex: "0 0 250px",
-          maxWidth: isCompact ? 0 : "250px",
-          transition: "max-width 400ms ease",
-          overflow: "hidden",
-          whiteSpace: "nowrap",
-        },
-        ".main-content": {
-          flex: 1,
-          justifySelf: "stretch",
-        },
-      }}
-    >
-      <Box
-        className="side-toc"
-        xs={4}
+    <ActiveSectionProvider vol={vol} iss={iss}>
+      <Stack
+        direction="row"
         sx={{
-          height: "100%",
-          position: "sticky",
-          top: "0.5rem",
+          ".side-toc": {
+            flex: "0 0 250px",
+            maxWidth: isCompact ? 0 : "250px",
+            transition: "max-width 400ms ease",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+          },
+          ".main-content": {
+            flex: 1,
+            justifySelf: "stretch",
+          },
         }}
       >
-        <TableOfContents headers={headers} />
-      </Box>
-      <Box className="main-content">
-        <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
-        <CoverHeader vol={vol} iss={iss} month={month} year={year} />
-        <Typography
-          textAlign="center"
+        <Box
+          className="side-toc"
+          xs={4}
           sx={{
-            fontStyle: "italic",
-            px: 1,
-            py: 1.5,
+            height: "100%",
+            position: "sticky",
+            top: "0.5rem",
           }}
         >
-          <Markdown src={caption} />
-        </Typography>
-        <Divider />
-        <Typography
-          level="body-lg"
-          sx={{
-            fontStyle: "italic",
-            fontWeight: 500,
-            pt: 1.5,
-          }}
-        >
-          {blurb}
-        </Typography>
-        <Markdown src={rawMarkdownBody} vol={vol} iss={iss} />
-        <EndSign />
-      </Box>
-    </Stack>
+          <TableOfContents headers={headers} />
+        </Box>
+        <Box className="main-content">
+          <GatsbyImage image={coverImg} alt={`${vol}.${iss} cover image`} />
+          <CoverHeader vol={vol} iss={iss} month={month} year={year} />
+          <Typography
+            textAlign="center"
+            sx={{
+              fontStyle: "italic",
+              px: 1,
+              py: 1.5,
+            }}
+          >
+            <Markdown src={caption} />
+          </Typography>
+          <Divider />
+          <Typography
+            level="body-lg"
+            sx={{
+              fontStyle: "italic",
+              fontWeight: 500,
+              pt: 1.5,
+            }}
+          >
+            {blurb}
+          </Typography>
+          <Markdown src={rawMarkdownBody} vol={vol} iss={iss} />
+          <EndSign />
+        </Box>
+      </Stack>
+    </ActiveSectionProvider>
   );
 };
 
