@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { createSlug } from "../../util/createSlug";
 import {
@@ -13,14 +13,14 @@ import {
 } from "@mui/joy";
 import MenuIcon from "@mui/icons-material/Menu";
 import { BackToTopButton } from "../BackToTopButton";
-import { useScrollPosition } from "../../hooks";
 import renciLogo from "../../images/renci-logo.png";
+import { useActiveSection } from "./Issue";
 
 const DynamicMiniLogo = ({ visible }) => {
   const dynamicStyles = visible
     ? {
         minHeight: "100px",
-        filter: "opactiy(1.0)",
+        filter: "opacity(1.0)",
         transition: "min-height 250ms, filter 500ms",
         mb: 2,
       }
@@ -71,35 +71,24 @@ const DynamicBackToTop = ({ visible, children }) => {
   );
 };
 
+const handleMenuItemClick = (slug = "") => {
+  const headingSibling = document.querySelector(`#${slug} + *`);
+  const scrollTop =
+    headingSibling.getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({
+    top: scrollTop,
+    behavior: "smooth",
+  });
+};
+
 export const TableOfContents = ({ headers }) => {
   const [open, setOpen] = useState(true);
-  const [activeSection, setActiveSection] = useState(headers[0]);
-  const { scrollPosition } = useScrollPosition();
-
-  // this hook watches the scrollPosition for any changes, then sets the active section accordingly
-  useEffect(() => {
-    const headingTops = headers.map((header) => {
-      const slug = createSlug(header);
-      const el = document.querySelector(`#${slug}`);
-      const { top } = el.getBoundingClientRect();
-      return { slug, top };
-    });
-
-    const activeHeading = headingTops
-      .reverse()
-      .find((header) => header.top === 0);
-
-    if (activeHeading) setActiveSection(activeHeading);
-  }, [headers, scrollPosition]);
-
-  const showOnScroll = scrollPosition > 120;
+  const { activeSection, showOnScroll } = useActiveSection();
 
   // units are in ms, as seen in the reducer below
   const cascadeDuration = "250";
   const cascadeDelay = "25";
   const cascadeAnimation = {
-    // filter: open ? "opacity(1)" : "opacity(0)",
-    // transition: "filter 500ms",
     "@keyframes slide-in": {
       from: {
         filter: "opacity(0.0)",
@@ -183,23 +172,7 @@ export const TableOfContents = ({ headers }) => {
                     key={slug}
                     size="sm"
                     variant="plain"
-                    onClick={() => {
-                      // scroll to heading's immediate sibling, since heading is sticky
-                      const headingSibling = document.querySelector(
-                        `#${slug} + *`
-                      );
-                      // calculate where to scroll,
-                      // offset of -70 chosen to maintain active section state
-                      // & to uncover the start of section
-                      const scrollTop =
-                        headingSibling.getBoundingClientRect().top +
-                        window.scrollY -
-                        70;
-                      window.scrollTo({
-                        top: scrollTop,
-                        behavior: "smooth",
-                      });
-                    }}
+                    onClick={() => handleMenuItemClick(slug)}
                     sx={{
                       mr: 1,
                       borderRight:

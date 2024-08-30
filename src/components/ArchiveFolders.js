@@ -14,6 +14,10 @@ export const ArchiveFolders = () => {
         justifyContent="space-between"
         textAlign="center"
         alignItems="center"
+        sx={{
+          py: 0.5,
+          px: 0.5,
+        }}
       >
         {volumes.map((volumeNum) => {
           const year = 2020 + volumeNum;
@@ -36,6 +40,13 @@ export const ArchiveFolders = () => {
                 to={to}
                 sx={{
                   fontWeight: 550,
+                  pb: 3,
+                  borderRadius: 8,
+                  "&:hover": {
+                    textDecoration: "none",
+                    backgroundColor: "#74747415",
+                    transition: "background-color 250ms",
+                  },
                 }}
                 direction="column"
                 justifyContent="space-between"
