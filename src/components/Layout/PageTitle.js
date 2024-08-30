@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export const PageTitle = ({ title }) => {
   return (
-    <Typography level="h2" sx={{ px: 1 }}>
+    <Typography level="h2" sx={{ px: 1 }} gutterBottom>
       {title}
     </Typography>
   );
