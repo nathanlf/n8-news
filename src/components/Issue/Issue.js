@@ -3,7 +3,7 @@ import React, {
   useContext,
   useState,
   useEffect,
-  useCallback,
+  useRef,
 } from "react";
 import PropTypes from "prop-types";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -32,7 +32,7 @@ const ActiveSectionProvider = ({ children, vol, iss }) => {
   const showOnScroll = scrollPosition > 120;
 
   // this watches the scrollPosition for any changes, then sets the active section accordingly
-  const updateActiveSection = useCallback(
+  const updateActiveSection = useRef(
     debounce(() => {
       const headingTops = headers.map((header) => {
         const slug = createSlug(header);
@@ -48,13 +48,12 @@ const ActiveSectionProvider = ({ children, vol, iss }) => {
       if (activeHeading && activeHeading.slug !== activeSection?.slug) {
         setActiveSection(activeHeading);
       }
-    }, 100), // Adjust the delay as needed
-    [headers, activeSection?.slug]
-  );
+    }, 500) // Adjust the delay as needed
+  ).current;
 
   useEffect(() => {
     updateActiveSection();
-  }, [scrollPosition, updateActiveSection]);
+  }, [scrollPosition, headers, activeSection?.slug, updateActiveSection]);
 
   return (
     <ActiveSectionContext.Provider value={{ activeSection, showOnScroll }}>
