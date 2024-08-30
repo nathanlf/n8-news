@@ -43,7 +43,7 @@ const ActiveSectionProvider = ({ children, vol, iss }) => {
 
       const activeHeading = headingTops
         .reverse()
-        .find((header) => header.top <= 0); // Changed from top === 0 to top <= 0
+        .find((header) => header.top === 0);
 
       if (activeHeading && activeHeading.slug !== activeSection?.slug) {
         setActiveSection(activeHeading);
