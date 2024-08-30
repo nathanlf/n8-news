@@ -20,7 +20,7 @@ const DynamicMiniLogo = ({ visible }) => {
   const dynamicStyles = visible
     ? {
         minHeight: "100px",
-        filter: "opactiy(1.0)",
+        filter: "opacity(1.0)",
         transition: "min-height 250ms, filter 500ms",
         mb: 2,
       }
