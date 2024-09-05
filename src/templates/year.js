@@ -45,7 +45,8 @@ const ArchiveYear = ({ data }) => {
                   "&:hover": {
                     textDecoration: "none",
                     backgroundColor: "#74747415",
-                    transition: "background-color 250ms",
+                    backdropFilter: "blur(4px)",
+                    transition: "background-color 250ms backdropFilter 250ms",
                   },
                 }}
               >
