@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { Link as GatsbyLink } from "gatsby";
 import { Link as MUILink } from "@mui/joy";
 
-export const ExternalLink = ({ to, children, ...props }) => {
+export const ExternalLink = React.forwardRef(function (
+  { to, children, ...props },
+  ref
+) {
   return (
     <>
       <MUILink
@@ -11,23 +14,30 @@ export const ExternalLink = ({ to, children, ...props }) => {
         target="_blank"
         rel="noopener noreferrer"
         underline="hover"
+        ref={ref}
         {...props}
       >
         {children}
       </MUILink>
     </>
   );
-};
+});
 
-export const InternalLink = ({ to, children, ...props }) => {
+export const InternalLink = React.forwardRef(function (
+  { to, children, ...props },
+  ref
+) {
   return (
-    <MUILink component={GatsbyLink} to={to} {...props}>
+    <MUILink component={GatsbyLink} to={to} ref={ref} {...props}>
       {children}
     </MUILink>
   );
-};
+});
 
-export const Link = ({ to, children, ...props }) => {
+export const Link = React.forwardRef(function LinkComponent(
+  { to, children, ...props },
+  ref
+) {
   const externalUrlPattern = new RegExp(/^https?:\/\//);
   const externalURLMatch = externalUrlPattern.exec(to);
 
@@ -36,17 +46,17 @@ export const Link = ({ to, children, ...props }) => {
 
   if (externalURLMatch || mailtoMatch) {
     return (
-      <ExternalLink to={to} {...props}>
+      <ExternalLink to={to} {...props} ref={ref}>
         {children}
       </ExternalLink>
     );
   }
   return (
-    <InternalLink to={to} {...props}>
+    <InternalLink to={to} {...props} ref={ref}>
       {children}
     </InternalLink>
   );
-};
+});
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,

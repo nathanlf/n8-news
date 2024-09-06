@@ -28,7 +28,8 @@ const debounce = (func, delay) => {
 const ActiveSectionProvider = ({ children, vol, iss }) => {
   const { headers } = useIssue(vol, iss);
   const { scrollPosition } = useScrollPosition();
-  const [activeSection, setActiveSection] = useState(headers[0]);
+  const defaultActiveSection = { slug: createSlug(headers[0]), top: 0 };
+  const [activeSection, setActiveSection] = useState(defaultActiveSection);
   const showOnScroll = scrollPosition > 120;
 
   // this watches the scrollPosition for any changes, then sets the active section accordingly
@@ -37,23 +38,25 @@ const ActiveSectionProvider = ({ children, vol, iss }) => {
       const headingTops = headers.map((header) => {
         const slug = createSlug(header);
         const el = document.querySelector(`#${slug}`);
-        const { top } = el.getBoundingClientRect();
+        const { top } = el?.getBoundingClientRect() ?? 0;
         return { slug, top };
       });
 
-      const activeHeading = headingTops
-        .reverse()
-        .find((header) => header.top === 0);
+      const activeHeading =
+        headingTops.reverse().find((header) => header.top === 0) ??
+        defaultActiveSection;
 
       if (activeHeading && activeHeading.slug !== activeSection?.slug) {
         setActiveSection(activeHeading);
+      } else {
+        setActiveSection(defaultActiveSection);
       }
     }, 500) // Adjust the delay as needed
   ).current;
 
   useEffect(() => {
     updateActiveSection();
-  }, [scrollPosition, headers, activeSection?.slug, updateActiveSection]);
+  }, [scrollPosition, updateActiveSection]);
 
   return (
     <ActiveSectionContext.Provider value={{ activeSection, showOnScroll }}>

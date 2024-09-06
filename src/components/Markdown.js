@@ -19,7 +19,7 @@ export const Markdown = ({ src, vol, iss }) => {
           <Typography level="body-md">{children}</Typography>
         ),
         strong: ({ children }) => (
-          <Typography component="strong" level="title-lg">
+          <Typography component="strong" level="title-md" fontWeight="lg">
             {children}
           </Typography>
         ),
