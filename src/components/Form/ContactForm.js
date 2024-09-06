@@ -7,7 +7,7 @@ import { TextArea } from "./TextArea";
 import { Window as DiamondIcon } from "@mui/icons-material";
 
 const GOOGLE_APPS_SCRIPT_LINK =
-  "https://script.google.com/macros/s/AKfycbxeB6s-NsD6jcs98qAamRziXyMg_Gt7g6uK8cdMqpmlPQZBYXVxWFJnRUkgH25LD_Ex/exec";
+  "https://script.google.com/macros/s/AKfycbxuq8d49pgMcuCV4dXYdt0yKyO_h_KM7F0rFevPKBmfGLHqFT4ziJmhF1MBoYboJZIo/exec";
 
 export const ContactForm = () => {
   const {
@@ -79,7 +79,7 @@ export const ContactForm = () => {
           gap={4}
           sx={{ flex: 1, display: "flex" }}
         >
-          <Input label="Your Name" required type="text" register={register} />
+          <Input label="Name" required type="text" register={register} />
           <Input label="Email" required type="email" register={register} />
         </Box>
 
