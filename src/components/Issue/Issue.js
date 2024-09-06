@@ -4,7 +4,6 @@ import React, {
   useState,
   useEffect,
   useRef,
-  useCallback,
 } from "react";
 import PropTypes from "prop-types";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
