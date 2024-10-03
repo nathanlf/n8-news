@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: containers.renci.org/comms/newsletter
-  version: "1.6.3"
+  version: "1.6.4"
 
 resources:
   limits:
