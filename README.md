@@ -133,6 +133,18 @@ After the image version has been updated (don't forget to commit and push), run 
 helm upgrade renci-newsletter ./kubernetes -n comms
 ```
 
+### Manual Deployment
+
+If the GitHub action happens to be failing for any reason, you can build, test, and push to the container registry manually by using the following series of commands. Make sure to update the version number accordingly and to use an unused port to test the image.
+
+```bash
+docker login containers.renci.org
+docker build -t containers.renci.org/comms/newsletter:1.6.1 .
+docker run --rm -p 8080:8080 containers.renci.org/comms/newsletter:1.6.1
+docker push containers.renci.org/comms/newsletter:1.6.1
+helm upgrade renci-newsletter ./kubernetes -n comms
+```
+
 ### Tech Stack
 
 This is a [Node.js](https://nodejs.org/en) and [Gatsby](https://www.gatsbyjs.com/) project.
