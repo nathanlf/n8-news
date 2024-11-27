@@ -82,9 +82,19 @@ export const Issue = ({ vol, iss }) => {
     issueObj.frontmatter.coverImage?.path.childImageSharp?.gatsbyImageData
   );
   let caption = issueObj.frontmatter.coverImage?.caption;
-  const date = new Date(`${2020 + vol}-${iss}-01`);
+
+  // ternary statement is a bugfix for off-by-one month name for months after september
+  const date = new Date(
+    `${2020 + vol}-${iss > 9 && iss < 12 ? iss + 1 : iss}-01`
+  );
+
   const year = date.getFullYear();
-  const month = date.toLocaleString("en-US", { month: "long" });
+  let month = date.toLocaleString("en-US", { month: "long" });
+
+  // temp bugfix for month remaining off-by-one when month should be December
+  if (iss === 12 && month === "November") {
+    month = "December";
+  }
 
   return (
     <ActiveSectionProvider vol={vol} iss={iss}>
