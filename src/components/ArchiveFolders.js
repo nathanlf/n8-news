@@ -11,7 +11,6 @@ export const ArchiveFolders = () => {
     <>
       <Grid
         container
-        justifyContent="space-between"
         textAlign="center"
         alignItems="center"
         sx={{
@@ -49,7 +48,6 @@ export const ArchiveFolders = () => {
                   },
                 }}
                 direction="column"
-                justifyContent="space-between"
               >
                 <FolderIcon color="secondary" sx={{ py: 3, fontSize: 90 }} />
                 {year}
