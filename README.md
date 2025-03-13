@@ -2,9 +2,13 @@
 
 This web application was built to serve as a new home for RENCI's internal newsletter.
 
-## Content Management
+## Development
 
-### Markdown File Requirements
+Spin up the development server on [http://localhost:8000](http://localhost:8000) by running `npm run develop`.
+
+When proposing changes, always verify the build process runs without error locally with `npm run build`. Serve the built application on port `localhost:9000` with `npm run serve`.
+
+## Content Management
 
 Newsletter issues should be written in, or at least converted to, markdown files.
 
@@ -148,12 +152,6 @@ helm upgrade renci-newsletter ./kubernetes -n comms
 ### Tech Stack
 
 This is a [Node.js](https://nodejs.org/en) and [Gatsby](https://www.gatsbyjs.com/) project.
-
-### Scripts
-
-`npm run predevelop` to run [image preoptimization](https://www.gatsbyjs.com/docs/preoptimizing-images/) script and start the development server.
-
-`npm run prebuild` to run [image preoptimization](https://www.gatsbyjs.com/docs/preoptimizing-images/) script and create a production build.
 
 ## Formatting
 
