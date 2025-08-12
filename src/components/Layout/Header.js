@@ -20,8 +20,8 @@ export const Header = ({ title }) => {
         <Grid xs={12} sm={4} md={6} sx={{ py: 1 }}>
           <Link to="/" alt="Newest Edition">
             <StaticImage
-              src="../../images/renci-logo.png"
-              alt="RENCI Logo"
+              src="../../images/n8_logo2.png"
+              alt="N8's Logo"
               width={200}
               placeholder="blurred"
               layout="fixed"

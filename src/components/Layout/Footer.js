@@ -97,9 +97,9 @@ export const Footer = () => {
           <Stack direction="column" alignItems="center" sx={{ my: 4 }}>
             <Link to="https://renci.org/">
               <StaticImage
-                src="../../images/renci-logo-gray-simple.png"
+                src="../../images/n8_logo.png"
                 width={80}
-                alt="RENCI Simple Gray Logo"
+                alt="N8's Logo"
                 placeholder="blurred"
               />
             </Link>
