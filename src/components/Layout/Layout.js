@@ -5,11 +5,11 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { styled } from "@mui/joy/styles";
 import { Container } from "./Container";
-import renciLinesSvg from "../../images/renci-lines-sideways.svg";
+import linesSvg from "../../images/lines-sideways.svg";
 import { Divider } from "@mui/joy";
 
 const FancyBackground = styled("div")(() => ({
-  background: `linear-gradient(#ffffffee 75%, #ffffff66 100%), url(${renciLinesSvg})`,
+  background: `linear-gradient(#ffffffee 75%, #ffffff66 100%), url(${linesSvg})`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "0 0",
   backgroundSize: "contain",
