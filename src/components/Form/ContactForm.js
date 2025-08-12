@@ -6,8 +6,7 @@ import { Input } from "./Input";
 import { TextArea } from "./TextArea";
 import { Window as DiamondIcon } from "@mui/icons-material";
 
-const GOOGLE_APPS_SCRIPT_LINK =
-  "https://script.google.com/macros/s/AKfycbxuq8d49pgMcuCV4dXYdt0yKyO_h_KM7F0rFevPKBmfGLHqFT4ziJmhF1MBoYboJZIo/exec";
+const GOOGLE_APPS_SCRIPT_LINK = "";
 
 export const ContactForm = () => {
   const {
@@ -35,7 +34,10 @@ export const ContactForm = () => {
     });
 
     if (res.status !== 200) {
-      setResponse(res.statusText);
+      // setResponse(res.statusText);
+      setResponse(
+        "Your message was not submitted, as this is just a demo site!"
+      );
     } else {
       setResponse("Your message has been submitted!");
     }

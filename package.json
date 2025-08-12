@@ -1,5 +1,5 @@
 {
-  "name": "renci-newsletter",
+  "name": "n8-newsletter",
   "private": true,
   "scripts": {
     "develop": "gatsby develop",

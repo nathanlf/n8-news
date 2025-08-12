@@ -4,8 +4,8 @@
 
 module.exports = {
   siteMetadata: {
-    title: `RENCI Internal Newsletter`,
-    siteUrl: `https://newsletter.apps.renci.org`,
+    title: `N8 Internal Newsletter`,
+    siteUrl: `https://n8-news.vercel.app/`,
   },
   plugins: [
     `gatsby-plugin-image`,
