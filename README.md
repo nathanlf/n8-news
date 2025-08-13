@@ -1,6 +1,6 @@
-# RENCI Internal Newsletter
+# Internal Newsletter
 
-This web application was built to serve as a new home for RENCI's internal newsletter.
+This web application was _*originally*_ built to serve as a new home for RENCI's internal newsletter. This repo is an anonymized representation of the app, to showcase what it might look like in use. Development will continue, as _I have a clear vision for how this app, that I created from the ground up (with support, guidance, and encouragement from Matt Wattson, Sue Jin Kim, and David Glymph), can be repurposed with time_.
 
 ## Development
 
@@ -45,26 +45,26 @@ Here's an example of what your `index.md` markdown file may look like before add
 volume: 4
 issue: 5
 blurb: >
-  The May edition of the RENCI Internal Newsletter includes
+  The May edition of the Internal Newsletter includes
   all kinds of awesome things ...
 coverImage:
-  path: "cover-image.png"
+  path: "../images/cover-image.png"
   caption: >
     Pictured: Image description goes here. If this caption ends up being
       longer than one line, make sure to include a small indent on subsequent
       lines, as shown here ...
 ---
 
-# Notes From OOD
-# Projects, Funding and Awards
-# ACIS Messages
-# Finance Messages
-# DEIA
-# Proposals
-# Professional Development
-# Announcements
-# Upcoming Events
-# Ongoing Initiatives
+# Section 1
+# Section 2
+# Section 3
+# Section 4
+# Section 5
+# Section 6
+# Section 7
+# Section 8
+# Section 9
+# Section 10
 ```
 
 > [!TIP]

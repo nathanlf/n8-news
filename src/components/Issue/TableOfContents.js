@@ -13,7 +13,7 @@ import {
 } from "@mui/joy";
 import MenuIcon from "@mui/icons-material/Menu";
 import { BackToTopButton } from "../BackToTopButton";
-import renciLogo from "../../images/renci-logo.png";
+import logo from "../../images/n8_logo2.png";
 import { useActiveSection } from "./Issue";
 
 const DynamicMiniLogo = ({ visible }) => {
@@ -34,7 +34,7 @@ const DynamicMiniLogo = ({ visible }) => {
     <Box
       sx={{
         overflow: "hidden",
-        background: `url(${renciLogo})`,
+        background: `url(${logo})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "100% 50%",
         borderBottom: "1px solid var(--joy-palette-divider)",

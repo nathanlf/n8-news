@@ -15,25 +15,25 @@ const socialLinks = [
   {
     name: "LinkedIn",
     to: "https://www.linkedin.com/company/renaissance-computing-institute/",
-    label: "Navigate to the RENCI LinkedIn page",
+    label: "Navigate to the ___ LinkedIn page",
     icon: <LinkedInIcon />,
   },
   {
     name: "YouTube",
-    to: "https://www.youtube.com/channel/UCSOkatGqnWS_o1rU1mYgxrA",
-    label: "Navigate to the RENCI YouTube Channel",
+    to: "https://www.youtube.com/@n8h44n",
+    label: "Navigate to the ___ YouTube Channel",
     icon: <YouTubeIcon />,
   },
   {
     name: "Meta",
-    to: "https://www.facebook.com/renci.org",
-    label: "Navigate to the RENCI Meta (Facebook) page",
+    to: "https://www.facebook.com",
+    label: "Navigate to the ___ Meta (Facebook) page",
     icon: <FacebookIcon />,
   },
   {
     name: "X",
-    to: "https://x.com/renci",
-    label: "Navigate to the RENCI X (Twitter) page",
+    to: "https://x.com",
+    label: "Navigate to the ___ X (Twitter) page",
     icon: <XIcon />,
   },
 ];
@@ -78,9 +78,10 @@ export const Footer = () => {
               </Typography>
             </Stack>
             <Typography level="body-sm" align="center" gutterBottom>
-              This web application was built to serve as a new home for RENCI's
-              internal newsletter. Feel free to view past newsletters in the
-              archive or check out this month's edition anytime!
+              This is a demo of a web application that was built to serve as a
+              new home for a company's internal newsletter. Feel free to view
+              past newsletters in the archive or check out this month's edition
+              anytime!
             </Typography>
           </Stack>
         </Grid>
@@ -95,11 +96,11 @@ export const Footer = () => {
           }}
         >
           <Stack direction="column" alignItems="center" sx={{ my: 4 }}>
-            <Link to="https://renci.org/">
+            <Link to="https://soundcloud.com/n8th44n">
               <StaticImage
-                src="../../images/renci-logo-gray-simple.png"
+                src="../../images/n8_logo.png"
                 width={80}
-                alt="RENCI Simple Gray Logo"
+                alt="N8's Logo"
                 placeholder="blurred"
               />
             </Link>

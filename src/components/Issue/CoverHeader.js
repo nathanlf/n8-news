@@ -29,8 +29,8 @@ export const CoverHeader = ({ vol, iss, month, year }) => {
         <Box sx={{ pl: 4, pr: 2, pt: 4, pb: 2 }}>
           <StaticImage
             width={110}
-            src="../../images/renci-logo-white-simple.png"
-            alt="RENCI Logo"
+            src="../../images/n8_logo.png"
+            alt="N8's Logo"
             placeholder="blurred"
           />
         </Box>
