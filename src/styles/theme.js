@@ -42,5 +42,15 @@ export const theme = extendTheme({
         },
       },
     },
+    dark: {
+      palette: {
+        background: {
+          body: "#121212",
+        },
+        text: {
+          primary: "#ffffff",
+        },
+      },
+    },
   },
 });
