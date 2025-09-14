@@ -20,7 +20,7 @@ export const CoverHeader = ({ vol, iss, month, year }) => {
         display: "flex",
         flexGrow: 1,
         border: "2px solid var(--joy-palette-secondary-main)",
-        borderWidth: "0 1px 1px 1px",
+        borderWidth: "0 2px 2px 2px",
         background:
           "linear-gradient(90deg, rgba(2,120,141,1) 33%, rgba(2,162,189,1) 75%, rgba(2,170,192,1) 100%)",
       }}
