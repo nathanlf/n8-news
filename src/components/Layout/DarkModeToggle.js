@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useColorScheme } from "@mui/joy/styles";
 import { Button } from "@mui/joy";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 export function DarkModeToggle() {
   const { mode, setMode } = useColorScheme();
@@ -8,9 +10,19 @@ export function DarkModeToggle() {
   return (
     <Button
       onClick={() => setMode(mode === "light" ? "dark" : "light")}
-      variant="outlined"
+      sx={{
+        color: "var(--joy-palette-primary-700)",
+        backgroundColor: "transparent",
+        borderRadius: "var(--joy-radius-xs)",
+        py: 1.25,
+        "&:hover": {
+          textDecoration: "none",
+          backgroundColor: "var(--joy-palette-primary-100)",
+        },
+        transition: "background-color 250ms",
+      }}
     >
-      Switch to {mode === "light" ? "Dark" : "Light"}
+      {mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
     </Button>
   );
 }

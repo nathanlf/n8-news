@@ -34,8 +34,15 @@ export const CopyButton = ({
       <IconButton
         onClick={handleClick}
         variant="plain"
-        color={copied ? "success" : "neutral"}
-        sx={{ transition: "background-color 250ms" }}
+        color={copied ? "success" : "var(--joy-palette-text-secondary)"}
+        sx={{
+          "&:hover": {
+            textDecoration: "none",
+            color: "var(--joy-palette-text-primary)",
+            backgroundColor: "var(--joy-palette-background-body)",
+          },
+          transition: "background-color 250ms",
+        }}
       >
         {copied ? <CopiedIcon /> : icon}
       </IconButton>

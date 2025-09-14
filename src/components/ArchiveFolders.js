@@ -41,6 +41,7 @@ export const ArchiveFolders = () => {
                   fontWeight: 550,
                   pb: 3,
                   borderRadius: 8,
+                  color: "var(--joy-palette-primary-700)",
                   "&:hover": {
                     textDecoration: "none",
                     backgroundColor: "#74747415",

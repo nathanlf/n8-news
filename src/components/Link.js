@@ -15,6 +15,10 @@ export const ExternalLink = React.forwardRef(function (
         rel="noopener noreferrer"
         underline="hover"
         ref={ref}
+        sx={{
+          color: "var(--joy-palette-primary-700)",
+          textDecorationColor: "var(--joy-palette-primary-700)",
+        }}
         {...props}
       >
         {children}
@@ -28,7 +32,16 @@ export const InternalLink = React.forwardRef(function (
   ref
 ) {
   return (
-    <MUILink component={GatsbyLink} to={to} ref={ref} {...props}>
+    <MUILink
+      component={GatsbyLink}
+      to={to}
+      ref={ref}
+      sx={{
+        color: "var(--joy-palette-primary-700)",
+        textDecorationColor: "var(--joy-palette-primary-700)",
+      }}
+      {...props}
+    >
       {children}
     </MUILink>
   );

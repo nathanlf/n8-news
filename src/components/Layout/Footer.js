@@ -47,7 +47,7 @@ export const Footer = () => {
       sx={{
         flexBasis: "5rem",
         alignContent: "center",
-        backgroundColor: "#fafafa33",
+        backgroundColor: "#fafafa11",
         py: 3,
         backdropFilter: "blur(4px)",
         borderTop: "1px solid var(--joy-palette-divider)",

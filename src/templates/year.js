@@ -50,7 +50,7 @@ const ArchiveYear = ({ data }) => {
                   },
                 }}
               >
-                <Typography level="h4" color="primary">
+                <Typography level="h4" variant="plain" color="primary">
                   {date.toLocaleString("en-US", { month: "long" })}
                 </Typography>
                 <Typography
