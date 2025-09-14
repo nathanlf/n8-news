@@ -11,6 +11,7 @@ export function DarkModeToggle() {
     <Button
       onClick={() => setMode(mode === "light" ? "dark" : "light")}
       variant="plain"
+      color="primary"
       sx={{
         borderRadius: "var(--joy-radius-xs)",
         py: 1.25,

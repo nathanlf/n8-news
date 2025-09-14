@@ -45,7 +45,7 @@ const NavLink = ({ Icon, label, to }) => {
     <Box
       component={Link}
       to={to}
-      color="primary"
+      color="var(--joy-palette-primary-700)"
       width={{ xs: "100%", sm: "auto" }}
       sx={{
         px: 1.5,

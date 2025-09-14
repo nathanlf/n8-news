@@ -177,12 +177,13 @@ export const TableOfContents = ({ headers }) => {
                       mr: 1,
                       borderRight:
                         slug === activeSection?.slug
-                          ? "4px solid var(--joy-palette-primary-main)"
+                          ? "4px solid var(--joy-palette-primary-700)"
                           : "4px solid #0001",
                       transition: "border-color 250ms, background-color 250ms",
                     }}
                   >
                     <Typography
+                      variant="plain"
                       color={
                         slug === activeSection?.slug ? "primary" : "secondary"
                       }

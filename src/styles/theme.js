@@ -2,7 +2,7 @@ import { extendTheme } from "@mui/joy";
 
 const palette = {
   primary: {
-    main: "#02aac6",
+    main: "#02788D",
   },
   secondary: {
     main: "#747474", // gray for folders, clipboard button, etc.
@@ -40,10 +40,10 @@ export const theme = extendTheme({
           400: "#02bdde",
           500: "#02aac6",
           600: "#0891b2",
-          700: "#0e7490",
+          700: "#02788D",
           800: "#155e75",
           900: "#164e63",
-          plainColor: "var(--joy-palette-primary-500, #02aac6)",
+          plainColor: "var(--joy-palette-primary-700, #02788D)",
           plainHoverBg: "var(--joy-palette-primary-50, #DFFAFF)",
         },
         secondary: {
