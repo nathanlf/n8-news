@@ -53,7 +53,7 @@ const NavLink = ({ Icon, label, to }) => {
         whiteSpace: "nowrap",
         "&:hover": {
           textDecoration: "none",
-          backgroundColor: "var(--joy-palette-primary-50)",
+          backgroundColor: "var(--joy-palette-primary-100)",
         },
         transition: "background-color 250ms",
         ...(isActive
