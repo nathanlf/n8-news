@@ -2,6 +2,8 @@
 
 This web application was _*originally*_ built to serve as a new home for RENCI's internal newsletter. This repo is currently an anonymized representation of the original app, in order to showcase what it might look like in use. Development will continue, as I have a clear vision for how this app can be repurposed with time to serve as a way to consistently log life, lessons, and learning. As new updates are made, this README will be updated to reflect any tech stack changes, content management steps, and deployment workflows.
 
+_Essentially: Documenting my reflections, takeaways, milestones, achievements, dreams, thought processes, memories, and more over the last few years and onwards -- this project enables me to reflect and integrate my life experience_
+
 ## Development
 
 Spin up the development server on [http://localhost:8000](http://localhost:8000) by running `npm run develop`.
