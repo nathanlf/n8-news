@@ -10,9 +10,9 @@ export function DarkModeToggle() {
   return (
     <Button
       onClick={() => setMode(mode === "light" ? "dark" : "light")}
-      variant="plain"
-      color="primary"
       sx={{
+        color: "var(--joy-palette-primary-700)",
+        backgroundColor: "transparent",
         borderRadius: "var(--joy-radius-xs)",
         py: 1.25,
         "&:hover": {
