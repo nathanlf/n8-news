@@ -1,6 +1,6 @@
 # Internal Newsletter
 
-This web application was _*originally*_ built to serve as a new home for RENCI's internal newsletter. This repo is an anonymized representation of the app, to showcase what it might look like in use. Development will continue, as I have a clear vision for how this app, that I created from the ground up (with support, guidance, and encouragement from Matt Wattson, Sue Jin Kim, and David Glymph), can be repurposed with time.
+This web application was _*originally*_ built to serve as a new home for RENCI's internal newsletter. This repo is currently an anonymized representation of the original app, in order to showcase what it might look like in use. Development will continue, as I have a clear vision for how this app can be repurposed with time to serve as a way to consistently log life, lessons, and learning. As new updates are made, this README will be updated to reflect any tech stack changes, content management steps, and deployment workflows.
 
 ## Development
 
