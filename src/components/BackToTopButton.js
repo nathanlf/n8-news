@@ -42,9 +42,14 @@ export const BackToTopButton = ({ children }) => {
       onClick={() => {
         scrollToTop();
       }}
-      color="neutral"
+      color="var(--joy-palette-text-secondary)"
       aria-label="Back to Top Button"
       sx={{
+        "&:hover": {
+          textDecoration: "none",
+          color: "var(--joy-palette-text-primary)",
+          backgroundColor: "var(--joy-palette-background-body)",
+        },
         transition: "background-color 250ms",
       }}
     >
