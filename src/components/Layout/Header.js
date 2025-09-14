@@ -39,6 +39,7 @@ export const Header = ({ title }) => {
               sx={{
                 textAlign: { xs: "left", sm: "right" },
                 mr: 1.5,
+                color: `var(--joy-palette-text-primary)`,
               }}
             >
               {title}

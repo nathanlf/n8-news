@@ -8,6 +8,7 @@ import {
   Chat as ContactIcon,
 } from "@mui/icons-material";
 import { useLocation } from "@reach/router";
+import { DarkModeToggle } from "./DarkModeToggle";
 
 const menuItems = [
   {
@@ -52,11 +53,11 @@ const NavLink = ({ Icon, label, to }) => {
         whiteSpace: "nowrap",
         "&:hover": {
           textDecoration: "none",
-          backgroundColor: "var(--joy-palette-primary-100)",
+          backgroundColor: "var(--joy-palette-primary-50)",
         },
         transition: "background-color 250ms",
         ...(isActive
-          ? { backgroundColor: "var(--joy-palette-primary-100)" }
+          ? { backgroundColor: "var(--joy-palette-primary-50)" }
           : {}),
       }}
       startDecorator={<Icon />}
@@ -81,6 +82,7 @@ export const Navbar = () => {
       {menuItems.map((item) => (
         <NavLink key={item.to} {...item} />
       ))}
+      <DarkModeToggle />
     </Stack>
   );
 };
