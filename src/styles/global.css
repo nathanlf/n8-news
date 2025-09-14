@@ -24,11 +24,3 @@ body {
   color: var(--joy-palette-text-primary);
   min-height: 100%;
 }
-
-a {
-  color: var(--joy-palette-primary-500);
-}
-
-a:hover {
-  color: var(--joy-palette-primary-600);
-}
