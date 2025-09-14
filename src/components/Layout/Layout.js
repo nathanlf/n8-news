@@ -5,23 +5,23 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { styled } from "@mui/joy/styles";
 import { Container } from "./Container";
-import linesSvg from "../../images/lines-sideways.svg";
+// import linesSvg from "../../images/lines-sideways.svg";
 import { Divider } from "@mui/joy";
 
-const FancyBackground = styled("div")(() => ({
-  background: `linear-gradient(#ffffffee 75%, #ffffff66 100%), url(${linesSvg})`,
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "0 0",
-  backgroundSize: "contain",
-  backgroundAttachment: "fixed",
-  flexGrow: 1,
-  display: "flex",
-  flexDirection: "column",
-}));
+// const FancyBackground = styled("div")(() => ({
+//   background: `linear-gradient(#ffffffee 75%, #ffffff66 100%), url(${linesSvg})`,
+//   backgroundRepeat: "no-repeat",
+//   backgroundPosition: "0 0",
+//   backgroundSize: "contain",
+//   backgroundAttachment: "fixed",
+//   flexGrow: 1,
+//   display: "flex",
+//   flexDirection: "column",
+// }));
 
 export const Layout = ({ children }) => {
   return (
-    <FancyBackground>
+    <>
       <Container>
         <Header title="Internal Newsletter" />
         <Divider
@@ -32,7 +32,7 @@ export const Layout = ({ children }) => {
         {children}
       </Container>
       <Footer />
-    </FancyBackground>
+    </>
   );
 };
 
