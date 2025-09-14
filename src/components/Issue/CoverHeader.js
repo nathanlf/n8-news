@@ -7,7 +7,7 @@ export const CoverHeader = ({ vol, iss, month, year }) => {
   const title = `Internal
     Newsletter`;
 
-  console.log(`${month} ${year} ${vol} ${iss}`);
+  // console.log(`${month} ${year} ${vol} ${iss}`);
   const date = `${month} ${year}`;
   const edition = `Volume ${vol}
     Issue ${iss}`;
