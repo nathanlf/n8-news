@@ -78,10 +78,11 @@ export const Footer = () => {
               </Typography>
             </Stack>
             <Typography level="body-sm" align="center" gutterBottom>
-              This is a demo of a web application that was built to serve as a
-              new home for a company's internal newsletter. Feel free to view
-              past newsletters in the archive or check out this month's edition
-              anytime!
+              I, Nathan Flinchum, originally built this web application to serve
+              as a new home for a company's internal newsletter. After
+              continuing development on my own, this was created to serve as a
+              life and learning log. Feel free to view past newsletters in the
+              archive or check out this month's edition anytime!
             </Typography>
           </Stack>
         </Grid>
@@ -96,10 +97,10 @@ export const Footer = () => {
           }}
         >
           <Stack direction="column" alignItems="center" sx={{ my: 4 }}>
-            <Link to="https://soundcloud.com/n8th44n">
+            <Link to="https://soundcloud.com/n8th44n" sx={{ pb: 2 }}>
               <StaticImage
-                src="../../images/n8_logo.png"
-                width={80}
+                src="../../images/n8.png"
+                width={144}
                 alt="N8's Logo"
                 placeholder="blurred"
               />
@@ -128,7 +129,7 @@ export const Footer = () => {
               align="center"
               sx={{ fontWeight: 700 }}
             >
-              Get Connected
+              Get #Connected
             </Typography>
           </Stack>
           <Stack
@@ -136,6 +137,7 @@ export const Footer = () => {
             justifyContent="center"
             spacing={2}
             direction="row"
+            padding={4.4}
           >
             {socialLinks.map((item) => (
               <IconButton
@@ -151,7 +153,7 @@ export const Footer = () => {
               </IconButton>
             ))}
           </Stack>
-          <Link to="/contact">Contact Us</Link>
+          <Link to="mailto:nathan@flinchum.net">Contact (say Hi)</Link>
         </Grid>
       </Grid>
     </Box>

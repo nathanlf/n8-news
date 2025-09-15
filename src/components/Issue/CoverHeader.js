@@ -28,7 +28,7 @@ export const CoverHeader = ({ vol, iss, month, year }) => {
       <Stack direction="row" gap={1}>
         <Box sx={{ pl: 4, pr: 2, pt: 4, pb: 2 }}>
           <StaticImage
-            width={110}
+            width={122}
             src="../../images/n8_logo.png"
             alt="N8's Logo"
             placeholder="blurred"

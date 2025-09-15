@@ -13,7 +13,7 @@ import {
 } from "@mui/joy";
 import MenuIcon from "@mui/icons-material/Menu";
 import { BackToTopButton } from "../BackToTopButton";
-import logo from "../../images/n8_logo2.png";
+import logo from "../../images/n8.png";
 import { useActiveSection } from "./Issue";
 
 const DynamicMiniLogo = ({ visible }) => {
@@ -36,9 +36,9 @@ const DynamicMiniLogo = ({ visible }) => {
         overflow: "hidden",
         background: `url(${logo})`,
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "100% 50%",
+        backgroundPosition: "44% 44%",
         borderBottom: "1px solid var(--joy-palette-divider)",
-        backgroundSize: "60%",
+        backgroundSize: "140%",
         mr: 0.75,
         ...dynamicStyles,
       }}
