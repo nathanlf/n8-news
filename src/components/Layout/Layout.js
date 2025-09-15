@@ -11,8 +11,8 @@ import { Divider } from "@mui/joy";
 const FancyBackground = styled("div")(({ theme }) => ({
   background: `${
     theme.palette.mode === "dark"
-      ? "linear-gradient(#181818ee 75%, #18181866 100%)"
-      : "linear-gradient(#ffffffee 75%, #ffffff66 100%)"
+      ? "linear-gradient(#181818ee 33%, #18181866 100%)"
+      : "linear-gradient(#ffffffee 33%, #ffffff66 100%)"
   }, url(${linesSvg})`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "0 0",
