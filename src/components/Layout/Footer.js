@@ -6,35 +6,35 @@ import {
   Info as AboutIcon,
   LinkedIn as LinkedInIcon,
   YouTube as YouTubeIcon,
-  Facebook as FacebookIcon,
-  X as XIcon,
+  Instagram as InstagramIcon,
+  GitHub as GitHubIcon,
   Hub as HubIcon,
 } from "@mui/icons-material";
 
 const socialLinks = [
   {
     name: "LinkedIn",
-    to: "https://www.linkedin.com/company/renaissance-computing-institute/",
-    label: "Navigate to the ___ LinkedIn page",
+    to: "http://linkedin.com/in/nathanflinchum/",
+    label: "Navigate to Nathan's LinkedIn page",
     icon: <LinkedInIcon />,
   },
   {
     name: "YouTube",
     to: "https://www.youtube.com/@n8h44n",
-    label: "Navigate to the ___ YouTube Channel",
+    label: "Navigate to Nathan's YouTube Channel",
     icon: <YouTubeIcon />,
   },
   {
-    name: "Meta",
-    to: "https://www.facebook.com",
-    label: "Navigate to the ___ Meta (Facebook) page",
-    icon: <FacebookIcon />,
+    name: "Instagram",
+    to: "https://www.instagram.com/n8th44n/",
+    label: "Navigate to the Nathan's Instagram page",
+    icon: <InstagramIcon />,
   },
   {
-    name: "X",
-    to: "https://x.com",
-    label: "Navigate to the ___ X (Twitter) page",
-    icon: <XIcon />,
+    name: "GitHub",
+    to: "https://github.com/nathanlf",
+    label: "Navigate to Nathan's GitHub page",
+    icon: <GitHubIcon />,
   },
 ];
 
@@ -81,8 +81,7 @@ export const Footer = () => {
               I, Nathan Flinchum, originally built this web application to serve
               as a new home for a company's internal newsletter. After
               continuing development on my own, this was created to serve as a
-              life and learning log. Feel free to view past newsletters in the
-              archive or check out this month's edition anytime!
+              log for life and learning. Keep being you!
             </Typography>
           </Stack>
         </Grid>
@@ -96,11 +95,11 @@ export const Footer = () => {
             justifyContent: "center",
           }}
         >
-          <Stack direction="column" alignItems="center" sx={{ my: 4 }}>
-            <Link to="https://soundcloud.com/n8th44n" sx={{ pb: 2 }}>
+          <Stack direction="column" alignItems="center" sx={{ my: 1 }}>
+            <Link to="https://soundcloud.com/n8th44n">
               <StaticImage
                 src="../../images/n8.png"
-                width={144}
+                width={122}
                 alt="N8's Logo"
                 placeholder="blurred"
               />
@@ -137,7 +136,7 @@ export const Footer = () => {
             justifyContent="center"
             spacing={2}
             direction="row"
-            padding={4.4}
+            padding={1.5}
           >
             {socialLinks.map((item) => (
               <IconButton
