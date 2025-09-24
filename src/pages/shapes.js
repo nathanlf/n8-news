@@ -307,11 +307,11 @@ const ShapesPage = () => {
         ref={mountRef}
         sx={{
           flexGrow: 1, // Take up all available space
-          minHeight: "400px", // Minimum height for usability
+          minHeight: "200px", // Minimum height for usability
           width: "100%", // Full width
           border: "2px solid #4ecdc4",
           borderRadius: "8px",
-          mb: 3,
+          mb: 4,
           // Fallback in case Three.js fails to load
           backgroundColor: "transparent",
         }}
@@ -322,7 +322,7 @@ const ShapesPage = () => {
         sx={{
           maxWidth: "100%", // Full width to match flexible container
           lineHeight: 1.6,
-          color: "#b8b8d1", // Light purple-gray
+          color: "var(--joy-palette-text-primary)",
           px: 2, // Add some padding for readability
           pb: 4,
         }}
