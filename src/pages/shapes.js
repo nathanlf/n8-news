@@ -15,19 +15,16 @@ const ShapesPage = () => {
     const mount = mountRef.current;
     if (!mount) return;
 
-    // Scene setup - this is like the stage where everything happens
     const scene = new THREE.Scene();
-    // Transparent background - no background color set
-
-    // Camera setup - this is our viewpoint into the 3D world
     const camera = new THREE.PerspectiveCamera(
       75, // Field of view (how wide the camera sees)
       mount.clientWidth / mount.clientHeight, // Aspect ratio
       0.1, // Near clipping plane
       1000 // Far clipping plane
     );
+    // Transparent background - no background color set
 
-    // Renderer setup - this draws the 3D scene onto a 2D canvas
+    // Draw the 3D scene onto a 2D canvas
     const renderer = new THREE.WebGLRenderer({
       antialias: false, // Disable antialiasing for pixelated look
       alpha: true, // Enable transparency
@@ -182,6 +179,7 @@ const ShapesPage = () => {
     // Mouse hover effects - change cursor when hovering over shapes
     const onMouseHover = (event) => {
       if (selectedShape) return; // Don't change cursor while dragging
+      
 
       getMousePosition(event);
       raycaster.setFromCamera(mouse, camera);
@@ -203,7 +201,7 @@ const ShapesPage = () => {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Only rotate shapes if they're not being dragged (much slower rotation)
+      // Only rotate shapes if they're not being dragged
       if (selectedShape !== cube) {
         cube.rotation.x += 0.001;
         cube.rotation.y += 0.002;
