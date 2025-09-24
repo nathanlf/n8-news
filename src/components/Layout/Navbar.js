@@ -6,6 +6,7 @@ import {
   Article as NewestEditionIcon,
   // Event as InitiativesIcon,
   Chat as ContactIcon,
+  ViewInAr as ShapesIcon,
 } from "@mui/icons-material";
 import { useLocation } from "@reach/router";
 import { DarkModeToggle } from "./DarkModeToggle";
@@ -31,6 +32,11 @@ const menuItems = [
     to: "/contact",
     Icon: ContactIcon,
     label: "Contact",
+  },
+  {
+    to: "/shapes",
+    Icon: ShapesIcon,
+    label: "3D",
   },
 ];
 
