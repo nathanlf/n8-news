@@ -1,14 +1,21 @@
 import * as React from "react";
-import { Box, Typography } from "@mui/joy";
+import { Box, Button, Typography } from "@mui/joy";
 import * as THREE from "three";
 
 const ShapesPage = () => {
   // Ref to attach the Three.js canvas to the DOM
   const mountRef = React.useRef(null);
 
-  // State to track drag interactions
+  // State to track drag interactions and rotation status
   const [isDragging, setIsDragging] = React.useState(false);
   const [draggedShape, setDraggedShape] = React.useState(null);
+  const [rotationEnabled, setRotationEnabled] = React.useState(true);
+  const rotationRef = React.useRef(rotationEnabled);
+
+  React.useEffect(() => {
+    rotationRef.current = rotationEnabled;
+  }, [rotationEnabled]);
+
 
   React.useEffect(() => {
     // Get the container element
@@ -201,27 +208,29 @@ const ShapesPage = () => {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Only rotate shapes if they're not being dragged
-      if (selectedShape !== cube) {
-        cube.rotation.x += 0.001;
-        cube.rotation.y += 0.002;
-      }
+      // Only rotate shapes if rotation is enabled
+      if (rotationRef.current) {
+        if (selectedShape !== cube) {
+          cube.rotation.x += 0.001;
+          cube.rotation.y += 0.002;
+        }
+        
+        if (selectedShape !== pyramid) {
+          pyramid.rotation.x += 0.0015;
+          pyramid.rotation.z += 0.0025;
+        }
+        
+        if (selectedShape !== hexagon) {
+          hexagon.rotation.y += 0.003;
+          hexagon.rotation.x += 0.0006;
+        }
 
-      if (selectedShape !== pyramid) {
-        pyramid.rotation.x += 0.0015;
-        pyramid.rotation.z += 0.0025;
-      }
-
-      if (selectedShape !== hexagon) {
-        hexagon.rotation.y += 0.003;
-        hexagon.rotation.x += 0.0006;
-      }
-
-      if (selectedShape !== octahedron) {
-        octahedron.rotation.x += 0.002;
-        octahedron.rotation.y += 0.0015;
-        octahedron.rotation.z += 0.001;
-      }
+        if (selectedShape !== octahedron) {
+          octahedron.rotation.x += 0.002;
+          octahedron.rotation.y += 0.0015;
+          octahedron.rotation.z += 0.001;
+        }
+    }
 
       // Render the scene from the camera's perspective
       renderer.render(scene, camera);
@@ -314,6 +323,22 @@ const ShapesPage = () => {
           backgroundColor: "transparent",
         }}
       />
+
+      <Button
+        color="primary"
+        onClick={() => setRotationEnabled((prev) => !prev)}
+        sx={{
+          mb: 4,
+          fontFamily: "monospace",
+          backgroundColor: "#4ecdc4",
+          color: "black",
+          '&:hover': {
+            backgroundColor: "#3cb5ab",
+          }
+        }}
+      >
+        {rotationEnabled ? "Stop Rotation" : "Start Rotation"}
+      </Button>
 
       <Typography
         level="body-lg"
