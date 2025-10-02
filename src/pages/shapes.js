@@ -16,7 +16,6 @@ const ShapesPage = () => {
     rotationRef.current = rotationEnabled;
   }, [rotationEnabled]);
 
-
   React.useEffect(() => {
     // Get the container element
     const mount = mountRef.current;
@@ -186,7 +185,6 @@ const ShapesPage = () => {
     // Mouse hover effects - change cursor when hovering over shapes
     const onMouseHover = (event) => {
       if (selectedShape) return; // Don't change cursor while dragging
-      
 
       getMousePosition(event);
       raycaster.setFromCamera(mouse, camera);
@@ -214,12 +212,12 @@ const ShapesPage = () => {
           cube.rotation.x += 0.001;
           cube.rotation.y += 0.002;
         }
-        
+
         if (selectedShape !== pyramid) {
           pyramid.rotation.x += 0.0015;
           pyramid.rotation.z += 0.0025;
         }
-        
+
         if (selectedShape !== hexagon) {
           hexagon.rotation.y += 0.003;
           hexagon.rotation.x += 0.0006;
@@ -230,7 +228,7 @@ const ShapesPage = () => {
           octahedron.rotation.y += 0.0015;
           octahedron.rotation.z += 0.001;
         }
-    }
+      }
 
       // Render the scene from the camera's perspective
       renderer.render(scene, camera);
@@ -332,9 +330,9 @@ const ShapesPage = () => {
           fontFamily: "monospace",
           backgroundColor: "#4ecdc4",
           color: "black",
-          '&:hover': {
+          "&:hover": {
             backgroundColor: "#3cb5ab",
-          }
+          },
         }}
       >
         {rotationEnabled ? "Stop Rotation" : "Start Rotation"}
@@ -350,9 +348,13 @@ const ShapesPage = () => {
           pb: 4,
         }}
       >
-        These pixelated wireframe shapes rotate with a retro 8/16-bit aesthetic.
-        From left to right: Cube (red), Pyramid (cyan), Hexagonal Prism (blue),
-        and Octahedron (green).
+        Here's a little demo to demonstrate (and practice/review) what I learned
+        about WebGL (I took COMP 590: Interactive Web Graphics in the spring of
+        2025, which ended up being some of the most interesting CS content I
+        learned at uni. Useful for the gamedev/visualizer stuff I'll be working
+        on in the future) These pixelated wireframe shapes rotate with a retro
+        8/16-bit aesthetic. From left to right: Cube (red), Pyramid (cyan),
+        Hexagonal Prism (blue), and Octahedron (green).
       </Typography>
 
       {/* {isDragging && draggedShape && (
