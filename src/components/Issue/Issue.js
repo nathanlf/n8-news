@@ -83,18 +83,23 @@ export const Issue = ({ vol, iss }) => {
   );
   let caption = issueObj.frontmatter.coverImage?.caption;
 
-  // ternary statement is a bugfix for off-by-one month name for months after september
-  const date = new Date(
-    `${2020 + vol}-${iss > 9 && iss < 12 ? iss + 1 : iss}-01`
-  );
-
-  const year = date.getFullYear();
-  let month = date.toLocaleString("en-US", { month: "long" });
-
-  // temp bugfix for month remaining off-by-one when month should be December
-  if (iss === 12 && month === "November") {
-    month = "December";
-  }
+  // Calculate year and month directly from vol and iss
+  const year = 2020 + vol;
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const month = monthNames[iss - 1]; // iss is 1-indexed, array is 0-indexed
 
   return (
     <ActiveSectionProvider vol={vol} iss={iss}>
