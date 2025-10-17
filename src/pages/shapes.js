@@ -352,7 +352,7 @@ const ShapesPage = () => {
       >
         These pixelated wireframe shapes rotate with a retro 8/16-bit aesthetic.
         From left to right: Cube (red), Pyramid (cyan), Hexagonal Prism (blue),
-        and Octahedron (green).
+        and Octahedron (green). To play with the edges of each shape, click and drag.
       </Typography>
 
       {/* {isDragging && draggedShape && (
