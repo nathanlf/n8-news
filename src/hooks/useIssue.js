@@ -27,6 +27,14 @@ export const useIssue = (vol, iss) => {
       return acc;
     }, []), [issueObj.htmlAst.children]);
 
+  // alternative way to extract h1 headers
+  // const headers = useMemo(() =>
+  // issueObj.htmlAst.children
+  //   .filter(child => child.tagName === "h1")
+  //   .map(child => child.children.find(el => el.type === "text").value),
+  // [issueObj.htmlAst.children]
+  // );
+
   return {
     headers,
     issueObj,

@@ -348,13 +348,9 @@ const ShapesPage = () => {
           pb: 4,
         }}
       >
-        Here's a little demo to demonstrate (and practice/review) what I learned
-        about WebGL (I took COMP 590: Interactive Web Graphics in the spring of
-        2025, which ended up being some of the most interesting CS content I
-        learned at uni. Useful for the gamedev/visualizer stuff I'll be working
-        on in the future) These pixelated wireframe shapes rotate with a retro
-        8/16-bit aesthetic. From left to right: Cube (red), Pyramid (cyan),
-        Hexagonal Prism (blue), and Octahedron (green).
+        These pixelated wireframe shapes rotate with a retro 8/16-bit aesthetic.
+        From left to right: Cube (red), Pyramid (cyan), Hexagonal Prism (blue),
+        and Octahedron (green). To play with the edges of each shape, click and drag.
       </Typography>
 
       {/* {isDragging && draggedShape && (
