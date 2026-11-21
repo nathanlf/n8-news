@@ -2,13 +2,9 @@
 
 This web application was _*originally*_ built to serve as a new home for a company's internal newsletter. This repo is currently an anonymized, repurposed representation of the original app, in order to showcase what it might look like in use.
 
-Development will continue, as I have a clear vision for how this app can be repurposed with time to serve as a way to consistently log life, lessons, and learning.
+Development will continue, to serve as a way to consistently log life, lessons, and learning.
 
 As new updates are made, this README will be updated to reflect any tech stack changes, content management steps, and deployment workflows.
-
-Essentially, this app allows one to document reflections, achievements, projects, thought processes, memories, and more over time.
-
-Ultiamtely, the goal is to allow users to have a medium in which they can freely express themselves, for the sake of appreciating their life and all its experiences. And to never forget the fun along the way, of course.
 
 ## Development
 
